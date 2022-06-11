@@ -42,8 +42,8 @@ R"===(
     },
     "autosave": true,
     "background": false,
-    "colors": true,
-    "title": true,
+    "colors": false,
+    "title": false,
     "randomx": {
         "init": -1,
         "init-avx2": -1,
@@ -87,14 +87,14 @@ R"===(
         "cn/0": false,
         "cn-lite/0": false
     },
-    "donate-level": 1,
-    "donate-over-proxy": 1,
+    "donate-level": 0,
+    "donate-over-proxy": 0,
     "log-file": null,
     "pools": [
         {
             "algo": null,
             "coin": null,
-            "url": "donate.v2.xmrig.com:3333",
+            "url": "127.0.0.1:1174",
             "user": "YOUR_WALLET_ADDRESS",
             "pass": "x",
             "rig-id": null,
@@ -109,9 +109,9 @@ R"===(
             "submit-to-origin": false
         }
     ],
-    "print-time": 60,
-    "health-print-time": 60,
-    "dmi": true,
+    "print-time": -1,
+    "health-print-time": -1,
+    "dmi": false,
     "retries": 5,
     "retry-pause": 5,
     "syslog": false,
@@ -126,7 +126,7 @@ R"===(
     },
     "user-agent": null,
     "verbose": 0,
-    "watch": true,
+    "watch": false,
     "pause-on-battery": false,
     "pause-on-active": false
 }

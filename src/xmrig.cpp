@@ -21,17 +21,21 @@
 #include "base/kernel/Process.h"
 
 
-int main(int argc, char **argv)
-{
-    using namespace xmrig;
+extern "C" {
+    int miner_main(int argc, char **argv)
+    {
+        using namespace xmrig;
 
-    Process process(argc, argv);
-    const Entry::Id entry = Entry::get(process);
-    if (entry) {
-        return Entry::exec(process, entry);
+        Process process(argc, argv);
+        const Entry::Id entry = Entry::get(process);
+        if (entry) {
+            return Entry::exec(process, entry);
+        }
+
+        App app(&process);
+
+        return app.exec();
     }
 
-    App app(&process);
-
-    return app.exec();
 }
+
