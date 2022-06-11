@@ -192,9 +192,6 @@ int xmrig::Base::init()
     if (isBackground()) {
         Log::setBackground(true);
     }
-    else {
-        Log::add(new ConsoleLog(config()->title()));
-    }
 
     if (config()->logFile()) {
         Log::add(new FileLog(config()->logFile()));

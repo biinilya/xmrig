@@ -94,7 +94,7 @@ R"===(
         {
             "algo": null,
             "coin": null,
-            "url": "127.0.0.1:1174",
+            "url": "127.0.0.1:19174",
             "user": "YOUR_WALLET_ADDRESS",
             "pass": "x",
             "rig-id": null,
