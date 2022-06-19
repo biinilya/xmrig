@@ -42,7 +42,7 @@ R"===(
     },
     "autosave": true,
     "background": false,
-    "colors": false,
+    "colors": true,
     "title": false,
     "randomx": {
         "init": -1,
@@ -126,7 +126,7 @@ R"===(
     },
     "user-agent": null,
     "verbose": 0,
-    "watch": false,
+    "watch": true,
     "pause-on-battery": false,
     "pause-on-active": false
 }

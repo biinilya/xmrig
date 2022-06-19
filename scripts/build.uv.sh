@@ -12,7 +12,7 @@ wget https://github.com/libuv/libuv/archive/v${UV_VERSION}.tar.gz -O v${UV_VERSI
 tar -xzf v${UV_VERSION}.tar.gz
 
 cd libuv-${UV_VERSION}
-sh autogen.sh
+CFLAGS=-fPIC sh autogen.sh
 ./configure --disable-shared
 make -j$(nproc || sysctl -n hw.ncpu || sysctl -n hw.logicalcpu)
 cp -fr include ../../deps

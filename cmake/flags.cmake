@@ -102,6 +102,9 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES Clang)
 
 endif()
 
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -fPIC")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fPIC")
+
 if (NOT WIN32)
     check_symbol_exists("__builtin___clear_cache" "stdlib.h" HAVE_BUILTIN_CLEAR_CACHE)
     if (HAVE_BUILTIN_CLEAR_CACHE)
