@@ -33,7 +33,7 @@
 #include "crypto/kawpow/KPHash.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr size_t BLOB_SIZE = 40;
@@ -187,7 +187,7 @@ void OclKawPowRunner::jobEarlyNotification(const Job&)
 }
 
 
-void xmrig::OclKawPowRunner::build()
+void uvloop::OclKawPowRunner::build()
 {
     OclBaseRunner::build();
 
@@ -195,7 +195,7 @@ void xmrig::OclKawPowRunner::build()
 }
 
 
-void xmrig::OclKawPowRunner::init()
+void uvloop::OclKawPowRunner::init()
 {
     OclBaseRunner::init();
 
@@ -203,4 +203,4 @@ void xmrig::OclKawPowRunner::init()
     m_stop = OclLib::createBuffer(m_ctx, CL_MEM_READ_ONLY, sizeof(uint32_t) * 2);
 }
 
-} // namespace xmrig
+} // namespace uvloop

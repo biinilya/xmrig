@@ -23,7 +23,7 @@
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Timer;
@@ -41,7 +41,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ITIMERLISTENER_H

@@ -28,7 +28,7 @@
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm
@@ -236,7 +236,7 @@ private:
 using Algorithms = std::vector<Algorithm>;
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_ALGORITHM_H */

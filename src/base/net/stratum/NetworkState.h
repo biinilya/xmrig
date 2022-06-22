@@ -30,7 +30,7 @@
 #include <vector>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class NetworkState : public StrategyProxy
@@ -83,7 +83,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_NETWORKSTATE_H */

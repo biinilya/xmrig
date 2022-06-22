@@ -28,7 +28,7 @@
 struct cryptonight_ctx;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -40,7 +40,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CN_CTX_H */

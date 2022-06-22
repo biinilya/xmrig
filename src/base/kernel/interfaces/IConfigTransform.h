@@ -29,7 +29,7 @@
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IJsonReader;
@@ -46,7 +46,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ICONFIGTRANSFORM_H

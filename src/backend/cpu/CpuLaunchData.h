@@ -33,7 +33,7 @@
 #include "crypto/common/Nonce.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CpuConfig;
@@ -72,7 +72,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CPULAUNCHDATA_H */

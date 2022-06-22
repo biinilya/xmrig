@@ -26,7 +26,7 @@
 using cl_program = struct _cl_program *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IOclRunner;
@@ -46,7 +46,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLCACHE_H */

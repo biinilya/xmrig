@@ -29,7 +29,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Cn1RyoKernel : public OclKernel
@@ -42,7 +42,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CN1RYOKERNEL_H */

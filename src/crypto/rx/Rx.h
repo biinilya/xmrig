@@ -29,7 +29,7 @@
 #include "crypto/common/HugePagesInfo.h"
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -60,7 +60,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_H */

@@ -39,7 +39,7 @@
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *colors_map[] = {
@@ -198,11 +198,11 @@ LogPrivate *Log::d          = nullptr;
 uint32_t Log::m_verbose     = 0;
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 
-void xmrig::Log::add(ILogBackend *backend)
+void uvloop::Log::add(ILogBackend *backend)
 {
     assert(d != nullptr);
 
@@ -212,20 +212,20 @@ void xmrig::Log::add(ILogBackend *backend)
 }
 
 
-void xmrig::Log::destroy()
+void uvloop::Log::destroy()
 {
     delete d;
     d = nullptr;
 }
 
 
-void xmrig::Log::init()
+void uvloop::Log::init()
 {
     d = new LogPrivate();
 }
 
 
-void xmrig::Log::print(const char *fmt, ...)
+void uvloop::Log::print(const char *fmt, ...)
 {
     if (!d) {
         return;
@@ -240,7 +240,7 @@ void xmrig::Log::print(const char *fmt, ...)
 }
 
 
-void xmrig::Log::print(Level level, const char *fmt, ...)
+void uvloop::Log::print(Level level, const char *fmt, ...)
 {
     if (!d) {
         return;

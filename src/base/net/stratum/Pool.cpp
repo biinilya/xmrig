@@ -54,7 +54,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const String Pool::kDefaultPassword       = "x";
@@ -83,10 +83,10 @@ const char *Pool::kSpendSecretKey         = "spend-secret-key";
 const char *Pool::kNicehashHost           = "nicehash.com";
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Pool::Pool(const char *url) :
+uvloop::Pool::Pool(const char *url) :
     m_flags(1 << FLAG_ENABLED),
     m_pollInterval(kDefaultPollInterval),
     m_url(url)
@@ -94,7 +94,7 @@ xmrig::Pool::Pool(const char *url) :
 }
 
 
-xmrig::Pool::Pool(const char *host, uint16_t port, const char *user, const char *password, const char* spendSecretKey, int keepAlive, bool nicehash, bool tls, bool wss, Mode mode) :
+uvloop::Pool::Pool(const char *host, uint16_t port, const char *user, const char *password, const char* spendSecretKey, int keepAlive, bool nicehash, bool tls, bool wss, Mode mode) :
     m_keepAlive(keepAlive),
     m_mode(mode),
     m_flags(1 << FLAG_ENABLED),
@@ -110,7 +110,7 @@ xmrig::Pool::Pool(const char *host, uint16_t port, const char *user, const char 
 }
 
 
-xmrig::Pool::Pool(const rapidjson::Value &object) :
+uvloop::Pool::Pool(const rapidjson::Value &object) :
     m_flags(1 << FLAG_ENABLED),
     m_pollInterval(kDefaultPollInterval),
     m_url(Json::getString(object, kUrl))
@@ -149,7 +149,7 @@ xmrig::Pool::Pool(const rapidjson::Value &object) :
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-xmrig::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
+uvloop::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
     m_mode(MODE_BENCHMARK),
     m_flags(1 << FLAG_ENABLED),
     m_url(BenchConfig::kBenchmark),
@@ -158,7 +158,7 @@ xmrig::Pool::Pool(const std::shared_ptr<BenchConfig> &benchmark) :
 }
 
 
-xmrig::BenchConfig *xmrig::Pool::benchmark() const
+uvloop::BenchConfig *uvloop::Pool::benchmark() const
 {
     assert(m_mode == MODE_BENCHMARK && m_benchmark);
 
@@ -166,14 +166,14 @@ xmrig::BenchConfig *xmrig::Pool::benchmark() const
 }
 
 
-uint32_t xmrig::Pool::benchSize() const
+uint32_t uvloop::Pool::benchSize() const
 {
     return benchmark()->size();
 }
 #endif
 
 
-bool xmrig::Pool::isEnabled() const
+bool uvloop::Pool::isEnabled() const
 {
 #   ifndef XMRIG_FEATURE_TLS
     if (isTLS()) {
@@ -197,7 +197,7 @@ bool xmrig::Pool::isEnabled() const
 }
 
 
-bool xmrig::Pool::isEqual(const Pool &other) const
+bool uvloop::Pool::isEqual(const Pool &other) const
 {
     return (m_flags           == other.m_flags
             && m_keepAlive    == other.m_keepAlive
@@ -216,7 +216,7 @@ bool xmrig::Pool::isEqual(const Pool &other) const
 }
 
 
-xmrig::IClient *xmrig::Pool::createClient(int id, IClientListener *listener) const
+uvloop::IClient *uvloop::Pool::createClient(int id, IClientListener *listener) const
 {
     IClient *client = nullptr;
 
@@ -261,7 +261,7 @@ xmrig::IClient *xmrig::Pool::createClient(int id, IClientListener *listener) con
 }
 
 
-rapidjson::Value xmrig::Pool::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::Pool::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -314,7 +314,7 @@ rapidjson::Value xmrig::Pool::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::string xmrig::Pool::printableName() const
+std::string uvloop::Pool::printableName() const
 {
     std::string out(CSI "1;" + std::to_string(isEnabled() ? (isTLS() ? 32 : 36) : 31) + "m" + url().data() + CLEAR);
 
@@ -334,7 +334,7 @@ std::string xmrig::Pool::printableName() const
 
 
 #ifdef APP_DEBUG
-void xmrig::Pool::print() const
+void uvloop::Pool::print() const
 {
     LOG_NOTICE("url:       %s", url().data());
     LOG_DEBUG ("host:      %s", host().data());
@@ -352,7 +352,7 @@ void xmrig::Pool::print() const
 #endif
 
 
-void xmrig::Pool::setKeepAlive(const rapidjson::Value &value)
+void uvloop::Pool::setKeepAlive(const rapidjson::Value &value)
 {
     if (value.IsInt()) {
         setKeepAlive(value.GetInt());

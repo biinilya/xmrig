@@ -26,7 +26,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 struct dmi_header
@@ -54,7 +54,7 @@ inline T dmi_get(const dmi_header *h, size_t offset)    { return *reinterpret_ca
 const char *dmi_string(dmi_header *dm, size_t offset);
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DMITOOLS_H */

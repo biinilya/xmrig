@@ -20,7 +20,7 @@
 #define XMRIG_BATON_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<typename REQ>
@@ -33,7 +33,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BATON_H */

@@ -23,7 +23,7 @@
 #include "base/kernel/interfaces/IHttpListener.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HttpListener : public IHttpListener
@@ -47,7 +47,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_HTTPLISTENER_H

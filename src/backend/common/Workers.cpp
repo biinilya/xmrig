@@ -40,7 +40,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class WorkersPrivate
@@ -57,11 +57,11 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 template<class T>
-xmrig::Workers<T>::Workers() :
+uvloop::Workers<T>::Workers() :
     d_ptr(new WorkersPrivate())
 {
 
@@ -69,14 +69,14 @@ xmrig::Workers<T>::Workers() :
 
 
 template<class T>
-xmrig::Workers<T>::~Workers()
+uvloop::Workers<T>::~Workers()
 {
     delete d_ptr;
 }
 
 
 template<class T>
-bool xmrig::Workers<T>::tick(uint64_t)
+bool uvloop::Workers<T>::tick(uint64_t)
 {
     if (!d_ptr->hashrate) {
         return true;
@@ -115,21 +115,21 @@ bool xmrig::Workers<T>::tick(uint64_t)
 
 
 template<class T>
-const xmrig::Hashrate *xmrig::Workers<T>::hashrate() const
+const uvloop::Hashrate *uvloop::Workers<T>::hashrate() const
 {
     return d_ptr->hashrate.get();
 }
 
 
 template<class T>
-void xmrig::Workers<T>::setBackend(IBackend *backend)
+void uvloop::Workers<T>::setBackend(IBackend *backend)
 {
     d_ptr->backend = backend;
 }
 
 
 template<class T>
-void xmrig::Workers<T>::stop()
+void uvloop::Workers<T>::stop()
 {
 #   ifdef XMRIG_MINER_PROJECT
     Nonce::stop(T::backend());
@@ -151,7 +151,7 @@ void xmrig::Workers<T>::stop()
 
 #ifdef XMRIG_FEATURE_BENCHMARK
 template<class T>
-void xmrig::Workers<T>::start(const std::vector<T> &data, const std::shared_ptr<Benchmark> &benchmark)
+void uvloop::Workers<T>::start(const std::vector<T> &data, const std::shared_ptr<Benchmark> &benchmark)
 {
     if (!benchmark) {
         return start(data, true);
@@ -166,14 +166,14 @@ void xmrig::Workers<T>::start(const std::vector<T> &data, const std::shared_ptr<
 
 
 template<class T>
-xmrig::IWorker *xmrig::Workers<T>::create(Thread<T> *)
+uvloop::IWorker *uvloop::Workers<T>::create(Thread<T> *)
 {
     return nullptr;
 }
 
 
 template<class T>
-void *xmrig::Workers<T>::onReady(void *arg)
+void *uvloop::Workers<T>::onReady(void *arg)
 {
     auto handle = static_cast<Thread<T>* >(arg);
 
@@ -199,7 +199,7 @@ void *xmrig::Workers<T>::onReady(void *arg)
 
 
 template<class T>
-void xmrig::Workers<T>::start(const std::vector<T> &data, bool /*sleep*/)
+void uvloop::Workers<T>::start(const std::vector<T> &data, bool /*sleep*/)
 {
     for (const auto &item : data) {
         m_workers.push_back(new Thread<T>(d_ptr->backend, m_workers.size(), item));
@@ -217,11 +217,11 @@ void xmrig::Workers<T>::start(const std::vector<T> &data, bool /*sleep*/)
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<>
-xmrig::IWorker *xmrig::Workers<CpuLaunchData>::create(Thread<CpuLaunchData> *handle)
+uvloop::IWorker *uvloop::Workers<CpuLaunchData>::create(Thread<CpuLaunchData> *handle)
 {
 #   ifdef XMRIG_MINER_PROJECT
     switch (handle->config().intensity) {
@@ -258,7 +258,7 @@ template class Workers<CpuLaunchData>;
 
 #ifdef XMRIG_FEATURE_OPENCL
 template<>
-xmrig::IWorker *xmrig::Workers<OclLaunchData>::create(Thread<OclLaunchData> *handle)
+uvloop::IWorker *uvloop::Workers<OclLaunchData>::create(Thread<OclLaunchData> *handle)
 {
     return new OclWorker(handle->id(), handle->config());
 }
@@ -270,7 +270,7 @@ template class Workers<OclLaunchData>;
 
 #ifdef XMRIG_FEATURE_CUDA
 template<>
-xmrig::IWorker *xmrig::Workers<CudaLaunchData>::create(Thread<CudaLaunchData> *handle)
+uvloop::IWorker *uvloop::Workers<CudaLaunchData>::create(Thread<CudaLaunchData> *handle)
 {
     return new CudaWorker(handle->id(), handle->config());
 }
@@ -280,4 +280,4 @@ template class Workers<CudaLaunchData>;
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop

@@ -41,22 +41,22 @@
 #include "version.h"
 
 
-xmrig::App::App(Process *process)
+uvloop::App::App(Process *process)
 {
     m_controller = std::make_shared<Controller>(process);
 }
 
 
-xmrig::App::~App()
+uvloop::App::~App()
 {
     Cpu::release();
 }
 
 
-int xmrig::App::exec()
+int uvloop::App::exec()
 {
     if (!m_controller->isReady()) {
-        LOG_EMERG("no valid configuration found, try https://xmrig.com/wizard");
+        LOG_EMERG("no valid configuration found, try do some lurking");
 
         return 2;
     }
@@ -110,7 +110,7 @@ int xmrig::App::exec()
 }
 
 
-void xmrig::App::onConsoleCommand(char command)
+void uvloop::App::onConsoleCommand(char command)
 {
     if (command == 3) {
         LOG_WARN("%s " YELLOW("Ctrl+C received, exiting"), Tags::signal());
@@ -122,7 +122,7 @@ void xmrig::App::onConsoleCommand(char command)
 }
 
 
-void xmrig::App::onSignal(int signum)
+void uvloop::App::onSignal(int signum)
 {
     switch (signum)
     {
@@ -137,7 +137,7 @@ void xmrig::App::onSignal(int signum)
 }
 
 
-void xmrig::App::close()
+void uvloop::App::close()
 {
     m_signals.reset();
     m_console.reset();

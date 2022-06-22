@@ -32,7 +32,7 @@
 #include <algorithm>
 
 
-xmrig::CpuLaunchData::CpuLaunchData(const Miner *miner, const Algorithm &algorithm, const CpuConfig &config, const CpuThread &thread, size_t threads, const std::vector<int64_t>& affinities) :
+uvloop::CpuLaunchData::CpuLaunchData(const Miner *miner, const Algorithm &algorithm, const CpuConfig &config, const CpuThread &thread, size_t threads, const std::vector<int64_t>& affinities) :
     algorithm(algorithm),
     assembly(config.assembly()),
     astrobwtAVX2(config.astrobwtAVX2()),
@@ -50,7 +50,7 @@ xmrig::CpuLaunchData::CpuLaunchData(const Miner *miner, const Algorithm &algorit
 }
 
 
-bool xmrig::CpuLaunchData::isEqual(const CpuLaunchData &other) const
+bool uvloop::CpuLaunchData::isEqual(const CpuLaunchData &other) const
 {
     return (algorithm.l3()      == other.algorithm.l3()
             && assembly         == other.assembly
@@ -63,7 +63,7 @@ bool xmrig::CpuLaunchData::isEqual(const CpuLaunchData &other) const
 }
 
 
-xmrig::CnHash::AlgoVariant xmrig::CpuLaunchData::av() const
+uvloop::CnHash::AlgoVariant uvloop::CpuLaunchData::av() const
 {
     if (intensity <= 2) {
         return static_cast<CnHash::AlgoVariant>(!hwAES ? (intensity + 2) : intensity);
@@ -73,7 +73,7 @@ xmrig::CnHash::AlgoVariant xmrig::CpuLaunchData::av() const
 }
 
 
-const char *xmrig::CpuLaunchData::tag()
+const char *uvloop::CpuLaunchData::tag()
 {
     return cpu_tag();
 }

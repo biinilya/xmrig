@@ -26,7 +26,7 @@
 #include "base/tools/Chrono.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 static Storage<DnsUvBackend>* storage = nullptr;
 
@@ -44,10 +44,10 @@ void DnsUvBackend::releaseStorage()
 static addrinfo hints{};
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::DnsUvBackend::DnsUvBackend()
+uvloop::DnsUvBackend::DnsUvBackend()
 {
     if (!hints.ai_protocol) {
         hints.ai_family     = AF_UNSPEC;
@@ -59,14 +59,14 @@ xmrig::DnsUvBackend::DnsUvBackend()
 }
 
 
-xmrig::DnsUvBackend::~DnsUvBackend()
+uvloop::DnsUvBackend::~DnsUvBackend()
 {
     getStorage().release(m_key);
     releaseStorage();
 }
 
 
-std::shared_ptr<xmrig::DnsRequest> xmrig::DnsUvBackend::resolve(const String &host, IDnsListener *listener, uint64_t ttl)
+std::shared_ptr<uvloop::DnsRequest> uvloop::DnsUvBackend::resolve(const String &host, IDnsListener *listener, uint64_t ttl)
 {
     auto req = std::make_shared<DnsRequest>(listener);
 
@@ -84,7 +84,7 @@ std::shared_ptr<xmrig::DnsRequest> xmrig::DnsUvBackend::resolve(const String &ho
 }
 
 
-bool xmrig::DnsUvBackend::resolve(const String &host)
+bool uvloop::DnsUvBackend::resolve(const String &host)
 {
     m_req = std::make_shared<uv_getaddrinfo_t>();
     m_req->data = getStorage().ptr(m_key);
@@ -95,7 +95,7 @@ bool xmrig::DnsUvBackend::resolve(const String &host)
 }
 
 
-void xmrig::DnsUvBackend::done()
+void uvloop::DnsUvBackend::done()
 {
     const char *error = m_status < 0 ? uv_strerror(m_status) : nullptr;
 
@@ -112,7 +112,7 @@ void xmrig::DnsUvBackend::done()
 }
 
 
-void xmrig::DnsUvBackend::onResolved(int status, addrinfo *res)
+void uvloop::DnsUvBackend::onResolved(int status, addrinfo *res)
 {
     m_ts = Chrono::currentMSecsSinceEpoch();
 
@@ -130,7 +130,7 @@ void xmrig::DnsUvBackend::onResolved(int status, addrinfo *res)
 }
 
 
-void xmrig::DnsUvBackend::onResolved(uv_getaddrinfo_t *req, int status, addrinfo *res)
+void uvloop::DnsUvBackend::onResolved(uv_getaddrinfo_t *req, int status, addrinfo *res)
 {
     auto backend = getStorage().get(req->data);
     if (backend) {

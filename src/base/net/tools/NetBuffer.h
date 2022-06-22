@@ -27,7 +27,7 @@ using uv_handle_t = struct uv_handle_s;
 #include <cstddef>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class NetBuffer
@@ -41,7 +41,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_NETBUFFER_H */

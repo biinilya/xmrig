@@ -26,7 +26,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DmiReader;
@@ -47,7 +47,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_HWAPI_H */

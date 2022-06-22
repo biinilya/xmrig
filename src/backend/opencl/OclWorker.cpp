@@ -52,7 +52,7 @@
 #include <thread>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 std::atomic<bool> OclWorker::ready;
@@ -67,11 +67,11 @@ static inline void printError(size_t id, const char *error)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 
-xmrig::OclWorker::OclWorker(size_t id, const OclLaunchData &data) :
+uvloop::OclWorker::OclWorker(size_t id, const OclLaunchData &data) :
     GpuWorker(id, data.affinity, -1, data.device.index()),
     m_algorithm(data.algorithm),
     m_miner(data.miner),
@@ -140,13 +140,13 @@ xmrig::OclWorker::OclWorker(size_t id, const OclLaunchData &data) :
 }
 
 
-xmrig::OclWorker::~OclWorker()
+uvloop::OclWorker::~OclWorker()
 {
     delete m_runner;
 }
 
 
-void xmrig::OclWorker::jobEarlyNotification(const Job &job)
+void uvloop::OclWorker::jobEarlyNotification(const Job &job)
 {
     if (m_runner) {
         m_runner->jobEarlyNotification(job);
@@ -154,19 +154,19 @@ void xmrig::OclWorker::jobEarlyNotification(const Job &job)
 }
 
 
-bool xmrig::OclWorker::selfTest()
+bool uvloop::OclWorker::selfTest()
 {
     return m_runner != nullptr;
 }
 
 
-size_t xmrig::OclWorker::intensity() const
+size_t uvloop::OclWorker::intensity() const
 {
     return m_runner ? m_runner->roundSize() : 0;
 }
 
 
-void xmrig::OclWorker::start()
+void uvloop::OclWorker::start()
 {
     cl_uint results[0x100];
 
@@ -223,7 +223,7 @@ void xmrig::OclWorker::start()
 }
 
 
-bool xmrig::OclWorker::consumeJob()
+bool uvloop::OclWorker::consumeJob()
 {
     if (Nonce::sequence(Nonce::OPENCL) == 0) {
         return false;
@@ -244,7 +244,7 @@ bool xmrig::OclWorker::consumeJob()
 }
 
 
-void xmrig::OclWorker::storeStats(uint64_t t)
+void uvloop::OclWorker::storeStats(uint64_t t)
 {
     if (!isReady()) {
         return;

@@ -39,7 +39,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static char pathBuf[520];
@@ -114,10 +114,10 @@ static void setDataDir(const char *path)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Process::Process(int argc, char **argv) :
+uvloop::Process::Process(int argc, char **argv) :
     m_arguments(argc, argv)
 {
     srand(static_cast<unsigned int>(Chrono::currentMSecsSinceEpoch() ^ reinterpret_cast<uintptr_t>(this)));
@@ -138,7 +138,7 @@ xmrig::Process::Process(int argc, char **argv) :
 }
 
 
-int xmrig::Process::ppid()
+int uvloop::Process::ppid()
 {
 #   if UV_VERSION_HEX >= 0x011000
     return uv_os_getppid();
@@ -148,7 +148,7 @@ int xmrig::Process::ppid()
 }
 
 
-xmrig::String xmrig::Process::exepath()
+uvloop::String uvloop::Process::exepath()
 {
     size_t size = sizeof(pathBuf);
 
@@ -156,7 +156,7 @@ xmrig::String xmrig::Process::exepath()
 }
 
 
-xmrig::String xmrig::Process::location(Location location, const char *fileName)
+uvloop::String uvloop::Process::location(Location location, const char *fileName)
 {
     auto path = getPath(location);
     if (path.empty() || fileName == nullptr) {

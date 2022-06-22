@@ -31,7 +31,7 @@
 #include "base/net/stratum/ProxyUrl.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class BenchConfig;
@@ -176,7 +176,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_POOL_H */

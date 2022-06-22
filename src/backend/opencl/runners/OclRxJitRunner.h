@@ -23,7 +23,7 @@
 #include "backend/opencl/runners/OclRxBaseRunner.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class RxJitKernel;
@@ -56,7 +56,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLRXRUNNER_H

@@ -31,7 +31,7 @@
 #include <stdint.h>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -52,7 +52,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_KP_HASH_H */

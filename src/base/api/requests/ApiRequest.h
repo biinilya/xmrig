@@ -32,7 +32,7 @@
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ApiRequest : public IApiRequest
@@ -71,7 +71,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_APIREQUEST_H

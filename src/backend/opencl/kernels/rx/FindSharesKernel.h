@@ -29,7 +29,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class FindSharesKernel : public OclKernel
@@ -44,7 +44,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_FINDSHARESKERNEL_H */

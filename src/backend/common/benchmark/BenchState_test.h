@@ -26,7 +26,7 @@
 #include <map>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const std::map<int, std::map<uint32_t, uint64_t> > hashCheck = {
@@ -109,7 +109,7 @@ static const std::map<int, std::map<uint32_t, uint64_t> > hashCheck1T = {
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 

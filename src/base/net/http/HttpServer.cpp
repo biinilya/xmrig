@@ -28,19 +28,19 @@
 #include "base/net/tools/NetBuffer.h"
 
 
-xmrig::HttpServer::HttpServer(const std::shared_ptr<IHttpListener> &listener) :
+uvloop::HttpServer::HttpServer(const std::shared_ptr<IHttpListener> &listener) :
     m_listener(listener)
 {
 }
 
 
-xmrig::HttpServer::~HttpServer()
+uvloop::HttpServer::~HttpServer()
 {
     HttpContext::closeAll();
 }
 
 
-void xmrig::HttpServer::onConnection(uv_stream_t *stream, uint16_t)
+void uvloop::HttpServer::onConnection(uv_stream_t *stream, uint16_t)
 {
     auto ctx = new HttpContext(HTTP_REQUEST, m_listener);
     uv_accept(stream, ctx->stream());

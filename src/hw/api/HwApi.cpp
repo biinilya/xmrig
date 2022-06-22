@@ -27,7 +27,7 @@
 #endif
 
 
-void xmrig::HwApi::onRequest(IApiRequest &request)
+void uvloop::HwApi::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
 #       ifdef XMRIG_FEATURE_DMI

@@ -21,7 +21,7 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-xmrig::Algorithm::Id xmrig::RxAlgo::apply(Algorithm::Id algorithm)
+uvloop::Algorithm::Id uvloop::RxAlgo::apply(Algorithm::Id algorithm)
 {
     randomx_apply_config(*base(algorithm));
 
@@ -29,7 +29,7 @@ xmrig::Algorithm::Id xmrig::RxAlgo::apply(Algorithm::Id algorithm)
 }
 
 
-const RandomX_ConfigurationBase *xmrig::RxAlgo::base(Algorithm::Id algorithm)
+const RandomX_ConfigurationBase *uvloop::RxAlgo::base(Algorithm::Id algorithm)
 {
     switch (algorithm) {
     case Algorithm::RX_WOW:
@@ -58,25 +58,25 @@ const RandomX_ConfigurationBase *xmrig::RxAlgo::base(Algorithm::Id algorithm)
 }
 
 
-uint32_t xmrig::RxAlgo::version(Algorithm::Id algorithm)
+uint32_t uvloop::RxAlgo::version(Algorithm::Id algorithm)
 {
     return algorithm == Algorithm::RX_WOW ? 103 : 104;
 }
 
 
-uint32_t xmrig::RxAlgo::programCount(Algorithm::Id algorithm)
+uint32_t uvloop::RxAlgo::programCount(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramCount;
 }
 
 
-uint32_t xmrig::RxAlgo::programIterations(Algorithm::Id algorithm)
+uint32_t uvloop::RxAlgo::programIterations(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramIterations;
 }
 
 
-uint32_t xmrig::RxAlgo::programSize(Algorithm::Id algorithm)
+uint32_t uvloop::RxAlgo::programSize(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramSize;
 }

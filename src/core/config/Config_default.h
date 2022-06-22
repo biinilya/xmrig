@@ -21,7 +21,7 @@
 #define XMRIG_CONFIG_DEFAULT_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 // This feature require CMake option: -DWITH_EMBEDDED_CONFIG=ON
@@ -134,7 +134,7 @@ R"===(
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CONFIG_DEFAULT_H */

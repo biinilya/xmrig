@@ -46,13 +46,13 @@ extern "C" {
 
 
 
-xmrig::EthStratumClient::EthStratumClient(int id, const char *agent, IClientListener *listener) :
+uvloop::EthStratumClient::EthStratumClient(int id, const char *agent, IClientListener *listener) :
     Client(id, agent, listener)
 {
 }
 
 
-int64_t xmrig::EthStratumClient::submit(const JobResult& result)
+int64_t uvloop::EthStratumClient::submit(const JobResult& result)
 {
 #   ifndef XMRIG_PROXY_PROJECT
     if ((m_state != ConnectedState) || !m_authorized) {
@@ -135,7 +135,7 @@ int64_t xmrig::EthStratumClient::submit(const JobResult& result)
 }
 
 
-void xmrig::EthStratumClient::login()
+void uvloop::EthStratumClient::login()
 {
     m_results.clear();
 
@@ -144,14 +144,14 @@ void xmrig::EthStratumClient::login()
 }
 
 
-void xmrig::EthStratumClient::onClose()
+void uvloop::EthStratumClient::onClose()
 {
     m_authorized = false;
     Client::onClose();
 }
 
 
-bool xmrig::EthStratumClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
+bool uvloop::EthStratumClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
 {
     auto it = m_callbacks.find(id);
     if (it != m_callbacks.end()) {
@@ -173,7 +173,7 @@ bool xmrig::EthStratumClient::handleResponse(int64_t id, const rapidjson::Value 
 }
 
 
-void xmrig::EthStratumClient::parseNotification(const char *method, const rapidjson::Value &params, const rapidjson::Value &)
+void uvloop::EthStratumClient::parseNotification(const char *method, const rapidjson::Value &params, const rapidjson::Value &)
 {
     if (strcmp(method, "mining.set_target") == 0) {
         return;
@@ -410,7 +410,7 @@ void xmrig::EthStratumClient::parseNotification(const char *method, const rapidj
 }
 
 
-void xmrig::EthStratumClient::setExtraNonce(const rapidjson::Value &nonce)
+void uvloop::EthStratumClient::setExtraNonce(const rapidjson::Value &nonce)
 {
     if (!nonce.IsString()) {
         throw std::runtime_error("invalid mining.subscribe response: extra nonce is not a string");
@@ -442,7 +442,7 @@ void xmrig::EthStratumClient::setExtraNonce(const rapidjson::Value &nonce)
 }
 
 
-const char *xmrig::EthStratumClient::errorMessage(const rapidjson::Value &error)
+const char *uvloop::EthStratumClient::errorMessage(const rapidjson::Value &error)
 {
     if (error.IsArray() && error.GetArray().Size() > 1) {
         auto &value = error.GetArray()[1];
@@ -463,7 +463,7 @@ const char *xmrig::EthStratumClient::errorMessage(const rapidjson::Value &error)
 }
 
 
-void xmrig::EthStratumClient::authorize()
+void uvloop::EthStratumClient::authorize()
 {
     using namespace rapidjson;
 
@@ -480,7 +480,7 @@ void xmrig::EthStratumClient::authorize()
 }
 
 
-void xmrig::EthStratumClient::onAuthorizeResponse(const rapidjson::Value &result, bool success, uint64_t)
+void uvloop::EthStratumClient::onAuthorizeResponse(const rapidjson::Value &result, bool success, uint64_t)
 {
     try {
         if (!success) {
@@ -515,7 +515,7 @@ void xmrig::EthStratumClient::onAuthorizeResponse(const rapidjson::Value &result
 }
 
 
-void xmrig::EthStratumClient::onSubscribeResponse(const rapidjson::Value &result, bool success, uint64_t)
+void uvloop::EthStratumClient::onSubscribeResponse(const rapidjson::Value &result, bool success, uint64_t)
 {
     if (!success) {
         return;
@@ -555,7 +555,7 @@ void xmrig::EthStratumClient::onSubscribeResponse(const rapidjson::Value &result
 }
 
 
-void xmrig::EthStratumClient::subscribe()
+void uvloop::EthStratumClient::subscribe()
 {
     using namespace rapidjson;
 

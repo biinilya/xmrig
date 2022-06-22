@@ -24,7 +24,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 double Chrono::highResolutionMSecs()
@@ -41,4 +41,4 @@ double Chrono::highResolutionMSecs()
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */

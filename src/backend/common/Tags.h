@@ -30,7 +30,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const char *backend_tag(uint32_t backend);
@@ -51,7 +51,7 @@ const char *bm_tag();
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_BACKEND_TAGS_H */

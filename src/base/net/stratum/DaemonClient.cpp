@@ -58,7 +58,7 @@
 #include <random>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 Storage<DaemonClient> DaemonClient::m_storage;
@@ -89,10 +89,10 @@ Connection: Upgrade\r\n\
 Sec-WebSocket-Key: %s\r\n\
 Sec-WebSocket-Version: 13\r\n\r\n";
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::DaemonClient::DaemonClient(int id, IClientListener *listener) :
+uvloop::DaemonClient::DaemonClient(int id, IClientListener *listener) :
     BaseClient(id, listener)
 {
     m_httpListener  = std::make_shared<HttpListener>(this);
@@ -101,7 +101,7 @@ xmrig::DaemonClient::DaemonClient(int id, IClientListener *listener) :
 }
 
 
-xmrig::DaemonClient::~DaemonClient()
+uvloop::DaemonClient::~DaemonClient()
 {
     delete m_timer;
     delete m_ZMQSocket;
@@ -111,7 +111,7 @@ xmrig::DaemonClient::~DaemonClient()
 }
 
 
-void xmrig::DaemonClient::deleteLater()
+void uvloop::DaemonClient::deleteLater()
 {
 #   ifdef XMRIG_FEATURE_TLS
     if (m_pool.isWSS()) {
@@ -128,7 +128,7 @@ void xmrig::DaemonClient::deleteLater()
 }
 
 
-bool xmrig::DaemonClient::disconnect()
+bool uvloop::DaemonClient::disconnect()
 {
     if (m_state != UnconnectedState) {
         setState(UnconnectedState);
@@ -138,7 +138,7 @@ bool xmrig::DaemonClient::disconnect()
 }
 
 
-bool xmrig::DaemonClient::isTLS() const
+bool uvloop::DaemonClient::isTLS() const
 {
 #   ifdef XMRIG_FEATURE_TLS
     return m_pool.isTLS();
@@ -148,13 +148,13 @@ bool xmrig::DaemonClient::isTLS() const
 }
 
 
-bool xmrig::DaemonClient::isWSS() const
+bool uvloop::DaemonClient::isWSS() const
 {
     return m_pool.isWSS();
 }
 
 
-int64_t xmrig::DaemonClient::submit(const JobResult &result)
+int64_t uvloop::DaemonClient::submit(const JobResult &result)
 {
     if (result.jobId != m_currentJobId) {
         return -1;
@@ -223,7 +223,7 @@ int64_t xmrig::DaemonClient::submit(const JobResult &result)
 }
 
 
-void xmrig::DaemonClient::connect()
+void uvloop::DaemonClient::connect()
 {
     auto connectError = [this](const char *message) {
         if (!isQuiet()) {
@@ -243,7 +243,7 @@ void xmrig::DaemonClient::connect()
         m_pool.setAlgo(m_coin.algorithm());
     }
 
-    const xmrig::Algorithm algo = m_pool.algorithm();
+    const uvloop::Algorithm algo = m_pool.algorithm();
     if ((algo == Algorithm::ASTROBWT_DERO) || (algo == Algorithm::ASTROBWT_DERO_2) || (m_coin == Coin::DERO) || (m_coin == Coin::DERO_HE)) {
         m_apiVersion = API_DERO;
     }
@@ -261,14 +261,14 @@ void xmrig::DaemonClient::connect()
 }
 
 
-void xmrig::DaemonClient::connect(const Pool &pool)
+void uvloop::DaemonClient::connect(const Pool &pool)
 {
     setPool(pool);
     connect();
 }
 
 
-void xmrig::DaemonClient::setPool(const Pool &pool)
+void uvloop::DaemonClient::setPool(const Pool &pool)
 {
     BaseClient::setPool(pool);
 
@@ -282,7 +282,7 @@ void xmrig::DaemonClient::setPool(const Pool &pool)
 }
 
 
-void xmrig::DaemonClient::onHttpData(const HttpData &data)
+void uvloop::DaemonClient::onHttpData(const HttpData &data)
 {
     if (data.status != 200) {
         return retry();
@@ -347,7 +347,7 @@ void xmrig::DaemonClient::onHttpData(const HttpData &data)
 }
 
 
-void xmrig::DaemonClient::onTimer(const Timer *)
+void uvloop::DaemonClient::onTimer(const Timer *)
 {
     if (m_state == ConnectingState) {
         connect();
@@ -366,7 +366,7 @@ void xmrig::DaemonClient::onTimer(const Timer *)
 }
 
 
-void xmrig::DaemonClient::onResolved(const DnsRecords &records, int status, const char* error)
+void uvloop::DaemonClient::onResolved(const DnsRecords &records, int status, const char* error)
 {
     m_dns.reset();
 
@@ -412,13 +412,13 @@ void xmrig::DaemonClient::onResolved(const DnsRecords &records, int status, cons
 }
 
 
-bool xmrig::DaemonClient::isOutdated(uint64_t height, const char *hash) const
+bool uvloop::DaemonClient::isOutdated(uint64_t height, const char *hash) const
 {
     return m_job.height() != height || m_prevHash != hash;
 }
 
 
-bool xmrig::DaemonClient::parseJob(const rapidjson::Value &params, int *code)
+bool uvloop::DaemonClient::parseJob(const rapidjson::Value &params, int *code)
 {
     auto jobError = [this, code](const char *message) {
         if (!isQuiet()) {
@@ -552,7 +552,7 @@ bool xmrig::DaemonClient::parseJob(const rapidjson::Value &params, int *code)
 }
 
 
-bool xmrig::DaemonClient::parseResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
+bool uvloop::DaemonClient::parseResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (id == -1) {
         return false;
@@ -605,7 +605,7 @@ bool xmrig::DaemonClient::parseResponse(int64_t id, const rapidjson::Value &resu
 }
 
 
-int64_t xmrig::DaemonClient::getBlockTemplate()
+int64_t uvloop::DaemonClient::getBlockTemplate()
 {
     using namespace rapidjson;
     Document doc(kObjectType);
@@ -626,7 +626,7 @@ int64_t xmrig::DaemonClient::getBlockTemplate()
 }
 
 
-int64_t xmrig::DaemonClient::rpcSend(const rapidjson::Document &doc)
+int64_t uvloop::DaemonClient::rpcSend(const rapidjson::Document &doc)
 {
     FetchRequest req(HTTP_POST, m_pool.host(), m_pool.port(), kJsonRPC, doc, m_pool.isTLS(), isQuiet());
     fetch(tag(), std::move(req), m_httpListener);
@@ -635,7 +635,7 @@ int64_t xmrig::DaemonClient::rpcSend(const rapidjson::Document &doc)
 }
 
 
-void xmrig::DaemonClient::retry()
+void uvloop::DaemonClient::retry()
 {
     m_failures++;
     m_listener->onClose(this, static_cast<int>(m_failures));
@@ -663,14 +663,14 @@ void xmrig::DaemonClient::retry()
 }
 
 
-void xmrig::DaemonClient::send(const char *path)
+void uvloop::DaemonClient::send(const char *path)
 {
     FetchRequest req(HTTP_GET, m_pool.host(), m_pool.port(), path, m_pool.isTLS(), isQuiet());
     fetch(tag(), std::move(req), m_httpListener);
 }
 
 
-void xmrig::DaemonClient::setState(SocketState state)
+void uvloop::DaemonClient::setState(SocketState state)
 {
     if (m_state == state) {
         return;
@@ -702,7 +702,7 @@ void xmrig::DaemonClient::setState(SocketState state)
 }
 
 
-void xmrig::DaemonClient::onZMQConnect(uv_connect_t* req, int status)
+void uvloop::DaemonClient::onZMQConnect(uv_connect_t* req, int status)
 {
     DaemonClient* client = getClient(req->data);
     delete req;
@@ -721,7 +721,7 @@ void xmrig::DaemonClient::onZMQConnect(uv_connect_t* req, int status)
 }
 
 
-void xmrig::DaemonClient::onZMQRead(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
+void uvloop::DaemonClient::onZMQRead(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 {
     DaemonClient* client = getClient(stream->data);
     if (client) {
@@ -732,7 +732,7 @@ void xmrig::DaemonClient::onZMQRead(uv_stream_t* stream, ssize_t nread, const uv
 }
 
 
-void xmrig::DaemonClient::onZMQClose(uv_handle_t* handle)
+void uvloop::DaemonClient::onZMQClose(uv_handle_t* handle)
 {
     DaemonClient* client = getClient(handle->data);
     if (client) {
@@ -744,7 +744,7 @@ void xmrig::DaemonClient::onZMQClose(uv_handle_t* handle)
 }
 
 
-void xmrig::DaemonClient::onZMQShutdown(uv_handle_t* handle)
+void uvloop::DaemonClient::onZMQShutdown(uv_handle_t* handle)
 {
     DaemonClient* client = getClient(handle->data);
     if (client) {
@@ -757,7 +757,7 @@ void xmrig::DaemonClient::onZMQShutdown(uv_handle_t* handle)
 }
 
 
-void xmrig::DaemonClient::ZMQConnected()
+void uvloop::DaemonClient::ZMQConnected()
 {
 #   ifdef APP_DEBUG
     LOG_DEBUG(CYAN("tcp-zmq://%s:%u") BLACK_BOLD(" connected"), m_pool.host().data(), m_pool.zmq_port());
@@ -773,7 +773,7 @@ void xmrig::DaemonClient::ZMQConnected()
 }
 
 
-bool xmrig::DaemonClient::ZMQWrite(const char* data, size_t size)
+bool uvloop::DaemonClient::ZMQWrite(const char* data, size_t size)
 {
     m_ZMQSendBuf.assign(data, data + size);
 
@@ -793,7 +793,7 @@ bool xmrig::DaemonClient::ZMQWrite(const char* data, size_t size)
 }
 
 
-void xmrig::DaemonClient::ZMQRead(ssize_t nread, const uv_buf_t* buf)
+void uvloop::DaemonClient::ZMQRead(ssize_t nread, const uv_buf_t* buf)
 {
     if (nread <= 0) {
         LOG_ERR("%s " RED("ZMQ read failed, nread = %" PRId64), tag(), nread);
@@ -880,7 +880,7 @@ void xmrig::DaemonClient::ZMQRead(ssize_t nread, const uv_buf_t* buf)
 }
 
 
-void xmrig::DaemonClient::ZMQParse()
+void uvloop::DaemonClient::ZMQParse()
 {
 #   ifdef APP_DEBUG
     std::vector<char> msg;
@@ -957,7 +957,7 @@ void xmrig::DaemonClient::ZMQParse()
 }
 
 
-bool xmrig::DaemonClient::ZMQClose(bool shutdown)
+bool uvloop::DaemonClient::ZMQClose(bool shutdown)
 {
     if ((m_ZMQConnectionState == ZMQ_NOT_CONNECTED) || (m_ZMQConnectionState == ZMQ_DISCONNECTING)) {
         if (shutdown) {
@@ -981,7 +981,7 @@ bool xmrig::DaemonClient::ZMQClose(bool shutdown)
 
 
 #ifdef XMRIG_FEATURE_TLS
-void xmrig::DaemonClient::onWSSConnect(uv_connect_t* req, int status)
+void uvloop::DaemonClient::onWSSConnect(uv_connect_t* req, int status)
 {
     DaemonClient* client = getClient(req->data);
     delete req;
@@ -1000,7 +1000,7 @@ void xmrig::DaemonClient::onWSSConnect(uv_connect_t* req, int status)
 }
 
 
-void xmrig::DaemonClient::onWSSRead(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
+void uvloop::DaemonClient::onWSSRead(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 {
     DaemonClient* client = getClient(stream->data);
     if (client) {
@@ -1011,7 +1011,7 @@ void xmrig::DaemonClient::onWSSRead(uv_stream_t* stream, ssize_t nread, const uv
 }
 
 
-void xmrig::DaemonClient::onWSSClose(uv_handle_t* handle)
+void uvloop::DaemonClient::onWSSClose(uv_handle_t* handle)
 {
     DaemonClient* client = getClient(handle->data);
     if (client) {
@@ -1024,7 +1024,7 @@ void xmrig::DaemonClient::onWSSClose(uv_handle_t* handle)
 }
 
 
-void xmrig::DaemonClient::onWSSShutdown(uv_handle_t* handle)
+void uvloop::DaemonClient::onWSSShutdown(uv_handle_t* handle)
 {
     DaemonClient* client = getClient(handle->data);
     if (client) {
@@ -1037,7 +1037,7 @@ void xmrig::DaemonClient::onWSSShutdown(uv_handle_t* handle)
 }
 
 
-void xmrig::DaemonClient::WSSConnected()
+void uvloop::DaemonClient::WSSConnected()
 {
     m_wss.m_ctx   = SSL_CTX_new(SSLv23_method());
     m_wss.m_write = BIO_new(BIO_s_mem());
@@ -1055,7 +1055,7 @@ void xmrig::DaemonClient::WSSConnected()
 }
 
 
-bool xmrig::DaemonClient::WSSWrite(const char* data, size_t size)
+bool uvloop::DaemonClient::WSSWrite(const char* data, size_t size)
 {
     if (!m_wss.m_socket) {
         return false;
@@ -1124,7 +1124,7 @@ bool xmrig::DaemonClient::WSSWrite(const char* data, size_t size)
 }
 
 
-void xmrig::DaemonClient::WSSRead(ssize_t nread, const uv_buf_t* read_buf)
+void uvloop::DaemonClient::WSSRead(ssize_t nread, const uv_buf_t* read_buf)
 {
     if (nread <= 0) {
         LOG_ERR("%s " RED("WSS read failed, nread = %" PRId64), tag(), nread);
@@ -1250,7 +1250,7 @@ void xmrig::DaemonClient::WSSRead(ssize_t nread, const uv_buf_t* read_buf)
 }
 
 
-void xmrig::DaemonClient::WSSParse()
+void uvloop::DaemonClient::WSSParse()
 {
 #   ifdef APP_DEBUG
     LOG_DEBUG(CYAN("%s") BLACK_BOLD(" read ") CYAN_BOLD("%zu") BLACK_BOLD(" bytes") " %s", m_pool.url().data(), m_wss.m_message.size(), m_wss.m_message.data());
@@ -1317,7 +1317,7 @@ void xmrig::DaemonClient::WSSParse()
 }
 
 
-bool xmrig::DaemonClient::WSSClose(bool shutdown)
+bool uvloop::DaemonClient::WSSClose(bool shutdown)
 {
     if (m_wss.m_socket && (uv_is_closing(reinterpret_cast<uv_handle_t*>(m_wss.m_socket)) == 0)) {
         uv_close(reinterpret_cast<uv_handle_t*>(m_wss.m_socket), shutdown ? onWSSShutdown : onWSSClose);
@@ -1328,7 +1328,7 @@ bool xmrig::DaemonClient::WSSClose(bool shutdown)
 }
 
 
-void xmrig::DaemonClient::WSS::cleanup()
+void uvloop::DaemonClient::WSS::cleanup()
 {
     delete m_socket;
     m_socket = nullptr;

@@ -21,7 +21,7 @@
 #include "crypto/common/VirtualMemory.h"
 
 
-xmrig::HugePagesInfo::HugePagesInfo(const VirtualMemory *memory)
+uvloop::HugePagesInfo::HugePagesInfo(const VirtualMemory *memory)
 {
     if (memory->isOneGbPages()) {
         size        = VirtualMemory::align(memory->size(), VirtualMemory::kOneGiB);

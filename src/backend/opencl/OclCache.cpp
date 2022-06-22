@@ -33,7 +33,7 @@
 #include "base/tools/Chrono.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static std::mutex mutex;
@@ -98,10 +98,10 @@ static cl_program createFromBinary(const IOclRunner *runner, const std::string &
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-cl_program xmrig::OclCache::build(const IOclRunner *runner)
+cl_program uvloop::OclCache::build(const IOclRunner *runner)
 {
     std::lock_guard<std::mutex> lock(mutex);
 
@@ -132,7 +132,7 @@ cl_program xmrig::OclCache::build(const IOclRunner *runner)
 }
 
 
-std::string xmrig::OclCache::cacheKey(const char *deviceKey, const char *options, const char *source)
+std::string uvloop::OclCache::cacheKey(const char *deviceKey, const char *options, const char *source)
 {
     std::string in(source);
     in += options;
@@ -148,13 +148,13 @@ std::string xmrig::OclCache::cacheKey(const char *deviceKey, const char *options
 }
 
 
-std::string xmrig::OclCache::cacheKey(const IOclRunner *runner)
+std::string uvloop::OclCache::cacheKey(const IOclRunner *runner)
 {
     return cacheKey(runner->deviceKey(), runner->buildOptions(), runner->source());
 }
 
 
-void xmrig::OclCache::save(cl_program program, const std::string &fileName)
+void uvloop::OclCache::save(cl_program program, const std::string &fileName)
 {
     size_t size = 0;
     if (OclLib::getProgramInfo(program, CL_PROGRAM_BINARY_SIZES, sizeof(size), &size) != CL_SUCCESS) {

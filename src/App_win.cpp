@@ -31,7 +31,7 @@
 #include "core/Controller.h"
 
 
-bool xmrig::App::background(int &)
+bool uvloop::App::background(int &)
 {
     if (!m_controller->isBackground()) {
         return false;

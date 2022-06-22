@@ -25,14 +25,14 @@
 #include <istream>
 
 
-namespace xmrig {
+namespace uvloop {
 
 static const rapidjson::Value kNullValue;
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::Json::getBool(const rapidjson::Value &obj, const char *key, bool defaultValue)
+bool uvloop::Json::getBool(const rapidjson::Value &obj, const char *key, bool defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -47,13 +47,13 @@ bool xmrig::Json::getBool(const rapidjson::Value &obj, const char *key, bool def
 }
 
 
-bool xmrig::Json::isEmpty(const rapidjson::Value &obj)
+bool uvloop::Json::isEmpty(const rapidjson::Value &obj)
 {
     return !obj.IsObject() || obj.ObjectEmpty();
 }
 
 
-const char *xmrig::Json::getString(const rapidjson::Value &obj, const char *key, const char *defaultValue)
+const char *uvloop::Json::getString(const rapidjson::Value &obj, const char *key, const char *defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -68,7 +68,7 @@ const char *xmrig::Json::getString(const rapidjson::Value &obj, const char *key,
 }
 
 
-const rapidjson::Value &xmrig::Json::getArray(const rapidjson::Value &obj, const char *key)
+const rapidjson::Value &uvloop::Json::getArray(const rapidjson::Value &obj, const char *key)
 {
     if (isEmpty(obj)) {
         return kNullValue;
@@ -83,7 +83,7 @@ const rapidjson::Value &xmrig::Json::getArray(const rapidjson::Value &obj, const
 }
 
 
-const rapidjson::Value &xmrig::Json::getObject(const rapidjson::Value &obj, const char *key)
+const rapidjson::Value &uvloop::Json::getObject(const rapidjson::Value &obj, const char *key)
 {
     if (isEmpty(obj)) {
         return kNullValue;
@@ -98,7 +98,7 @@ const rapidjson::Value &xmrig::Json::getObject(const rapidjson::Value &obj, cons
 }
 
 
-const rapidjson::Value &xmrig::Json::getValue(const rapidjson::Value &obj, const char *key)
+const rapidjson::Value &uvloop::Json::getValue(const rapidjson::Value &obj, const char *key)
 {
     if (isEmpty(obj)) {
         return kNullValue;
@@ -113,7 +113,7 @@ const rapidjson::Value &xmrig::Json::getValue(const rapidjson::Value &obj, const
 }
 
 
-double xmrig::Json::getDouble(const rapidjson::Value &obj, const char *key, double defaultValue)
+double uvloop::Json::getDouble(const rapidjson::Value &obj, const char *key, double defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -128,7 +128,7 @@ double xmrig::Json::getDouble(const rapidjson::Value &obj, const char *key, doub
 }
 
 
-int xmrig::Json::getInt(const rapidjson::Value &obj, const char *key, int defaultValue)
+int uvloop::Json::getInt(const rapidjson::Value &obj, const char *key, int defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -143,7 +143,7 @@ int xmrig::Json::getInt(const rapidjson::Value &obj, const char *key, int defaul
 }
 
 
-int64_t xmrig::Json::getInt64(const rapidjson::Value &obj, const char *key, int64_t defaultValue)
+int64_t uvloop::Json::getInt64(const rapidjson::Value &obj, const char *key, int64_t defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -158,7 +158,7 @@ int64_t xmrig::Json::getInt64(const rapidjson::Value &obj, const char *key, int6
 }
 
 
-xmrig::String xmrig::Json::getString(const rapidjson::Value &obj, const char *key, size_t maxSize)
+uvloop::String uvloop::Json::getString(const rapidjson::Value &obj, const char *key, size_t maxSize)
 {
     if (isEmpty(obj)) {
         return {};
@@ -177,7 +177,7 @@ xmrig::String xmrig::Json::getString(const rapidjson::Value &obj, const char *ke
 }
 
 
-uint64_t xmrig::Json::getUint64(const rapidjson::Value &obj, const char *key, uint64_t defaultValue)
+uint64_t uvloop::Json::getUint64(const rapidjson::Value &obj, const char *key, uint64_t defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -192,7 +192,7 @@ uint64_t xmrig::Json::getUint64(const rapidjson::Value &obj, const char *key, ui
 }
 
 
-unsigned xmrig::Json::getUint(const rapidjson::Value &obj, const char *key, unsigned defaultValue)
+unsigned uvloop::Json::getUint(const rapidjson::Value &obj, const char *key, unsigned defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -207,7 +207,7 @@ unsigned xmrig::Json::getUint(const rapidjson::Value &obj, const char *key, unsi
 }
 
 
-rapidjson::Value xmrig::Json::normalize(double value, bool zero)
+rapidjson::Value uvloop::Json::normalize(double value, bool zero)
 {
     using namespace rapidjson;
 
@@ -219,7 +219,7 @@ rapidjson::Value xmrig::Json::normalize(double value, bool zero)
 }
 
 
-bool xmrig::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
+bool uvloop::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
 {
     std::string prev_t;
     std::string t;
@@ -250,12 +250,12 @@ bool xmrig::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, 
 }
 
 
-xmrig::JsonReader::JsonReader() :
+uvloop::JsonReader::JsonReader() :
     m_obj(kNullValue)
 {}
 
 
-bool xmrig::JsonReader::isEmpty() const
+bool uvloop::JsonReader::isEmpty() const
 {
     return Json::isEmpty(m_obj);
 }

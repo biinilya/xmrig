@@ -31,7 +31,7 @@
 #include <cstring>
 
 
-namespace xmrig {
+namespace uvloop {
 
 // compute a keccak hash (md) of given byte length from "in"
 void keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen);
@@ -51,6 +51,6 @@ inline void keccak(const char *in, size_t inlen, uint8_t *md)
 // update the state
 void keccakf(uint64_t st[25], int norounds);
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_KECCAK_H */

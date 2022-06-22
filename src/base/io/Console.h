@@ -35,7 +35,7 @@ using ssize_t = intptr_t;
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IConsoleListener;
@@ -61,7 +61,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CONSOLE_H */

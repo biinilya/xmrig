@@ -29,7 +29,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Blake2bInitialHashKernel : public OclKernel
@@ -44,7 +44,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_BLAKE2BINITIALHASHKERNEL_H */

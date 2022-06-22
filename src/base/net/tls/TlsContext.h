@@ -30,7 +30,7 @@
 using SSL_CTX = struct ssl_ctx_st;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class TlsConfig;
@@ -60,6 +60,6 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_TLSCONTEXT_H */

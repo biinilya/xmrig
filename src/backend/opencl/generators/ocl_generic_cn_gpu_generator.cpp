@@ -32,7 +32,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr const size_t oneMiB = 1024u * 1024u;
@@ -84,4 +84,4 @@ bool ocl_generic_cn_gpu_generator(const OclDevice &device, const Algorithm &algo
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

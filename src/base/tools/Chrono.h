@@ -23,7 +23,7 @@
 #include <chrono>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Chrono
@@ -52,6 +52,6 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_CHRONO_H */

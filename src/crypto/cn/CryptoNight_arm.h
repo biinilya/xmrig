@@ -162,7 +162,7 @@ inline void mix_and_propagate(__m128i& x0, __m128i& x1, __m128i& x2, __m128i& x3
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<Algorithm::Id ALGO, bool SOFT_AES>
@@ -328,7 +328,7 @@ static inline void cn_implode_scratchpad(const __m128i *input, __m128i *output)
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 static inline __m128i aes_round_tweak_div(const __m128i &in, const __m128i &key)
@@ -356,7 +356,7 @@ static inline __m128i aes_round_tweak_div(const __m128i &in, const __m128i &key)
 alignas(64) static const uint32_t tweak1_table[256] = { 268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456 };
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<Algorithm::Id ALGO>
@@ -547,7 +547,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #ifdef XMRIG_ALGO_CN_GPU
@@ -555,7 +555,7 @@ template<size_t ITER, uint32_t MASK>
 void cn_gpu_inner_arm(const uint8_t *spad, uint8_t *lpad);
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<size_t MEM>
@@ -568,22 +568,22 @@ void cn_explode_scratchpad_gpu(const uint8_t *input, uint8_t *output)
         memcpy(hash, input, hash_size);
         hash[0] ^= i;
 
-        xmrig::keccakf(hash, 24);
+        uvloop::keccakf(hash, 24);
         memcpy(output, hash, 160);
         output += 160;
 
-        xmrig::keccakf(hash, 24);
+        uvloop::keccakf(hash, 24);
         memcpy(output, hash, 176);
         output += 176;
 
-        xmrig::keccakf(hash, 24);
+        uvloop::keccakf(hash, 24);
         memcpy(output, hash, 176);
         output += 176;
     }
 }
 
 
-template<xmrig::Algorithm::Id ALGO, bool SOFT_AES>
+template<uvloop::Algorithm::Id ALGO, bool SOFT_AES>
 inline void cryptonight_single_hash_gpu(const uint8_t *__restrict__ input, size_t size, uint8_t *__restrict__ output, cryptonight_ctx **__restrict__ ctx, uint64_t height)
 {
     constexpr CnAlgo<ALGO> props;
@@ -600,11 +600,11 @@ inline void cryptonight_single_hash_gpu(const uint8_t *__restrict__ input, size_
     memcpy(output, ctx[0]->state, 32);
 }
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<Algorithm::Id ALGO, bool SOFT_AES>
@@ -868,7 +868,7 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CRYPTONIGHT_ARM_H */

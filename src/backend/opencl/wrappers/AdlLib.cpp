@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclDevice.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static std::vector<AdapterInfo> adapters;
@@ -154,10 +154,10 @@ static void getSensorsData_v8(const AdapterInfo &adapter, AdlHealth &health)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::AdlLib::init()
+bool uvloop::AdlLib::init()
 {
     if (!m_initialized) {
         m_ready       = dlopen() && load();
@@ -168,13 +168,13 @@ bool xmrig::AdlLib::init()
 }
 
 
-const char *xmrig::AdlLib::lastError() noexcept
+const char *uvloop::AdlLib::lastError() noexcept
 {
     return uv_dlerror(&adlLib);
 }
 
 
-void xmrig::AdlLib::close()
+void uvloop::AdlLib::close()
 {
     if (m_ready) {
         ADL_Main_Control_Destroy();
@@ -184,7 +184,7 @@ void xmrig::AdlLib::close()
 }
 
 
-AdlHealth xmrig::AdlLib::health(const OclDevice &device)
+AdlHealth uvloop::AdlLib::health(const OclDevice &device)
 {
     if (!isReady() || device.vendorId() != OCL_VENDOR_AMD) {
         return {};
@@ -219,13 +219,13 @@ AdlHealth xmrig::AdlLib::health(const OclDevice &device)
 }
 
 
-bool xmrig::AdlLib::dlopen()
+bool uvloop::AdlLib::dlopen()
 {
     return uv_dlopen("atiadlxx.dll", &adlLib) == 0;
 }
 
 
-bool xmrig::AdlLib::load()
+bool uvloop::AdlLib::load()
 {
     try {
         DLSYM(ADL_Main_Control_Create);

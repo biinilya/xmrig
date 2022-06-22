@@ -25,7 +25,7 @@
 #include <vector>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -68,7 +68,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_KP_CACHE_H */

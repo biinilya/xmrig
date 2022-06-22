@@ -31,7 +31,7 @@ using nvid_ctx = struct nvid_ctx;
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaLib
@@ -103,7 +103,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CUDALIB_H */

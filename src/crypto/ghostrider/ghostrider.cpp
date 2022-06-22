@@ -90,7 +90,7 @@ CORE_HASH(14, whirlpool  );
 typedef void (*core_hash_func)(const uint8_t* data, size_t size, uint8_t* output);
 static const core_hash_func core_hash[15] = { h0, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14 };
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -858,4 +858,4 @@ void hash_octa(const uint8_t* data, size_t size, uint8_t* output, cryptonight_ct
 } // namespace ghostrider
 
 
-} // namespace xmrig
+} // namespace uvloop

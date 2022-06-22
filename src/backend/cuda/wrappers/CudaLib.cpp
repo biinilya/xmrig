@@ -27,7 +27,7 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 enum Version : uint32_t
@@ -136,10 +136,10 @@ String CudaLib::m_error;
 String CudaLib::m_loader;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::CudaLib::init(const char *fileName)
+bool uvloop::CudaLib::init(const char *fileName)
 {
     if (!m_initialized) {
         m_initialized = true;
@@ -164,37 +164,37 @@ bool xmrig::CudaLib::init(const char *fileName)
 }
 
 
-const char *xmrig::CudaLib::lastError() noexcept
+const char *uvloop::CudaLib::lastError() noexcept
 {
     return m_error;
 }
 
 
-void xmrig::CudaLib::close()
+void uvloop::CudaLib::close()
 {
     uv_dlclose(&cudaLib);
 }
 
 
-bool xmrig::CudaLib::astroBWTHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t target, uint32_t *rescount, uint32_t *resnonce) noexcept
+bool uvloop::CudaLib::astroBWTHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t target, uint32_t *rescount, uint32_t *resnonce) noexcept
 {
     return pAstroBWTHash(ctx, startNonce, target, rescount, resnonce);
 }
 
 
-bool xmrig::CudaLib::astroBWTPrepare(nvid_ctx *ctx, uint32_t batchSize) noexcept
+bool uvloop::CudaLib::astroBWTPrepare(nvid_ctx *ctx, uint32_t batchSize) noexcept
 {
     return pAstroBWTPrepare(ctx, batchSize);
 }
 
 
-bool xmrig::CudaLib::cnHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t height, uint64_t target, uint32_t *rescount, uint32_t *resnonce)
+bool uvloop::CudaLib::cnHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t height, uint64_t target, uint32_t *rescount, uint32_t *resnonce)
 {
     return pCnHash(ctx, startNonce, height, target, rescount, resnonce);
 }
 
 
-bool xmrig::CudaLib::deviceInfo(nvid_ctx *ctx, int32_t blocks, int32_t threads, const Algorithm &algorithm, int32_t dataset_host) noexcept
+bool uvloop::CudaLib::deviceInfo(nvid_ctx *ctx, int32_t blocks, int32_t threads, const Algorithm &algorithm, int32_t dataset_host) noexcept
 {
     const Algorithm algo = RxAlgo::id(algorithm);
 
@@ -206,43 +206,43 @@ bool xmrig::CudaLib::deviceInfo(nvid_ctx *ctx, int32_t blocks, int32_t threads, 
 }
 
 
-bool xmrig::CudaLib::deviceInit(nvid_ctx *ctx) noexcept
+bool uvloop::CudaLib::deviceInit(nvid_ctx *ctx) noexcept
 {
     return pDeviceInit(ctx);
 }
 
 
-bool xmrig::CudaLib::rxHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t target, uint32_t *rescount, uint32_t *resnonce) noexcept
+bool uvloop::CudaLib::rxHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t target, uint32_t *rescount, uint32_t *resnonce) noexcept
 {
     return pRxHash(ctx, startNonce, target, rescount, resnonce);
 }
 
 
-bool xmrig::CudaLib::rxPrepare(nvid_ctx *ctx, const void *dataset, size_t datasetSize, bool dataset_host, uint32_t batchSize) noexcept
+bool uvloop::CudaLib::rxPrepare(nvid_ctx *ctx, const void *dataset, size_t datasetSize, bool dataset_host, uint32_t batchSize) noexcept
 {
     return pRxPrepare(ctx, dataset, datasetSize, dataset_host, batchSize);
 }
 
 
-bool xmrig::CudaLib::kawPowHash(nvid_ctx *ctx, uint8_t* job_blob, uint64_t target, uint32_t *rescount, uint32_t *resnonce, uint32_t *skipped_hashes) noexcept
+bool uvloop::CudaLib::kawPowHash(nvid_ctx *ctx, uint8_t* job_blob, uint64_t target, uint32_t *rescount, uint32_t *resnonce, uint32_t *skipped_hashes) noexcept
 {
     return pKawPowHash(ctx, job_blob, target, rescount, resnonce, skipped_hashes);
 }
 
 
-bool xmrig::CudaLib::kawPowPrepare(nvid_ctx *ctx, const void* cache, size_t cache_size, const void* dag_precalc, size_t dag_size, uint32_t height, const uint64_t* dag_sizes) noexcept
+bool uvloop::CudaLib::kawPowPrepare(nvid_ctx *ctx, const void* cache, size_t cache_size, const void* dag_precalc, size_t dag_size, uint32_t height, const uint64_t* dag_sizes) noexcept
 {
     return pKawPowPrepare_v2(ctx, cache, cache_size, dag_precalc, dag_size, height, dag_sizes);
 }
 
 
-bool xmrig::CudaLib::kawPowStopHash(nvid_ctx *ctx) noexcept
+bool uvloop::CudaLib::kawPowStopHash(nvid_ctx *ctx) noexcept
 {
     return pKawPowStopHash(ctx);
 }
 
 
-bool xmrig::CudaLib::setJob(nvid_ctx *ctx, const void *data, size_t size, const Algorithm &algorithm) noexcept
+bool uvloop::CudaLib::setJob(nvid_ctx *ctx, const void *data, size_t size, const Algorithm &algorithm) noexcept
 {
     const Algorithm algo = RxAlgo::id(algorithm);
     if (pSetJob) {
@@ -253,43 +253,43 @@ bool xmrig::CudaLib::setJob(nvid_ctx *ctx, const void *data, size_t size, const 
 }
 
 
-const char *xmrig::CudaLib::deviceName(nvid_ctx *ctx) noexcept
+const char *uvloop::CudaLib::deviceName(nvid_ctx *ctx) noexcept
 {
     return pDeviceName(ctx);
 }
 
 
-const char *xmrig::CudaLib::lastError(nvid_ctx *ctx) noexcept
+const char *uvloop::CudaLib::lastError(nvid_ctx *ctx) noexcept
 {
     return pLastError(ctx);
 }
 
 
-const char *xmrig::CudaLib::pluginVersion() noexcept
+const char *uvloop::CudaLib::pluginVersion() noexcept
 {
     return pPluginVersion();
 }
 
 
-int32_t xmrig::CudaLib::deviceInt(nvid_ctx *ctx, DeviceProperty property) noexcept
+int32_t uvloop::CudaLib::deviceInt(nvid_ctx *ctx, DeviceProperty property) noexcept
 {
     return pDeviceInt(ctx, property);
 }
 
 
-nvid_ctx *xmrig::CudaLib::alloc(uint32_t id, int32_t bfactor, int32_t bsleep) noexcept
+nvid_ctx *uvloop::CudaLib::alloc(uint32_t id, int32_t bfactor, int32_t bsleep) noexcept
 {
     return pAlloc(id, bfactor, bsleep);
 }
 
 
-std::string xmrig::CudaLib::version(uint32_t version)
+std::string uvloop::CudaLib::version(uint32_t version)
 {
     return std::to_string(version / 1000) + "." + std::to_string((version % 1000) / 10);
 }
 
 
-std::vector<xmrig::CudaDevice> xmrig::CudaLib::devices(int32_t bfactor, int32_t bsleep, const std::vector<uint32_t> &hints) noexcept
+std::vector<uvloop::CudaDevice> uvloop::CudaLib::devices(int32_t bfactor, int32_t bsleep, const std::vector<uint32_t> &hints) noexcept
 {
     const uint32_t count = deviceCount();
     if (!count) {
@@ -324,43 +324,43 @@ std::vector<xmrig::CudaDevice> xmrig::CudaLib::devices(int32_t bfactor, int32_t 
 }
 
 
-uint32_t xmrig::CudaLib::deviceCount() noexcept
+uint32_t uvloop::CudaLib::deviceCount() noexcept
 {
     return pDeviceCount();
 }
 
 
-uint32_t xmrig::CudaLib::deviceUint(nvid_ctx *ctx, DeviceProperty property) noexcept
+uint32_t uvloop::CudaLib::deviceUint(nvid_ctx *ctx, DeviceProperty property) noexcept
 {
     return pDeviceUint(ctx, property);
 }
 
 
-uint32_t xmrig::CudaLib::driverVersion() noexcept
+uint32_t uvloop::CudaLib::driverVersion() noexcept
 {
     return pVersion(DriverVersion);
 }
 
 
-uint32_t xmrig::CudaLib::runtimeVersion() noexcept
+uint32_t uvloop::CudaLib::runtimeVersion() noexcept
 {
     return pVersion(RuntimeVersion);
 }
 
 
-uint64_t xmrig::CudaLib::deviceUlong(nvid_ctx *ctx, DeviceProperty property) noexcept
+uint64_t uvloop::CudaLib::deviceUlong(nvid_ctx *ctx, DeviceProperty property) noexcept
 {
     return pDeviceUlong(ctx, property);
 }
 
 
-void xmrig::CudaLib::release(nvid_ctx *ctx) noexcept
+void uvloop::CudaLib::release(nvid_ctx *ctx) noexcept
 {
     pRelease(ctx);
 }
 
 
-bool xmrig::CudaLib::open()
+bool uvloop::CudaLib::open()
 {
     m_error = nullptr;
 
@@ -387,7 +387,7 @@ bool xmrig::CudaLib::open()
 }
 
 
-void xmrig::CudaLib::load()
+void uvloop::CudaLib::load()
 {
     DLSYM(Version);
 

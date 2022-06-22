@@ -23,7 +23,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Handle
@@ -80,7 +80,7 @@ inline void Handle::close(uv_fs_event_t *handle)
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_HANDLE_H */

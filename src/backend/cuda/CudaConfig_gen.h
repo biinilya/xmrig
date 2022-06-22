@@ -28,7 +28,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static inline size_t generate(const char *key, Threads<CudaThreads> &threads, const Algorithm &algorithm, const std::vector<CudaDevice> &devices)
@@ -163,7 +163,7 @@ size_t inline generate<Algorithm::KAWPOW>(Threads<CudaThreads> &threads, const s
 #endif
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CUDACONFIG_GEN_H */

@@ -55,7 +55,7 @@
 #define EDX_Reg  (3)
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr size_t kCpuFlagsSize                                  = 15;
@@ -159,25 +159,25 @@ static inline bool has_cat_l3()     { return has_feature(EXTENDED_FEATURES,     
 static inline bool is_vm()          { return has_feature(PROCESSOR_INFO,        ECX_Reg, 1 << 31); }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #ifdef XMRIG_ALGO_ARGON2
 extern "C" {
 
 
-int cpu_flags_has_avx2()    { return xmrig::has_avx2(); }
-int cpu_flags_has_avx512f() { return xmrig::has_avx512f(); }
-int cpu_flags_has_sse2()    { return xmrig::has_sse2(); }
-int cpu_flags_has_ssse3()   { return xmrig::has_ssse3(); }
-int cpu_flags_has_xop()     { return xmrig::has_xop(); }
+int cpu_flags_has_avx2()    { return uvloop::has_avx2(); }
+int cpu_flags_has_avx512f() { return uvloop::has_avx512f(); }
+int cpu_flags_has_sse2()    { return uvloop::has_sse2(); }
+int cpu_flags_has_ssse3()   { return uvloop::has_ssse3(); }
+int cpu_flags_has_xop()     { return uvloop::has_xop(); }
 
 
 }
 #endif
 
 
-xmrig::BasicCpuInfo::BasicCpuInfo() :
+uvloop::BasicCpuInfo::BasicCpuInfo() :
     m_threads(std::thread::hardware_concurrency())
 {
     cpu_brand_string(m_brand);
@@ -306,13 +306,13 @@ xmrig::BasicCpuInfo::BasicCpuInfo() :
 }
 
 
-const char *xmrig::BasicCpuInfo::backend() const
+const char *uvloop::BasicCpuInfo::backend() const
 {
     return "basic/1";
 }
 
 
-xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
+uvloop::CpuThreads uvloop::BasicCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
 {
     const uint32_t count = std::thread::hardware_concurrency();
     const uint32_t count_limit  = std::max(static_cast<uint32_t>(count * (limit / 100.0f)), 1U);
@@ -399,7 +399,7 @@ xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint3
 }
 
 
-rapidjson::Value xmrig::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

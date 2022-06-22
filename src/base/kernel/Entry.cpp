@@ -46,7 +46,7 @@
 #include "version.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static int showVersion()
@@ -131,10 +131,10 @@ static int exportTopology(const Process &)
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Entry::Id xmrig::Entry::get(const Process &process)
+uvloop::Entry::Id uvloop::Entry::get(const Process &process)
 {
     const Arguments &args = process.arguments();
     if (args.hasArg("-h") || args.hasArg("--help")) {
@@ -161,7 +161,7 @@ xmrig::Entry::Id xmrig::Entry::get(const Process &process)
 }
 
 
-int xmrig::Entry::exec(const Process &process, Id id)
+int uvloop::Entry::exec(const Process &process, Id id)
 {
     switch (id) {
     case Usage:

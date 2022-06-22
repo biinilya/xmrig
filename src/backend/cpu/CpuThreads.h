@@ -26,7 +26,7 @@
 #include "backend/cpu/CpuThread.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CpuThreads
@@ -63,7 +63,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CPUTHREADS_H */

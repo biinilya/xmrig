@@ -34,7 +34,7 @@
 #include <algorithm>
 
 
-xmrig::NUMAMemoryPool::NUMAMemoryPool(size_t size, bool hugePages) :
+uvloop::NUMAMemoryPool::NUMAMemoryPool(size_t size, bool hugePages) :
     m_hugePages(hugePages),
     m_nodeSize(std::max<size_t>(size / Cpu::info()->nodes(), 1)),
     m_size(size)
@@ -42,7 +42,7 @@ xmrig::NUMAMemoryPool::NUMAMemoryPool(size_t size, bool hugePages) :
 }
 
 
-xmrig::NUMAMemoryPool::~NUMAMemoryPool()
+uvloop::NUMAMemoryPool::~NUMAMemoryPool()
 {
     for (auto kv : m_map) {
         delete kv.second;
@@ -50,7 +50,7 @@ xmrig::NUMAMemoryPool::~NUMAMemoryPool()
 }
 
 
-bool xmrig::NUMAMemoryPool::isHugePages(uint32_t node) const
+bool uvloop::NUMAMemoryPool::isHugePages(uint32_t node) const
 {
     if (!m_size) {
         return false;
@@ -60,7 +60,7 @@ bool xmrig::NUMAMemoryPool::isHugePages(uint32_t node) const
 }
 
 
-uint8_t *xmrig::NUMAMemoryPool::get(size_t size, uint32_t node)
+uint8_t *uvloop::NUMAMemoryPool::get(size_t size, uint32_t node)
 {
     if (!m_size) {
         return nullptr;
@@ -70,7 +70,7 @@ uint8_t *xmrig::NUMAMemoryPool::get(size_t size, uint32_t node)
 }
 
 
-void xmrig::NUMAMemoryPool::release(uint32_t node)
+void uvloop::NUMAMemoryPool::release(uint32_t node)
 {
     const auto pool = get(node);
     if (pool) {
@@ -79,13 +79,13 @@ void xmrig::NUMAMemoryPool::release(uint32_t node)
 }
 
 
-xmrig::IMemoryPool *xmrig::NUMAMemoryPool::get(uint32_t node) const
+uvloop::IMemoryPool *uvloop::NUMAMemoryPool::get(uint32_t node) const
 {
     return m_map.count(node) ? m_map.at(node) : nullptr;
 }
 
 
-xmrig::IMemoryPool *xmrig::NUMAMemoryPool::getOrCreate(uint32_t node) const
+uvloop::IMemoryPool *uvloop::NUMAMemoryPool::getOrCreate(uint32_t node) const
 {
     auto pool = get(node);
     if (!pool) {

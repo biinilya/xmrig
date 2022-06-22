@@ -42,7 +42,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 #ifdef XMRIG_OS_WIN
@@ -201,10 +201,10 @@ static void print_commands(Config *)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-void xmrig::Summary::print(Controller *controller)
+void uvloop::Summary::print(Controller *controller)
 {
     const auto config = controller->config();
 

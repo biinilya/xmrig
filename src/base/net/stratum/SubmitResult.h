@@ -29,7 +29,7 @@
 #include "base/tools/Chrono.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class SubmitResult
@@ -60,7 +60,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_SUBMITRESULT_H */

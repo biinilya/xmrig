@@ -32,7 +32,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Job;
@@ -56,7 +56,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ICUDARUNNER_H

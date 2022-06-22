@@ -24,7 +24,7 @@
 #include <vector>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -48,7 +48,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RXMSR_H */

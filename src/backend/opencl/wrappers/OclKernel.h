@@ -36,7 +36,7 @@ using cl_mem            = struct _cl_mem *;
 using cl_program        = struct _cl_program *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclKernel
@@ -60,7 +60,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLKERNEL_H */

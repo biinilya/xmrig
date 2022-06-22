@@ -24,7 +24,7 @@
 #include <cstddef>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class VirtualMemory;
@@ -55,7 +55,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_HUGEPAGESINFO_H */

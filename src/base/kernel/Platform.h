@@ -26,7 +26,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Platform
@@ -59,7 +59,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_PLATFORM_H */

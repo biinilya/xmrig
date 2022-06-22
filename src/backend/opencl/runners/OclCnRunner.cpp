@@ -29,7 +29,7 @@
 #include "crypto/cn/CnAlgo.h"
 
 
-xmrig::OclCnRunner::OclCnRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
+uvloop::OclCnRunner::OclCnRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
 {
     uint32_t stridedIndex = data.thread.stridedIndex();
     const auto f = m_algorithm.family();
@@ -54,7 +54,7 @@ xmrig::OclCnRunner::OclCnRunner(size_t index, const OclLaunchData &data) : OclBa
 }
 
 
-xmrig::OclCnRunner::~OclCnRunner()
+uvloop::OclCnRunner::~OclCnRunner()
 {
     delete m_cn0;
     delete m_cn1;
@@ -75,7 +75,7 @@ xmrig::OclCnRunner::~OclCnRunner()
 }
 
 
-size_t xmrig::OclCnRunner::bufferSize() const
+size_t uvloop::OclCnRunner::bufferSize() const
 {
     return OclBaseRunner::bufferSize() +
            align(m_algorithm.l3() * m_intensity) +
@@ -84,7 +84,7 @@ size_t xmrig::OclCnRunner::bufferSize() const
 }
 
 
-void xmrig::OclCnRunner::run(uint32_t nonce, uint32_t *hashOutput)
+void uvloop::OclCnRunner::run(uint32_t nonce, uint32_t *hashOutput)
 {
     static const cl_uint zero = 0;
 
@@ -111,7 +111,7 @@ void xmrig::OclCnRunner::run(uint32_t nonce, uint32_t *hashOutput)
 }
 
 
-void xmrig::OclCnRunner::set(const Job &job, uint8_t *blob)
+void uvloop::OclCnRunner::set(const Job &job, uint8_t *blob)
 {
     if (job.size() > (Job::kMaxBlobSize - 4)) {
         throw std::length_error("job size too big");
@@ -148,7 +148,7 @@ void xmrig::OclCnRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-void xmrig::OclCnRunner::build()
+void uvloop::OclCnRunner::build()
 {
     OclBaseRunner::build();
 
@@ -172,7 +172,7 @@ void xmrig::OclCnRunner::build()
 }
 
 
-void xmrig::OclCnRunner::init()
+void uvloop::OclCnRunner::init()
 {
     OclBaseRunner::init();
 

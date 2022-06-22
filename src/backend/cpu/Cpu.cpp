@@ -31,10 +31,10 @@
 #endif
 
 
-static xmrig::ICpuInfo *cpuInfo = nullptr;
+static uvloop::ICpuInfo *cpuInfo = nullptr;
 
 
-xmrig::ICpuInfo *xmrig::Cpu::info()
+uvloop::ICpuInfo *uvloop::Cpu::info()
 {
     if (cpuInfo == nullptr) {
 #       if defined(XMRIG_FEATURE_HWLOC)
@@ -48,13 +48,13 @@ xmrig::ICpuInfo *xmrig::Cpu::info()
 }
 
 
-rapidjson::Value xmrig::Cpu::toJSON(rapidjson::Document &doc)
+rapidjson::Value uvloop::Cpu::toJSON(rapidjson::Document &doc)
 {
     return info()->toJSON(doc);
 }
 
 
-void xmrig::Cpu::release()
+void uvloop::Cpu::release()
 {
     delete cpuInfo;
     cpuInfo = nullptr;

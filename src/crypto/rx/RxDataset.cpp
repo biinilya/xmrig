@@ -32,7 +32,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static void init_dataset_wrapper(randomx_dataset *dataset, randomx_cache *cache, uint32_t startItem, uint32_t itemCount, int priority)
@@ -49,10 +49,10 @@ static void init_dataset_wrapper(randomx_dataset *dataset, randomx_cache *cache,
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::RxDataset::RxDataset(bool hugePages, bool oneGbPages, bool cache, RxConfig::Mode mode, uint32_t node) :
+uvloop::RxDataset::RxDataset(bool hugePages, bool oneGbPages, bool cache, RxConfig::Mode mode, uint32_t node) :
     m_mode(mode),
     m_node(node)
 {
@@ -70,14 +70,14 @@ xmrig::RxDataset::RxDataset(bool hugePages, bool oneGbPages, bool cache, RxConfi
 }
 
 
-xmrig::RxDataset::RxDataset(RxCache *cache) :
+uvloop::RxDataset::RxDataset(RxCache *cache) :
     m_node(0),
     m_cache(cache)
 {
 }
 
 
-xmrig::RxDataset::~RxDataset()
+uvloop::RxDataset::~RxDataset()
 {
     randomx_release_dataset(m_dataset);
 
@@ -86,7 +86,7 @@ xmrig::RxDataset::~RxDataset()
 }
 
 
-bool xmrig::RxDataset::init(const Buffer &seed, uint32_t numThreads, int priority)
+bool uvloop::RxDataset::init(const Buffer &seed, uint32_t numThreads, int priority)
 {
     if (!m_cache || !m_cache->get()) {
         return false;
@@ -122,19 +122,19 @@ bool xmrig::RxDataset::init(const Buffer &seed, uint32_t numThreads, int priorit
 }
 
 
-bool xmrig::RxDataset::isHugePages() const
+bool uvloop::RxDataset::isHugePages() const
 {
     return m_memory && m_memory->isHugePages();
 }
 
 
-bool xmrig::RxDataset::isOneGbPages() const
+bool uvloop::RxDataset::isOneGbPages() const
 {
     return m_memory && m_memory->isOneGbPages();
 }
 
 
-xmrig::HugePagesInfo xmrig::RxDataset::hugePages(bool cache) const
+uvloop::HugePagesInfo uvloop::RxDataset::hugePages(bool cache) const
 {
     auto pages = m_memory ? m_memory->hugePages() : HugePagesInfo();
 
@@ -146,7 +146,7 @@ xmrig::HugePagesInfo xmrig::RxDataset::hugePages(bool cache) const
 }
 
 
-size_t xmrig::RxDataset::size(bool cache) const
+size_t uvloop::RxDataset::size(bool cache) const
 {
     size_t size = 0;
 
@@ -162,7 +162,7 @@ size_t xmrig::RxDataset::size(bool cache) const
 }
 
 
-uint8_t *xmrig::RxDataset::tryAllocateScrathpad()
+uint8_t *uvloop::RxDataset::tryAllocateScrathpad()
 {
     auto p = reinterpret_cast<uint8_t *>(raw());
     if (!p) {
@@ -178,13 +178,13 @@ uint8_t *xmrig::RxDataset::tryAllocateScrathpad()
 }
 
 
-void *xmrig::RxDataset::raw() const
+void *uvloop::RxDataset::raw() const
 {
     return m_dataset ? randomx_get_dataset_memory(m_dataset) : nullptr;
 }
 
 
-void xmrig::RxDataset::setRaw(const void *raw)
+void uvloop::RxDataset::setRaw(const void *raw)
 {
     if (!m_dataset) {
         return;
@@ -195,7 +195,7 @@ void xmrig::RxDataset::setRaw(const void *raw)
 }
 
 
-void xmrig::RxDataset::allocate(bool hugePages, bool oneGbPages)
+void uvloop::RxDataset::allocate(bool hugePages, bool oneGbPages)
 {
     if (m_mode == RxConfig::LightMode) {
         LOG_ERR(CLEAR "%s" RED_BOLD_S "fast RandomX mode disabled by config", Tags::randomx());

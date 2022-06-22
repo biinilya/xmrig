@@ -54,7 +54,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 extern template class Threads<CpuThreads>;
@@ -214,10 +214,10 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-const char *xmrig::backend_tag(uint32_t backend)
+const char *uvloop::backend_tag(uint32_t backend)
 {
 #   ifdef XMRIG_FEATURE_OPENCL
     if (backend == Nonce::OPENCL) {
@@ -235,62 +235,62 @@ const char *xmrig::backend_tag(uint32_t backend)
 }
 
 
-const char *xmrig::cpu_tag()
+const char *uvloop::cpu_tag()
 {
     return Tags::cpu();
 }
 
 
-xmrig::CpuBackend::CpuBackend(Controller *controller) :
+uvloop::CpuBackend::CpuBackend(Controller *controller) :
     d_ptr(new CpuBackendPrivate(controller))
 {
     d_ptr->workers.setBackend(this);
 }
 
 
-xmrig::CpuBackend::~CpuBackend()
+uvloop::CpuBackend::~CpuBackend()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::CpuBackend::isEnabled() const
+bool uvloop::CpuBackend::isEnabled() const
 {
     return d_ptr->controller->config()->cpu().isEnabled();
 }
 
 
-bool xmrig::CpuBackend::isEnabled(const Algorithm &algorithm) const
+bool uvloop::CpuBackend::isEnabled(const Algorithm &algorithm) const
 {
     return algorithm.isValid() && !d_ptr->controller->config()->cpu().threads().get(algorithm).isEmpty();
 }
 
 
-bool xmrig::CpuBackend::tick(uint64_t ticks)
+bool uvloop::CpuBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
 
 
-const xmrig::Hashrate *xmrig::CpuBackend::hashrate() const
+const uvloop::Hashrate *uvloop::CpuBackend::hashrate() const
 {
     return d_ptr->workers.hashrate();
 }
 
 
-const xmrig::String &xmrig::CpuBackend::profileName() const
+const uvloop::String &uvloop::CpuBackend::profileName() const
 {
     return d_ptr->profileName;
 }
 
 
-const xmrig::String &xmrig::CpuBackend::type() const
+const uvloop::String &uvloop::CpuBackend::type() const
 {
     return kType;
 }
 
 
-void xmrig::CpuBackend::prepare(const Job &nextJob)
+void uvloop::CpuBackend::prepare(const Job &nextJob)
 {
 #   ifdef XMRIG_ALGO_ARGON2
     const auto f = nextJob.algorithm().family();
@@ -307,7 +307,7 @@ void xmrig::CpuBackend::prepare(const Job &nextJob)
 }
 
 
-void xmrig::CpuBackend::printHashrate(bool details)
+void uvloop::CpuBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -338,12 +338,12 @@ void xmrig::CpuBackend::printHashrate(bool details)
 }
 
 
-void xmrig::CpuBackend::printHealth()
+void uvloop::CpuBackend::printHealth()
 {
 }
 
 
-void xmrig::CpuBackend::setJob(const Job &job)
+void uvloop::CpuBackend::setJob(const Job &job)
 {
     if (!isEnabled()) {
         return stop();
@@ -378,7 +378,7 @@ void xmrig::CpuBackend::setJob(const Job &job)
 }
 
 
-void xmrig::CpuBackend::start(IWorker *worker, bool ready)
+void uvloop::CpuBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -394,7 +394,7 @@ void xmrig::CpuBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::CpuBackend::stop()
+void uvloop::CpuBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -410,7 +410,7 @@ void xmrig::CpuBackend::stop()
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::CpuBackend::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::CpuBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator         = doc.GetAllocator();
@@ -469,7 +469,7 @@ rapidjson::Value xmrig::CpuBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::CpuBackend::handleRequest(IApiRequest &request)
+void uvloop::CpuBackend::handleRequest(IApiRequest &request)
 {
     if (request.type() == IApiRequest::REQ_SUMMARY) {
         request.reply().AddMember("hugepages", d_ptr->hugePages(request.version(), request.doc()), request.doc().GetAllocator());
@@ -479,13 +479,13 @@ void xmrig::CpuBackend::handleRequest(IApiRequest &request)
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-xmrig::Benchmark *xmrig::CpuBackend::benchmark() const
+uvloop::Benchmark *uvloop::CpuBackend::benchmark() const
 {
     return d_ptr->benchmark.get();
 }
 
 
-void xmrig::CpuBackend::printBenchProgress() const
+void uvloop::CpuBackend::printBenchProgress() const
 {
     if (d_ptr->benchmark) {
         d_ptr->benchmark->printProgress();

@@ -23,7 +23,7 @@
 #include "backend/opencl/runners/OclRxBaseRunner.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ExecuteVmKernel;
@@ -51,7 +51,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLRXVMRUNNER_H

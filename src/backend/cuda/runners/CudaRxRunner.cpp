@@ -31,7 +31,7 @@
 #include "crypto/rx/RxDataset.h"
 
 
-xmrig::CudaRxRunner::CudaRxRunner(size_t index, const CudaLaunchData &data) :
+uvloop::CudaRxRunner::CudaRxRunner(size_t index, const CudaLaunchData &data) :
     CudaBaseRunner(index, data),
     m_datasetHost(data.thread.datasetHost() > 0)
 {
@@ -47,13 +47,13 @@ xmrig::CudaRxRunner::CudaRxRunner(size_t index, const CudaLaunchData &data) :
 }
 
 
-bool xmrig::CudaRxRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
+bool uvloop::CudaRxRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
 {
     return callWrapper(CudaLib::rxHash(m_ctx, startNonce, m_target, rescount, resnonce));
 }
 
 
-bool xmrig::CudaRxRunner::set(const Job &job, uint8_t *blob)
+bool uvloop::CudaRxRunner::set(const Job &job, uint8_t *blob)
 {
     const bool rc = CudaBaseRunner::set(job, blob);
     if (!rc || m_ready) {

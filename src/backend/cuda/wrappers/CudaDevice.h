@@ -34,7 +34,7 @@ using nvid_ctx      = struct nvid_ctx;
 using nvmlDevice_t  = struct nvmlDevice_st *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -88,7 +88,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CUDADEVICE_H */

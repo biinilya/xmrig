@@ -32,16 +32,16 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *kCRLF = "\r\n";
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::HttpClient::HttpClient(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener) :
+uvloop::HttpClient::HttpClient(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener) :
     HttpContext(HTTP_RESPONSE, listener),
     m_tag(tag),
     m_req(std::move(req))
@@ -57,7 +57,7 @@ xmrig::HttpClient::HttpClient(const char *tag, FetchRequest &&req, const std::we
 }
 
 
-bool xmrig::HttpClient::connect()
+bool uvloop::HttpClient::connect()
 {
     m_dns = Dns::resolve(m_req.host, this);
 
@@ -65,7 +65,7 @@ bool xmrig::HttpClient::connect()
 }
 
 
-void xmrig::HttpClient::onResolved(const DnsRecords &records, int status, const char *error)
+void uvloop::HttpClient::onResolved(const DnsRecords &records, int status, const char *error)
 {
     this->status = status;
     m_dns.reset();
@@ -85,13 +85,13 @@ void xmrig::HttpClient::onResolved(const DnsRecords &records, int status, const 
 }
 
 
-void xmrig::HttpClient::onTimer(const Timer *)
+void uvloop::HttpClient::onTimer(const Timer *)
 {
     close(UV_ETIMEDOUT);
 }
 
 
-void xmrig::HttpClient::handshake()
+void uvloop::HttpClient::handshake()
 {
     headers.insert({ "Host",       host() });
     headers.insert({ "Connection", "close" });
@@ -117,7 +117,7 @@ void xmrig::HttpClient::handshake()
 }
 
 
-void xmrig::HttpClient::read(const char *data, size_t size)
+void uvloop::HttpClient::read(const char *data, size_t size)
 {
     if (!parse(data, size)) {
         close(UV_EPROTO);
@@ -125,7 +125,7 @@ void xmrig::HttpClient::read(const char *data, size_t size)
 }
 
 
-void xmrig::HttpClient::onConnect(uv_connect_t *req, int status)
+void uvloop::HttpClient::onConnect(uv_connect_t *req, int status)
 {
     auto client = static_cast<HttpClient *>(req->data);
     delete req;

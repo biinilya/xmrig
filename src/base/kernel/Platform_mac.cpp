@@ -31,7 +31,7 @@
 #include "version.h"
 
 
-char *xmrig::Platform::createUserAgent()
+char *uvloop::Platform::createUserAgent()
 {
     constexpr const size_t max = 256;
 
@@ -55,18 +55,18 @@ char *xmrig::Platform::createUserAgent()
 }
 
 
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool uvloop::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     return true;
 }
 
 
-void xmrig::Platform::setProcessPriority(int)
+void uvloop::Platform::setProcessPriority(int)
 {
 }
 
 
-void xmrig::Platform::setThreadPriority(int priority)
+void uvloop::Platform::setThreadPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -103,13 +103,13 @@ void xmrig::Platform::setThreadPriority(int priority)
 }
 
 
-bool xmrig::Platform::isOnBatteryPower()
+bool uvloop::Platform::isOnBatteryPower()
 {
     return IOPSGetTimeRemainingEstimate() != kIOPSTimeRemainingUnlimited;
 }
 
 
-uint64_t xmrig::Platform::idleTime()
+uint64_t uvloop::Platform::idleTime()
 {
     uint64_t idle_time  = 0;
     const auto service  = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOHIDSystem"));

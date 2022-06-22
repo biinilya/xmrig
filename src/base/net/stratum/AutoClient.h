@@ -26,7 +26,7 @@
 #include <utility>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class AutoClient : public EthStratumClient
@@ -55,7 +55,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_AUTOCLIENT_H */

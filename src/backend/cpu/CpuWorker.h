@@ -32,7 +32,7 @@ class randomx_vm;
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class RxVm;
@@ -123,7 +123,7 @@ extern template class CpuWorker<5>;
 extern template class CpuWorker<8>;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CPUWORKER_H */

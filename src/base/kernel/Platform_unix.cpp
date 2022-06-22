@@ -46,7 +46,7 @@ typedef cpuset_t cpu_set_t;
 #endif
 
 
-char *xmrig::Platform::createUserAgent()
+char *uvloop::Platform::createUserAgent()
 {
     constexpr const size_t max = 256;
 
@@ -74,7 +74,7 @@ char *xmrig::Platform::createUserAgent()
 
 
 #ifndef XMRIG_FEATURE_HWLOC
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool uvloop::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     cpu_set_t mn;
     CPU_ZERO(&mn);
@@ -92,12 +92,12 @@ bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 #endif
 
 
-void xmrig::Platform::setProcessPriority(int)
+void uvloop::Platform::setProcessPriority(int)
 {
 }
 
 
-void xmrig::Platform::setThreadPriority(int priority)
+void uvloop::Platform::setThreadPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -145,7 +145,7 @@ void xmrig::Platform::setThreadPriority(int priority)
 }
 
 
-bool xmrig::Platform::isOnBatteryPower()
+bool uvloop::Platform::isOnBatteryPower()
 {
     for (int i = 0; i <= 1; ++i) {
         char buf[64];
@@ -161,7 +161,7 @@ bool xmrig::Platform::isOnBatteryPower()
 }
 
 
-uint64_t xmrig::Platform::idleTime()
+uint64_t uvloop::Platform::idleTime()
 {
     return std::numeric_limits<uint64_t>::max();
 }

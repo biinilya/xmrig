@@ -25,7 +25,7 @@
 #include "base/kernel/interfaces/ILogBackend.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class FileLog : public ILogBackend
@@ -41,7 +41,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_FILELOG_H */

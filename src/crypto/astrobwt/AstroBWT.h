@@ -26,7 +26,7 @@
 struct cryptonight_ctx;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 namespace astrobwt {
@@ -44,4 +44,4 @@ void single_hash<Algorithm::ASTROBWT_DERO>(const uint8_t* input, size_t size, ui
 template<>
 void single_hash<Algorithm::ASTROBWT_DERO_2>(const uint8_t* input, size_t size, uint8_t* output, cryptonight_ctx** ctx, uint64_t);
 
-}} // namespace xmrig::astrobwt
+}} // namespace uvloop::astrobwt

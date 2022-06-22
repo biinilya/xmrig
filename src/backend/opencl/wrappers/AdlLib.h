@@ -24,7 +24,7 @@
 #include "backend/opencl/wrappers/AdlHealth.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclDevice;
@@ -51,7 +51,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_ADLLIB_H */

@@ -26,7 +26,7 @@
 #define XMRIG_IJOBRESULTLISTENER_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Client;
@@ -42,7 +42,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_IJOBRESULTLISTENER_H

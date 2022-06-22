@@ -32,7 +32,7 @@ using cl_device_id      = struct _cl_device_id *;
 using cl_platform_id    = struct _cl_platform_id *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -104,7 +104,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLDEVICE_H */

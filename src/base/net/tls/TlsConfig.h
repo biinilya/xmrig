@@ -25,7 +25,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class TlsConfig
@@ -81,6 +81,6 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_TLSCONFIG_H */

@@ -31,7 +31,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static inline const std::string &usage()
@@ -215,6 +215,6 @@ static inline const std::string &usage()
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_USAGE_H */

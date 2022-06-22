@@ -36,7 +36,7 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 uint32_t HwlocCpuInfo::m_features = 0;
@@ -119,10 +119,10 @@ static inline bool isCacheExclusive(hwloc_obj_t obj)
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::HwlocCpuInfo::HwlocCpuInfo()
+uvloop::HwlocCpuInfo::HwlocCpuInfo()
 {
     hwloc_topology_init(&m_topology);
     hwloc_topology_load(m_topology);
@@ -194,13 +194,13 @@ xmrig::HwlocCpuInfo::HwlocCpuInfo()
 }
 
 
-xmrig::HwlocCpuInfo::~HwlocCpuInfo()
+uvloop::HwlocCpuInfo::~HwlocCpuInfo()
 {
     hwloc_topology_destroy(m_topology);
 }
 
 
-bool xmrig::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
+bool uvloop::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
 {
     if (!hwloc_topology_get_support(m_topology)->membind->set_thisthread_membind) {
         return false;
@@ -214,7 +214,7 @@ bool xmrig::HwlocCpuInfo::membind(hwloc_const_bitmap_t nodeset)
 }
 
 
-xmrig::CpuThreads xmrig::HwlocCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
+uvloop::CpuThreads uvloop::HwlocCpuInfo::threads(const Algorithm &algorithm, uint32_t limit) const
 {
 #   ifndef XMRIG_ARM
     if (L2() == 0 && L3() == 0) {
@@ -264,7 +264,7 @@ xmrig::CpuThreads xmrig::HwlocCpuInfo::threads(const Algorithm &algorithm, uint3
 }
 
 
-xmrig::CpuThreads xmrig::HwlocCpuInfo::allThreads(const Algorithm &algorithm, uint32_t limit) const
+uvloop::CpuThreads uvloop::HwlocCpuInfo::allThreads(const Algorithm &algorithm, uint32_t limit) const
 {
     CpuThreads threads;
     threads.reserve(m_threads);
@@ -284,7 +284,7 @@ xmrig::CpuThreads xmrig::HwlocCpuInfo::allThreads(const Algorithm &algorithm, ui
 
 
 
-void xmrig::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorithm &algorithm, CpuThreads &threads, size_t limit) const
+void uvloop::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorithm &algorithm, CpuThreads &threads, size_t limit) const
 {
 #   ifndef XMRIG_ARM
     constexpr size_t oneMiB = 1024U * 1024U;
@@ -441,7 +441,7 @@ void xmrig::HwlocCpuInfo::processTopLevelCache(hwloc_obj_t cache, const Algorith
 }
 
 
-void xmrig::HwlocCpuInfo::setThreads(size_t threads)
+void uvloop::HwlocCpuInfo::setThreads(size_t threads)
 {
     if (!threads) {
         return;

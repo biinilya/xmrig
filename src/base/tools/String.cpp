@@ -23,7 +23,7 @@
 #include <cctype>
 
 
-xmrig::String::String(const char *str, size_t size) :
+uvloop::String::String(const char *str, size_t size) :
     m_size(size)
 {
     if (str == nullptr) {
@@ -38,7 +38,7 @@ xmrig::String::String(const char *str, size_t size) :
 }
 
 
-xmrig::String::String(const char *str) :
+uvloop::String::String(const char *str) :
     m_size(str == nullptr ? 0 : strlen(str))
 {
     if (str == nullptr) {
@@ -50,7 +50,7 @@ xmrig::String::String(const char *str) :
 }
 
 
-xmrig::String::String(const rapidjson::Value &value)
+uvloop::String::String(const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return;
@@ -66,7 +66,7 @@ xmrig::String::String(const rapidjson::Value &value)
 }
 
 
-xmrig::String::String(const String &other) :
+uvloop::String::String(const String &other) :
     m_size(other.m_size)
 {
     if (other.m_data == nullptr) {
@@ -78,13 +78,13 @@ xmrig::String::String(const String &other) :
 }
 
 
-bool xmrig::String::isEqual(const char *str) const
+bool uvloop::String::isEqual(const char *str) const
 {
     return (m_data != nullptr && str != nullptr && strcmp(m_data, str) == 0) || (m_data == nullptr && str == nullptr);
 }
 
 
-bool xmrig::String::isEqual(const String &other) const
+bool uvloop::String::isEqual(const String &other) const
 {
     if (m_size != other.m_size) {
         return false;
@@ -94,7 +94,7 @@ bool xmrig::String::isEqual(const String &other) const
 }
 
 
-rapidjson::Value xmrig::String::toJSON() const
+rapidjson::Value uvloop::String::toJSON() const
 {
     using namespace rapidjson;
 
@@ -102,7 +102,7 @@ rapidjson::Value xmrig::String::toJSON() const
 }
 
 
-rapidjson::Value xmrig::String::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::String::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -110,7 +110,7 @@ rapidjson::Value xmrig::String::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::vector<xmrig::String> xmrig::String::split(char sep) const
+std::vector<uvloop::String> uvloop::String::split(char sep) const
 {
     std::vector<String> out;
     if (m_size == 0) {
@@ -140,7 +140,7 @@ std::vector<xmrig::String> xmrig::String::split(char sep) const
 }
 
 
-xmrig::String &xmrig::String::toLower()
+uvloop::String &uvloop::String::toLower()
 {
     if (isNull() || isEmpty()) {
         return *this;
@@ -154,7 +154,7 @@ xmrig::String &xmrig::String::toLower()
 }
 
 
-xmrig::String &xmrig::String::toUpper()
+uvloop::String &uvloop::String::toUpper()
 {
     if (isNull() || isEmpty()) {
         return *this;
@@ -168,7 +168,7 @@ xmrig::String &xmrig::String::toUpper()
 }
 
 
-xmrig::String xmrig::String::join(const std::vector<xmrig::String> &vec, char sep)
+uvloop::String uvloop::String::join(const std::vector<uvloop::String> &vec, char sep)
 {
     if (vec.empty()) {
         return String();
@@ -198,7 +198,7 @@ xmrig::String xmrig::String::join(const std::vector<xmrig::String> &vec, char se
 }
 
 
-void xmrig::String::copy(const char *str)
+void uvloop::String::copy(const char *str)
 {
     delete [] m_data;
 
@@ -216,7 +216,7 @@ void xmrig::String::copy(const char *str)
 }
 
 
-void xmrig::String::copy(const String &other)
+void uvloop::String::copy(const String &other)
 {
     if (m_size > 0 && m_size == other.m_size) {
         memcpy(m_data, other.m_data, m_size + 1);
@@ -240,7 +240,7 @@ void xmrig::String::copy(const String &other)
 }
 
 
-void xmrig::String::move(char *str)
+void uvloop::String::move(char *str)
 {
     delete [] m_data;
 
@@ -249,7 +249,7 @@ void xmrig::String::move(char *str)
 }
 
 
-void xmrig::String::move(String &&other)
+void uvloop::String::move(String &&other)
 {
     delete [] m_data;
 

@@ -29,7 +29,7 @@
 #include "crypto/rx/RxSeed.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr size_t oneMiB = 1024 * 1024;
@@ -122,28 +122,28 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::RxBasicStorage::RxBasicStorage() :
+uvloop::RxBasicStorage::RxBasicStorage() :
     d_ptr(new RxBasicStoragePrivate())
 {
 }
 
 
-xmrig::RxBasicStorage::~RxBasicStorage()
+uvloop::RxBasicStorage::~RxBasicStorage()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::RxBasicStorage::isAllocated() const
+bool uvloop::RxBasicStorage::isAllocated() const
 {
     return d_ptr->dataset() && d_ptr->dataset()->cache() && d_ptr->dataset()->cache()->get();
 }
 
 
-xmrig::HugePagesInfo xmrig::RxBasicStorage::hugePages() const
+uvloop::HugePagesInfo uvloop::RxBasicStorage::hugePages() const
 {
     if (!d_ptr->dataset()) {
         return {};
@@ -153,7 +153,7 @@ xmrig::HugePagesInfo xmrig::RxBasicStorage::hugePages() const
 }
 
 
-xmrig::RxDataset *xmrig::RxBasicStorage::dataset(const Job &job, uint32_t) const
+uvloop::RxDataset *uvloop::RxBasicStorage::dataset(const Job &job, uint32_t) const
 {
     if (!d_ptr->isReady(job)) {
         return nullptr;
@@ -163,7 +163,7 @@ xmrig::RxDataset *xmrig::RxBasicStorage::dataset(const Job &job, uint32_t) const
 }
 
 
-void xmrig::RxBasicStorage::init(const RxSeed &seed, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode mode, int priority)
+void uvloop::RxBasicStorage::init(const RxSeed &seed, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode mode, int priority)
 {
     d_ptr->setSeed(seed);
 

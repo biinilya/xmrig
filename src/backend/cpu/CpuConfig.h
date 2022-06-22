@@ -26,7 +26,7 @@
 #include "crypto/common/Assembly.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CpuConfig
@@ -111,7 +111,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CPUCONFIG_H */

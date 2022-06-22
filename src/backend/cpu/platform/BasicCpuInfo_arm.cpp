@@ -44,17 +44,17 @@
 
 
 #if defined(XMRIG_OS_UNIX)
-namespace xmrig {
+namespace uvloop {
 
 extern String cpu_name_arm();
 
-} // namespace xmrig
+} // namespace uvloop
 #elif defined(XMRIG_OS_MACOS)
 #   include <sys/sysctl.h>
 #endif
 
 
-xmrig::BasicCpuInfo::BasicCpuInfo() :
+uvloop::BasicCpuInfo::BasicCpuInfo() :
     m_threads(std::thread::hardware_concurrency())
 {
     m_units.resize(m_threads);
@@ -93,13 +93,13 @@ xmrig::BasicCpuInfo::BasicCpuInfo() :
 }
 
 
-const char *xmrig::BasicCpuInfo::backend() const
+const char *uvloop::BasicCpuInfo::backend() const
 {
     return "basic/1";
 }
 
 
-xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint32_t) const
+uvloop::CpuThreads uvloop::BasicCpuInfo::threads(const Algorithm &algorithm, uint32_t) const
 {
 #   ifdef XMRIG_ALGO_GHOSTRIDER
     if (algorithm.family() == Algorithm::GHOSTRIDER) {
@@ -111,7 +111,7 @@ xmrig::CpuThreads xmrig::BasicCpuInfo::threads(const Algorithm &algorithm, uint3
 }
 
 
-rapidjson::Value xmrig::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::BasicCpuInfo::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

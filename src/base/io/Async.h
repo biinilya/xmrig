@@ -28,7 +28,7 @@
 #include <functional>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class AsyncPrivate;
@@ -53,7 +53,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_ASYNC_H */

@@ -28,7 +28,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IHttpListener;
@@ -50,7 +50,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPSERVER_H

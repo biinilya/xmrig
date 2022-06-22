@@ -27,14 +27,14 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::AstroBWT_v2_Salsa20Kernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
+void uvloop::AstroBWT_v2_Salsa20Kernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
 {
     const size_t gthreads       = threads * workgroup_size;
     enqueueNDRange(queue, 1, nullptr, &gthreads, &workgroup_size);
 }
 
 
-void xmrig::AstroBWT_v2_Salsa20Kernel::setArgs(cl_mem salsa20_keys, cl_mem outputs)
+void uvloop::AstroBWT_v2_Salsa20Kernel::setArgs(cl_mem salsa20_keys, cl_mem outputs)
 {
     setArg(0, sizeof(cl_mem), &salsa20_keys);
     setArg(1, sizeof(cl_mem), &outputs);

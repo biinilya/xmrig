@@ -26,7 +26,7 @@
 #include "backend/opencl/wrappers/OclPlatform.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclConfig
@@ -73,7 +73,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_OCLCONFIG_H */

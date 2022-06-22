@@ -23,7 +23,7 @@
 #include <atomic>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Nonce
@@ -56,7 +56,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_NONCE_H */

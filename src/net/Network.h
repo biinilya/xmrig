@@ -33,7 +33,7 @@
 #include <vector>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Controller;
@@ -89,7 +89,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_NETWORK_H */

@@ -29,7 +29,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ExecuteVmKernel : public OclKernel
@@ -45,7 +45,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_EXECUTEVMKERNEL_H */

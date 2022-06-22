@@ -38,7 +38,7 @@
 constexpr size_t oneGiB = 1024 * 1024 * 1024;
 
 
-xmrig::OclBaseRunner::OclBaseRunner(size_t id, const OclLaunchData &data) :
+uvloop::OclBaseRunner::OclBaseRunner(size_t id, const OclLaunchData &data) :
     m_ctx(data.ctx),
     m_algorithm(data.algorithm),
     m_source(OclSource::get(data.algorithm)),
@@ -63,7 +63,7 @@ xmrig::OclBaseRunner::OclBaseRunner(size_t id, const OclLaunchData &data) :
 }
 
 
-xmrig::OclBaseRunner::~OclBaseRunner()
+uvloop::OclBaseRunner::~OclBaseRunner()
 {
     OclLib::release(m_program);
     OclLib::release(m_input);
@@ -73,19 +73,19 @@ xmrig::OclBaseRunner::~OclBaseRunner()
 }
 
 
-size_t xmrig::OclBaseRunner::bufferSize() const
+size_t uvloop::OclBaseRunner::bufferSize() const
 {
     return align(Job::kMaxBlobSize) + align(sizeof(cl_uint) * 0x100);
 }
 
 
-uint32_t xmrig::OclBaseRunner::deviceIndex() const
+uint32_t uvloop::OclBaseRunner::deviceIndex() const
 {
     return data().thread.index();
 }
 
 
-void xmrig::OclBaseRunner::build()
+void uvloop::OclBaseRunner::build()
 {
     m_program = OclCache::build(this);
 
@@ -95,7 +95,7 @@ void xmrig::OclBaseRunner::build()
 }
 
 
-void xmrig::OclBaseRunner::init()
+void uvloop::OclBaseRunner::init()
 {
     m_queue = OclLib::createCommandQueue(m_ctx, data().device.id());
 
@@ -115,7 +115,7 @@ void xmrig::OclBaseRunner::init()
 }
 
 
-cl_mem xmrig::OclBaseRunner::createSubBuffer(cl_mem_flags flags, size_t size)
+cl_mem uvloop::OclBaseRunner::createSubBuffer(cl_mem_flags flags, size_t size)
 {
     auto mem = OclLib::createSubBuffer(m_buffer, flags, m_offset, size);
 
@@ -125,13 +125,13 @@ cl_mem xmrig::OclBaseRunner::createSubBuffer(cl_mem_flags flags, size_t size)
 }
 
 
-size_t xmrig::OclBaseRunner::align(size_t size) const
+size_t uvloop::OclBaseRunner::align(size_t size) const
 {
     return VirtualMemory::align(size, m_align);
 }
 
 
-void xmrig::OclBaseRunner::enqueueReadBuffer(cl_mem buffer, cl_bool blocking_read, size_t offset, size_t size, void *ptr)
+void uvloop::OclBaseRunner::enqueueReadBuffer(cl_mem buffer, cl_bool blocking_read, size_t offset, size_t size, void *ptr)
 {
     const cl_int ret = OclLib::enqueueReadBuffer(m_queue, buffer, blocking_read, offset, size, ptr, 0, nullptr, nullptr);
     if (ret != CL_SUCCESS) {
@@ -140,7 +140,7 @@ void xmrig::OclBaseRunner::enqueueReadBuffer(cl_mem buffer, cl_bool blocking_rea
 }
 
 
-void xmrig::OclBaseRunner::enqueueWriteBuffer(cl_mem buffer, cl_bool blocking_write, size_t offset, size_t size, const void *ptr)
+void uvloop::OclBaseRunner::enqueueWriteBuffer(cl_mem buffer, cl_bool blocking_write, size_t offset, size_t size, const void *ptr)
 {
     const cl_int ret = OclLib::enqueueWriteBuffer(m_queue, buffer, blocking_write, offset, size, ptr, 0, nullptr, nullptr);
     if (ret != CL_SUCCESS) {
@@ -149,7 +149,7 @@ void xmrig::OclBaseRunner::enqueueWriteBuffer(cl_mem buffer, cl_bool blocking_wr
 }
 
 
-void xmrig::OclBaseRunner::finalize(uint32_t *hashOutput)
+void uvloop::OclBaseRunner::finalize(uint32_t *hashOutput)
 {
     enqueueReadBuffer(m_output, CL_TRUE, 0, sizeof(cl_uint) * 0x100, hashOutput);
 

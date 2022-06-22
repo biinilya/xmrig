@@ -30,7 +30,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Process
@@ -58,7 +58,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_PROCESS_H */

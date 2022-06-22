@@ -38,7 +38,7 @@
 #include <algorithm>
 
 
-xmrig::CudaDevice::CudaDevice(uint32_t index, int32_t bfactor, int32_t bsleep) :
+uvloop::CudaDevice::CudaDevice(uint32_t index, int32_t bfactor, int32_t bsleep) :
     m_index(index)
 {
     auto ctx = CudaLib::alloc(index, bfactor, bsleep);
@@ -54,7 +54,7 @@ xmrig::CudaDevice::CudaDevice(uint32_t index, int32_t bfactor, int32_t bsleep) :
 }
 
 
-xmrig::CudaDevice::CudaDevice(CudaDevice &&other) noexcept :
+uvloop::CudaDevice::CudaDevice(CudaDevice &&other) noexcept :
     m_index(other.m_index),
     m_ctx(other.m_ctx),
     m_topology(other.m_topology),
@@ -64,49 +64,49 @@ xmrig::CudaDevice::CudaDevice(CudaDevice &&other) noexcept :
 }
 
 
-xmrig::CudaDevice::~CudaDevice()
+uvloop::CudaDevice::~CudaDevice()
 {
     CudaLib::release(m_ctx);
 }
 
 
-size_t xmrig::CudaDevice::freeMemSize() const
+size_t uvloop::CudaDevice::freeMemSize() const
 {
     return CudaLib::deviceUlong(m_ctx, CudaLib::DeviceMemoryFree);
 }
 
 
-size_t xmrig::CudaDevice::globalMemSize() const
+size_t uvloop::CudaDevice::globalMemSize() const
 {
     return CudaLib::deviceUlong(m_ctx, CudaLib::DeviceMemoryTotal);
 }
 
 
-uint32_t xmrig::CudaDevice::clock() const
+uint32_t uvloop::CudaDevice::clock() const
 {
     return CudaLib::deviceUint(m_ctx, CudaLib::DeviceClockRate) / 1000;
 }
 
 
-uint32_t xmrig::CudaDevice::computeCapability(bool major) const
+uint32_t uvloop::CudaDevice::computeCapability(bool major) const
 {
     return CudaLib::deviceUint(m_ctx, major ? CudaLib::DeviceArchMajor : CudaLib::DeviceArchMinor);
 }
 
 
-uint32_t xmrig::CudaDevice::memoryClock() const
+uint32_t uvloop::CudaDevice::memoryClock() const
 {
     return CudaLib::deviceUint(m_ctx, CudaLib::DeviceMemoryClockRate) / 1000;
 }
 
 
-uint32_t xmrig::CudaDevice::smx() const
+uint32_t uvloop::CudaDevice::smx() const
 {
     return CudaLib::deviceUint(m_ctx, CudaLib::DeviceSmx);
 }
 
 
-void xmrig::CudaDevice::generate(const Algorithm &algorithm, CudaThreads &threads) const
+void uvloop::CudaDevice::generate(const Algorithm &algorithm, CudaThreads &threads) const
 {
     if (!CudaLib::deviceInfo(m_ctx, -1, -1, algorithm)) {
         return;
@@ -117,7 +117,7 @@ void xmrig::CudaDevice::generate(const Algorithm &algorithm, CudaThreads &thread
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::CudaDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
+void uvloop::CudaDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

@@ -30,7 +30,7 @@ using SSL_CTX   = struct ssl_ctx_st;
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ServerTls
@@ -63,7 +63,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_SERVERTLS_H */

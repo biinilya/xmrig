@@ -28,7 +28,7 @@ using cl_context = struct _cl_context *;
 using cl_mem     = struct _cl_mem *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Job;
@@ -71,7 +71,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_OCLSHAREDDATA_H */

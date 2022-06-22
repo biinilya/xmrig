@@ -38,7 +38,7 @@
 #include "base/crypto/keccak.h"
 
 
-xmrig::Job::Job(bool nicehash, const Algorithm &algorithm, const String &clientId) :
+uvloop::Job::Job(bool nicehash, const Algorithm &algorithm, const String &clientId) :
     m_algorithm(algorithm),
     m_nicehash(nicehash),
     m_clientId(clientId)
@@ -46,13 +46,13 @@ xmrig::Job::Job(bool nicehash, const Algorithm &algorithm, const String &clientI
 }
 
 
-bool xmrig::Job::isEqual(const Job &other) const
+bool uvloop::Job::isEqual(const Job &other) const
 {
     return m_id == other.m_id && m_clientId == other.m_clientId && memcmp(m_blob, other.m_blob, sizeof(m_blob)) == 0 && m_target == other.m_target;
 }
 
 
-bool xmrig::Job::setBlob(const char *blob)
+bool uvloop::Job::setBlob(const char *blob)
 {
     if (!blob) {
         return false;
@@ -87,7 +87,7 @@ bool xmrig::Job::setBlob(const char *blob)
 }
 
 
-bool xmrig::Job::setSeedHash(const char *hash)
+bool uvloop::Job::setSeedHash(const char *hash)
 {
     if (!hash || (strlen(hash) != kMaxSeedSize * 2)) {
         return false;
@@ -103,7 +103,7 @@ bool xmrig::Job::setSeedHash(const char *hash)
 }
 
 
-bool xmrig::Job::setTarget(const char *target)
+bool uvloop::Job::setTarget(const char *target)
 {
     if (!target) {
         return false;
@@ -134,7 +134,7 @@ bool xmrig::Job::setTarget(const char *target)
 }
 
 
-void xmrig::Job::setDiff(uint64_t diff)
+void uvloop::Job::setDiff(uint64_t diff)
 {
     m_diff   = diff;
     m_target = toDiff(diff);
@@ -145,7 +145,7 @@ void xmrig::Job::setDiff(uint64_t diff)
 }
 
 
-void xmrig::Job::setSigKey(const char *sig_key)
+void uvloop::Job::setSigKey(const char *sig_key)
 {
     constexpr const size_t size = 64;
 
@@ -164,7 +164,7 @@ void xmrig::Job::setSigKey(const char *sig_key)
 }
 
 
-int32_t xmrig::Job::nonceOffset() const
+int32_t uvloop::Job::nonceOffset() const
 {
    auto f = algorithm().family();
    if (f == Algorithm::KAWPOW)     return 32;
@@ -176,7 +176,7 @@ int32_t xmrig::Job::nonceOffset() const
    return 39;
 }
 
-uint32_t xmrig::Job::getNumTransactions() const
+uint32_t uvloop::Job::getNumTransactions() const
 {
     if (!(m_algorithm.isCN() || m_algorithm.family() == Algorithm::RANDOM_X)) {
         return 0;
@@ -201,7 +201,7 @@ uint32_t xmrig::Job::getNumTransactions() const
 }
 
 
-void xmrig::Job::copy(const Job &other)
+void uvloop::Job::copy(const Job &other)
 {
     m_algorithm  = other.m_algorithm;
     m_nicehash   = other.m_nicehash;
@@ -251,7 +251,7 @@ void xmrig::Job::copy(const Job &other)
 }
 
 
-void xmrig::Job::move(Job &&other)
+void uvloop::Job::move(Job &&other)
 {
     m_algorithm  = other.m_algorithm;
     m_nicehash   = other.m_nicehash;
@@ -309,7 +309,7 @@ void xmrig::Job::move(Job &&other)
 #ifdef XMRIG_PROXY_PROJECT
 
 
-void xmrig::Job::setSpendSecretKey(const uint8_t *key)
+void uvloop::Job::setSpendSecretKey(const uint8_t *key)
 {
     m_hasMinerSignature = true;
     memcpy(m_spendSecretKey, key, sizeof(m_spendSecretKey));
@@ -320,7 +320,7 @@ void xmrig::Job::setSpendSecretKey(const uint8_t *key)
 }
 
 
-void xmrig::Job::setMinerTx(const uint8_t *begin, const uint8_t *end, size_t minerTxEphPubKeyOffset, size_t minerTxPubKeyOffset, size_t minerTxExtraNonceOffset, size_t minerTxExtraNonceSize, const Buffer &minerTxMerkleTreeBranch)
+void uvloop::Job::setMinerTx(const uint8_t *begin, const uint8_t *end, size_t minerTxEphPubKeyOffset, size_t minerTxPubKeyOffset, size_t minerTxExtraNonceOffset, size_t minerTxExtraNonceSize, const Buffer &minerTxMerkleTreeBranch)
 {
     m_minerTxPrefix.assign(begin, end);
     m_minerTxEphPubKeyOffset    = minerTxEphPubKeyOffset;
@@ -331,13 +331,13 @@ void xmrig::Job::setMinerTx(const uint8_t *begin, const uint8_t *end, size_t min
 }
 
 
-void xmrig::Job::setExtraNonceInMinerTx(uint32_t extra_nonce)
+void uvloop::Job::setExtraNonceInMinerTx(uint32_t extra_nonce)
 {
     memcpy(m_minerTxPrefix.data() + m_minerTxExtraNonceOffset, &extra_nonce, std::min(m_minerTxExtraNonceSize, sizeof(uint32_t)));
 }
 
 
-void xmrig::Job::generateSignatureData(String &signatureData) const
+void uvloop::Job::generateSignatureData(String &signatureData) const
 {
     uint8_t* eph_public_key = m_minerTxPrefix.data() + m_minerTxEphPubKeyOffset;
     uint8_t* txkey_pub = m_minerTxPrefix.data() + m_minerTxPubKeyOffset;
@@ -361,7 +361,7 @@ void xmrig::Job::generateSignatureData(String &signatureData) const
     signatureData = Cvt::toHex(buf, sizeof(buf));
 }
 
-void xmrig::Job::generateHashingBlob(String &blob) const
+void uvloop::Job::generateHashingBlob(String &blob) const
 {
     uint8_t root_hash[32];
     const uint8_t* p = m_minerTxPrefix.data();
@@ -381,7 +381,7 @@ void xmrig::Job::generateHashingBlob(String &blob) const
 #else
 
 
-void xmrig::Job::generateMinerSignature(const uint8_t* blob, size_t size, uint8_t* out_sig) const
+void uvloop::Job::generateMinerSignature(const uint8_t* blob, size_t size, uint8_t* out_sig) const
 {
     uint8_t tmp[kMaxBlobSize];
     memcpy(tmp, blob, size);
@@ -390,8 +390,8 @@ void xmrig::Job::generateMinerSignature(const uint8_t* blob, size_t size, uint8_
     memset(tmp + nonceOffset() + nonceSize(), 0, BlockTemplate::kSignatureSize);
 
     uint8_t prefix_hash[32];
-    xmrig::keccak(tmp, static_cast<int>(size), prefix_hash, sizeof(prefix_hash));
-    xmrig::generate_signature(prefix_hash, m_ephPublicKey, m_ephSecretKey, out_sig);
+    uvloop::keccak(tmp, static_cast<int>(size), prefix_hash, sizeof(prefix_hash));
+    uvloop::generate_signature(prefix_hash, m_ephPublicKey, m_ephSecretKey, out_sig);
 }
 
 

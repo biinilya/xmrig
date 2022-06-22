@@ -99,7 +99,7 @@ enum http_status
 };
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const std::string HttpData::kApplicationJson    = "application/json";
@@ -119,10 +119,10 @@ static const char *http_status_str(enum http_status s)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::HttpData::isJSON() const
+bool uvloop::HttpData::isJSON() const
 {
     if (!headers.count(kContentTypeL)) {
         return false;
@@ -134,13 +134,13 @@ bool xmrig::HttpData::isJSON() const
 }
 
 
-const char *xmrig::HttpData::methodName() const
+const char *uvloop::HttpData::methodName() const
 {
     return llhttp_method_name(static_cast<llhttp_method>(method));
 }
 
 
-rapidjson::Document xmrig::HttpData::json() const
+rapidjson::Document uvloop::HttpData::json() const
 {
     if (status < 0) {
         throw std::runtime_error(statusName());
@@ -167,7 +167,7 @@ rapidjson::Document xmrig::HttpData::json() const
 }
 
 
-const char *xmrig::HttpData::statusName(int status)
+const char *uvloop::HttpData::statusName(int status)
 {
     if (status < 0) {
         return uv_strerror(status);

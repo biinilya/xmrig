@@ -46,12 +46,12 @@
 #   include "base/api/Api.h"
 #   include "base/api/interfaces/IApiRequest.h"
 
-namespace xmrig {
+namespace uvloop {
 
 static const char *kConfigPathV1 = "/1/config";
 static const char *kConfigPathV2 = "/2/config";
 
-} // namespace xmrig
+} // namespace uvloop
 #endif
 
 
@@ -60,7 +60,7 @@ static const char *kConfigPathV2 = "/2/config";
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class BasePrivate
@@ -158,29 +158,29 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Base::Base(Process *process)
+uvloop::Base::Base(Process *process)
     : d_ptr(new BasePrivate(process))
 {
 
 }
 
 
-xmrig::Base::~Base()
+uvloop::Base::~Base()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Base::isReady() const
+bool uvloop::Base::isReady() const
 {
     return d_ptr->config != nullptr;
 }
 
 
-int xmrig::Base::init()
+int uvloop::Base::init()
 {
 #   ifdef XMRIG_FEATURE_API
     d_ptr->api = new Api(this);
@@ -207,7 +207,7 @@ int xmrig::Base::init()
 }
 
 
-void xmrig::Base::start()
+void uvloop::Base::start()
 {
 #   ifdef XMRIG_FEATURE_API
     api()->start();
@@ -223,7 +223,7 @@ void xmrig::Base::start()
 }
 
 
-void xmrig::Base::stop()
+void uvloop::Base::stop()
 {
 #   ifdef XMRIG_FEATURE_API
     api()->stop();
@@ -234,7 +234,7 @@ void xmrig::Base::stop()
 }
 
 
-xmrig::Api *xmrig::Base::api() const
+uvloop::Api *uvloop::Base::api() const
 {
     assert(d_ptr->api != nullptr);
 
@@ -242,13 +242,13 @@ xmrig::Api *xmrig::Base::api() const
 }
 
 
-bool xmrig::Base::isBackground() const
+bool uvloop::Base::isBackground() const
 {
     return d_ptr->config && d_ptr->config->isBackground();
 }
 
 
-bool xmrig::Base::reload(const rapidjson::Value &json)
+bool uvloop::Base::reload(const rapidjson::Value &json)
 {
     JsonReader reader(json);
     if (reader.isEmpty()) {
@@ -276,7 +276,7 @@ bool xmrig::Base::reload(const rapidjson::Value &json)
 }
 
 
-xmrig::Config *xmrig::Base::config() const
+uvloop::Config *uvloop::Base::config() const
 {
     assert(d_ptr->config != nullptr);
 
@@ -284,13 +284,13 @@ xmrig::Config *xmrig::Base::config() const
 }
 
 
-void xmrig::Base::addListener(IBaseListener *listener)
+void uvloop::Base::addListener(IBaseListener *listener)
 {
     d_ptr->listeners.push_back(listener);
 }
 
 
-void xmrig::Base::onFileChanged(const String &fileName)
+void uvloop::Base::onFileChanged(const String &fileName)
 {
     LOG_WARN("%s " YELLOW("\"%s\" was changed, reloading configuration"), Tags::config(), fileName.data());
 
@@ -311,7 +311,7 @@ void xmrig::Base::onFileChanged(const String &fileName)
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::Base::onRequest(IApiRequest &request)
+void uvloop::Base::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
         if (request.url() == kConfigPathV1 || request.url() == kConfigPathV2) {

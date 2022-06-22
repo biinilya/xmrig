@@ -23,7 +23,7 @@
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IApiRequest;
@@ -43,7 +43,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_IAPILISTENER_H

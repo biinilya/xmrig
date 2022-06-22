@@ -32,7 +32,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IBackend;
@@ -90,7 +90,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_THREAD_H */

@@ -25,7 +25,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static void fsWriteCallback(uv_fs_t *req)
@@ -37,10 +37,10 @@ static void fsWriteCallback(uv_fs_t *req)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::FileLogWriter::open(const char *fileName)
+bool uvloop::FileLogWriter::open(const char *fileName)
 {
     assert(fileName != nullptr);
     if (!fileName) {
@@ -68,7 +68,7 @@ bool xmrig::FileLogWriter::open(const char *fileName)
 }
 
 
-bool xmrig::FileLogWriter::write(const char *data, size_t size)
+bool uvloop::FileLogWriter::write(const char *data, size_t size)
 {
     if (!isOpen()) {
         return false;
@@ -87,7 +87,7 @@ bool xmrig::FileLogWriter::write(const char *data, size_t size)
 }
 
 
-bool xmrig::FileLogWriter::writeLine(const char *data, size_t size)
+bool uvloop::FileLogWriter::writeLine(const char *data, size_t size)
 {
     const uv_buf_t buf[2] = {
         uv_buf_init(new char[size], size),

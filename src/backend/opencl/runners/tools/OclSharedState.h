@@ -29,7 +29,7 @@
 #include "backend/opencl/OclLaunchData.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclSharedState
@@ -41,7 +41,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_OCLSHAREDSTATE_H */

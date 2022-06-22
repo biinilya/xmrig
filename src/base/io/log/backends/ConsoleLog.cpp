@@ -26,7 +26,7 @@
 #include <cstdio>
 
 
-xmrig::ConsoleLog::ConsoleLog(const Title &title)
+uvloop::ConsoleLog::ConsoleLog(const Title &title)
 {
     if (!isSupported()) {
         Log::setColors(false);
@@ -61,13 +61,13 @@ xmrig::ConsoleLog::ConsoleLog(const Title &title)
 }
 
 
-xmrig::ConsoleLog::~ConsoleLog()
+uvloop::ConsoleLog::~ConsoleLog()
 {
     Handle::close(m_tty);
 }
 
 
-void xmrig::ConsoleLog::print(uint64_t, int, const char *line, size_t, size_t size, bool colors)
+void uvloop::ConsoleLog::print(uint64_t, int, const char *line, size_t, size_t size, bool colors)
 {
     if (!m_tty || Log::isColors() != colors) {
         return;
@@ -90,7 +90,7 @@ void xmrig::ConsoleLog::print(uint64_t, int, const char *line, size_t, size_t si
 }
 
 
-bool xmrig::ConsoleLog::isSupported()
+bool uvloop::ConsoleLog::isSupported()
 {
     const uv_handle_type type = uv_guess_handle(1);
     return type == UV_TTY || type == UV_NAMED_PIPE;
@@ -98,7 +98,7 @@ bool xmrig::ConsoleLog::isSupported()
 
 
 #ifdef XMRIG_OS_WIN
-bool xmrig::ConsoleLog::isWritable() const
+bool uvloop::ConsoleLog::isWritable() const
 {
     if (!m_stream || uv_is_writable(m_stream) != 1) {
         return false;

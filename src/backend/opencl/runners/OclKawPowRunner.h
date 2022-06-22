@@ -25,7 +25,7 @@
 
 #include <mutex>
 
-namespace xmrig {
+namespace uvloop {
 
 
 class KawPow_CalculateDAGKernel;
@@ -73,7 +73,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLKAWPOWRUNNER_H

@@ -25,7 +25,7 @@
 #include <Objbase.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 struct TaskbarPrivate
@@ -105,13 +105,13 @@ void Taskbar::updateTaskbarColor()
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #else // _WIN32
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 Taskbar::Taskbar() {}
@@ -120,7 +120,7 @@ void Taskbar::setActive(bool) {}
 void Taskbar::setEnabled(bool) {}
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // _WIN32

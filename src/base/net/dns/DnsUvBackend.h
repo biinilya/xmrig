@@ -31,7 +31,7 @@
 using uv_getaddrinfo_t = struct uv_getaddrinfo_s;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsUvBackend : public IDnsBackend
@@ -66,7 +66,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DNSUVBACKEND_H */

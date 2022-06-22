@@ -59,11 +59,11 @@
 #ifdef XMRIG_FEATURE_NVML
 #include "backend/cuda/wrappers/NvmlLib.h"
 
-namespace xmrig { static const char *kNvmlLabel = "NVML"; }
+namespace uvloop { static const char *kNvmlLabel = "NVML"; }
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 extern template class Threads<CudaThreads>;
@@ -304,23 +304,23 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-const char *xmrig::cuda_tag()
+const char *uvloop::cuda_tag()
 {
     return Tags::nvidia();
 }
 
 
-xmrig::CudaBackend::CudaBackend(Controller *controller) :
+uvloop::CudaBackend::CudaBackend(Controller *controller) :
     d_ptr(new CudaBackendPrivate(controller))
 {
     d_ptr->workers.setBackend(this);
 }
 
 
-xmrig::CudaBackend::~CudaBackend()
+uvloop::CudaBackend::~CudaBackend()
 {
     delete d_ptr;
 
@@ -332,42 +332,42 @@ xmrig::CudaBackend::~CudaBackend()
 }
 
 
-bool xmrig::CudaBackend::isEnabled() const
+bool uvloop::CudaBackend::isEnabled() const
 {
     return d_ptr->controller->config()->cuda().isEnabled() && CudaLib::isInitialized() && !d_ptr->devices.empty();;
 }
 
 
-bool xmrig::CudaBackend::isEnabled(const Algorithm &algorithm) const
+bool uvloop::CudaBackend::isEnabled(const Algorithm &algorithm) const
 {
     return !d_ptr->controller->config()->cuda().threads().get(algorithm).isEmpty();
 }
 
 
-const xmrig::Hashrate *xmrig::CudaBackend::hashrate() const
+const uvloop::Hashrate *uvloop::CudaBackend::hashrate() const
 {
     return d_ptr->workers.hashrate();
 }
 
 
-const xmrig::String &xmrig::CudaBackend::profileName() const
+const uvloop::String &uvloop::CudaBackend::profileName() const
 {
     return d_ptr->profileName;
 }
 
 
-const xmrig::String &xmrig::CudaBackend::type() const
+const uvloop::String &uvloop::CudaBackend::type() const
 {
     return kType;
 }
 
 
-void xmrig::CudaBackend::execCommand(char)
+void uvloop::CudaBackend::execCommand(char)
 {
 }
 
 
-void xmrig::CudaBackend::prepare(const Job &job)
+void uvloop::CudaBackend::prepare(const Job &job)
 {
     if (d_ptr) {
         d_ptr->workers.jobEarlyNotification(job);
@@ -375,7 +375,7 @@ void xmrig::CudaBackend::prepare(const Job &job)
 }
 
 
-void xmrig::CudaBackend::printHashrate(bool details)
+void uvloop::CudaBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -421,7 +421,7 @@ void xmrig::CudaBackend::printHashrate(bool details)
 }
 
 
-void xmrig::CudaBackend::printHealth()
+void uvloop::CudaBackend::printHealth()
 {
 #   ifdef XMRIG_FEATURE_NVML
     d_ptr->printHealth();
@@ -429,7 +429,7 @@ void xmrig::CudaBackend::printHealth()
 }
 
 
-void xmrig::CudaBackend::setJob(const Job &job)
+void uvloop::CudaBackend::setJob(const Job &job)
 {
     const auto &cuda = d_ptr->controller->config()->cuda();
     if (cuda.isEnabled()) {
@@ -461,7 +461,7 @@ void xmrig::CudaBackend::setJob(const Job &job)
 }
 
 
-void xmrig::CudaBackend::start(IWorker *worker, bool ready)
+void uvloop::CudaBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -479,7 +479,7 @@ void xmrig::CudaBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::CudaBackend::stop()
+void uvloop::CudaBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -494,14 +494,14 @@ void xmrig::CudaBackend::stop()
 }
 
 
-bool xmrig::CudaBackend::tick(uint64_t ticks)
+bool uvloop::CudaBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::CudaBackend::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::CudaBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -553,7 +553,7 @@ rapidjson::Value xmrig::CudaBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::CudaBackend::handleRequest(IApiRequest &)
+void uvloop::CudaBackend::handleRequest(IApiRequest &)
 {
 }
 #endif

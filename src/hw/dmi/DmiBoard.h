@@ -25,7 +25,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 struct dmi_header;
@@ -52,7 +52,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DMIBOARD_H */

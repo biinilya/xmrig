@@ -20,7 +20,7 @@
 #define XMRIG_SUMMARY_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Controller;
@@ -33,7 +33,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_SUMMARY_H */

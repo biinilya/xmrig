@@ -21,7 +21,7 @@
 #include "base/io/log/Log.h"
 
 
-const char *xmrig::Tags::config()
+const char *uvloop::Tags::config()
 {
     static const char *tag = CYAN_BG_BOLD(WHITE_BOLD_S " config  ");
 
@@ -29,7 +29,7 @@ const char *xmrig::Tags::config()
 }
 
 
-const char *xmrig::Tags::network()
+const char *uvloop::Tags::network()
 {
     static const char *tag = BLUE_BG_BOLD(WHITE_BOLD_S " net     ");
 
@@ -37,7 +37,7 @@ const char *xmrig::Tags::network()
 }
 
 
-const char* xmrig::Tags::origin()
+const char* uvloop::Tags::origin()
 {
     static const char* tag = YELLOW_BG_BOLD(WHITE_BOLD_S " origin  ");
 
@@ -45,7 +45,7 @@ const char* xmrig::Tags::origin()
 }
 
 
-const char *xmrig::Tags::signal()
+const char *uvloop::Tags::signal()
 {
     static const char *tag = YELLOW_BG_BOLD(WHITE_BOLD_S " signal  ");
 
@@ -54,7 +54,7 @@ const char *xmrig::Tags::signal()
 
 
 #ifdef XMRIG_MINER_PROJECT
-const char *xmrig::Tags::cpu()
+const char *uvloop::Tags::cpu()
 {
     static const char *tag = CYAN_BG_BOLD(WHITE_BOLD_S " cpu     ");
 
@@ -62,7 +62,7 @@ const char *xmrig::Tags::cpu()
 }
 
 
-const char *xmrig::Tags::miner()
+const char *uvloop::Tags::miner()
 {
     static const char *tag = MAGENTA_BG_BOLD(WHITE_BOLD_S " miner   ");
 
@@ -71,7 +71,7 @@ const char *xmrig::Tags::miner()
 
 
 #ifdef XMRIG_ALGO_RANDOMX
-const char *xmrig::Tags::randomx()
+const char *uvloop::Tags::randomx()
 {
     static const char *tag = BLUE_BG(WHITE_BOLD_S " randomx ") " ";
 
@@ -81,7 +81,7 @@ const char *xmrig::Tags::randomx()
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-const char *xmrig::Tags::bench()
+const char *uvloop::Tags::bench()
 {
     static const char *tag = GREEN_BG_BOLD(WHITE_BOLD_S " bench   ");
 
@@ -92,7 +92,7 @@ const char *xmrig::Tags::bench()
 
 
 #ifdef XMRIG_PROXY_PROJECT
-const char *xmrig::Tags::proxy()
+const char *uvloop::Tags::proxy()
 {
     static const char *tag = MAGENTA_BG_BOLD(WHITE_BOLD_S " proxy   ");
 
@@ -102,7 +102,7 @@ const char *xmrig::Tags::proxy()
 
 
 #ifdef XMRIG_FEATURE_CUDA
-const char *xmrig::Tags::nvidia()
+const char *uvloop::Tags::nvidia()
 {
     static const char *tag = GREEN_BG_BOLD(WHITE_BOLD_S " nvidia  ");
 
@@ -112,7 +112,7 @@ const char *xmrig::Tags::nvidia()
 
 
 #ifdef XMRIG_FEATURE_OPENCL
-const char *xmrig::Tags::opencl()
+const char *uvloop::Tags::opencl()
 {
     static const char *tag = MAGENTA_BG_BOLD(WHITE_BOLD_S " opencl  ");
 
@@ -122,7 +122,7 @@ const char *xmrig::Tags::opencl()
 
 
 #ifdef XMRIG_FEATURE_MO_BENCHMARK
-const char *xmrig::Tags::benchmark()
+const char *uvloop::Tags::benchmark()
 {
     static const char *tag = BRIGHT_BLACK_BG(CYAN_BOLD_S " benchmk ");
 
@@ -131,7 +131,7 @@ const char *xmrig::Tags::benchmark()
 #endif
 
 #ifdef XMRIG_FEATURE_PROFILING
-const char* xmrig::Tags::profiler()
+const char* uvloop::Tags::profiler()
 {
     static const char* tag = CYAN_BG_BOLD(WHITE_BOLD_S " profile ");
 

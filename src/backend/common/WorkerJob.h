@@ -34,7 +34,7 @@
 #include "crypto/common/Nonce.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<size_t N>
@@ -119,14 +119,14 @@ private:
 
 
 template<>
-inline uint32_t *xmrig::WorkerJob<1>::nonce(size_t)
+inline uint32_t *uvloop::WorkerJob<1>::nonce(size_t)
 {
     return reinterpret_cast<uint32_t*>(blob() + nonceOffset());
 }
 
 
 template<>
-inline bool xmrig::WorkerJob<1>::nextRound(uint32_t rounds, uint32_t roundSize)
+inline bool uvloop::WorkerJob<1>::nextRound(uint32_t rounds, uint32_t roundSize)
 {
     m_rounds[index()]++;
 
@@ -149,7 +149,7 @@ inline bool xmrig::WorkerJob<1>::nextRound(uint32_t rounds, uint32_t roundSize)
 
 
 template<>
-inline void xmrig::WorkerJob<1>::save(const Job &job, uint32_t reserveCount, Nonce::Backend backend)
+inline void uvloop::WorkerJob<1>::save(const Job &job, uint32_t reserveCount, Nonce::Backend backend)
 {
     m_index           = job.index();
     m_jobs[index()]   = job;
@@ -163,7 +163,7 @@ inline void xmrig::WorkerJob<1>::save(const Job &job, uint32_t reserveCount, Non
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_WORKERJOB_H */

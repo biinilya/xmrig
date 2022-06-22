@@ -36,7 +36,7 @@
 #include <thread>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr size_t oneMiB = 1024 * 1024;
@@ -331,28 +331,28 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::RxNUMAStorage::RxNUMAStorage(const std::vector<uint32_t> &nodeset) :
+uvloop::RxNUMAStorage::RxNUMAStorage(const std::vector<uint32_t> &nodeset) :
     d_ptr(new RxNUMAStoragePrivate(nodeset))
 {
 }
 
 
-xmrig::RxNUMAStorage::~RxNUMAStorage()
+uvloop::RxNUMAStorage::~RxNUMAStorage()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::RxNUMAStorage::isAllocated() const
+bool uvloop::RxNUMAStorage::isAllocated() const
 {
     return d_ptr->isAllocated();
 }
 
 
-xmrig::HugePagesInfo xmrig::RxNUMAStorage::hugePages() const
+uvloop::HugePagesInfo uvloop::RxNUMAStorage::hugePages() const
 {
     if (!d_ptr->isAllocated()) {
         return {};
@@ -362,7 +362,7 @@ xmrig::HugePagesInfo xmrig::RxNUMAStorage::hugePages() const
 }
 
 
-xmrig::RxDataset *xmrig::RxNUMAStorage::dataset(const Job &job, uint32_t nodeId) const
+uvloop::RxDataset *uvloop::RxNUMAStorage::dataset(const Job &job, uint32_t nodeId) const
 {
     if (!d_ptr->isReady(job)) {
         return nullptr;
@@ -372,7 +372,7 @@ xmrig::RxDataset *xmrig::RxNUMAStorage::dataset(const Job &job, uint32_t nodeId)
 }
 
 
-void xmrig::RxNUMAStorage::init(const RxSeed &seed, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode, int priority)
+void uvloop::RxNUMAStorage::init(const RxSeed &seed, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode, int priority)
 {
     d_ptr->setSeed(seed);
 

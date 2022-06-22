@@ -23,7 +23,7 @@
 #include "backend/cuda/runners/CudaBaseRunner.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaKawPowRunner : public CudaBaseRunner
@@ -43,7 +43,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_CUDAKAWPOWRUNNER_H

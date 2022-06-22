@@ -30,7 +30,7 @@
 #include "3rdparty/rapidjson/document.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *asmNames[] = {
@@ -42,10 +42,10 @@ static const char *asmNames[] = {
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
-xmrig::Assembly::Id xmrig::Assembly::parse(const char *assembly, Id defaultValue)
+uvloop::Assembly::Id uvloop::Assembly::parse(const char *assembly, Id defaultValue)
 {
     constexpr size_t const size = sizeof(asmNames) / sizeof((asmNames)[0]);
     static_assert(size == MAX, "asmNames size mismatch");
@@ -64,7 +64,7 @@ xmrig::Assembly::Id xmrig::Assembly::parse(const char *assembly, Id defaultValue
 }
 
 
-xmrig::Assembly::Id xmrig::Assembly::parse(const rapidjson::Value &value, Id defaultValue)
+uvloop::Assembly::Id uvloop::Assembly::parse(const rapidjson::Value &value, Id defaultValue)
 {
     if (value.IsBool()) {
         return value.GetBool() ? AUTO : NONE;
@@ -78,13 +78,13 @@ xmrig::Assembly::Id xmrig::Assembly::parse(const rapidjson::Value &value, Id def
 }
 
 
-const char *xmrig::Assembly::toString() const
+const char *uvloop::Assembly::toString() const
 {
     return asmNames[m_id];
 }
 
 
-rapidjson::Value xmrig::Assembly::toJSON() const
+rapidjson::Value uvloop::Assembly::toJSON() const
 {
     using namespace rapidjson;
 

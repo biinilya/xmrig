@@ -32,7 +32,7 @@
 
 #include <chrono>
 
-namespace xmrig {
+namespace uvloop {
 
 MoBenchmark::MoBenchmark() : m_controller(nullptr), m_isNewBenchRun(true) {
   for (BenchAlgo bench_algo = BenchAlgo::MIN; bench_algo != BenchAlgo::MAX; bench_algo = static_cast<BenchAlgo>(bench_algo + 1)) {
@@ -238,9 +238,9 @@ uint64_t MoBenchmark::get_now() const { // get current time in ms
     return time_point_cast<milliseconds>(high_resolution_clock::now()).time_since_epoch().count();
 }
 
-} // namespace xmrig
+} // namespace uvloop
 
-const char *xmrig::bm_tag()
+const char *uvloop::bm_tag()
 {
     return Tags::benchmark();
 }

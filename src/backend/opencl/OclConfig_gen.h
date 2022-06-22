@@ -27,7 +27,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static inline size_t generate(const char *key, Threads<OclThreads> &threads, const Algorithm &algorithm, const std::vector<OclDevice> &devices)
@@ -173,7 +173,7 @@ static inline std::vector<OclDevice> filterDevices(const std::vector<OclDevice> 
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_OCLCONFIG_GEN_H */

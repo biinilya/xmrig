@@ -24,7 +24,7 @@
 #include <cstring>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<typename T>
@@ -47,7 +47,7 @@ inline void writeUnaligned(T* ptr, T data)
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_ALIGNMENT_H */

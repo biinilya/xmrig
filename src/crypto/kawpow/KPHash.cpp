@@ -36,7 +36,7 @@
 #include <intrin.h>
 #endif
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const uint32_t ravencoin_kawpow[15] = {
@@ -368,4 +368,4 @@ void KPHash::calculate(const KPCache& light_cache, uint32_t block_height, const 
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

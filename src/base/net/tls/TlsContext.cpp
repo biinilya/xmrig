@@ -41,7 +41,7 @@ int DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g)
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 // https://wiki.openssl.org/index.php/Diffie-Hellman_parameters
@@ -97,16 +97,16 @@ static DH *get_dh2048()
     return dh;
 }
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::TlsContext::~TlsContext()
+uvloop::TlsContext::~TlsContext()
 {
     SSL_CTX_free(m_ctx);
 }
 
 
-xmrig::TlsContext *xmrig::TlsContext::create(const TlsConfig &config)
+uvloop::TlsContext *uvloop::TlsContext::create(const TlsConfig &config)
 {
     if (!config.isEnabled()) {
         return nullptr;
@@ -123,7 +123,7 @@ xmrig::TlsContext *xmrig::TlsContext::create(const TlsConfig &config)
 }
 
 
-bool xmrig::TlsContext::load(const TlsConfig &config)
+bool uvloop::TlsContext::load(const TlsConfig &config)
 {
     m_ctx = SSL_CTX_new(SSLv23_server_method());
     if (m_ctx == nullptr) {
@@ -159,7 +159,7 @@ bool xmrig::TlsContext::load(const TlsConfig &config)
 }
 
 
-bool xmrig::TlsContext::setCiphers(const char *ciphers)
+bool uvloop::TlsContext::setCiphers(const char *ciphers)
 {
     if (ciphers == nullptr || SSL_CTX_set_cipher_list(m_ctx, ciphers) == 1) {
         return true;
@@ -171,7 +171,7 @@ bool xmrig::TlsContext::setCiphers(const char *ciphers)
 }
 
 
-bool xmrig::TlsContext::setCipherSuites(const char *ciphersuites)
+bool uvloop::TlsContext::setCipherSuites(const char *ciphersuites)
 {
     if (ciphersuites == nullptr) {
         return true;
@@ -189,7 +189,7 @@ bool xmrig::TlsContext::setCipherSuites(const char *ciphersuites)
 }
 
 
-bool xmrig::TlsContext::setDH(const char *dhparam)
+bool uvloop::TlsContext::setDH(const char *dhparam)
 {
     DH *dh = nullptr;
 
@@ -230,7 +230,7 @@ bool xmrig::TlsContext::setDH(const char *dhparam)
 }
 
 
-void xmrig::TlsContext::setProtocols(uint32_t protocols)
+void uvloop::TlsContext::setProtocols(uint32_t protocols)
 {
     if (protocols == 0) {
         return;

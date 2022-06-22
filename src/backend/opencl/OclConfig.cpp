@@ -25,7 +25,7 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *kCache       = "cache";
@@ -48,17 +48,17 @@ static const char *kAdl         = "adl";
 extern template class Threads<OclThreads>;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #ifndef XMRIG_OS_APPLE
-xmrig::OclConfig::OclConfig() : m_platformVendor(kAMD) {}
+uvloop::OclConfig::OclConfig() : m_platformVendor(kAMD) {}
 #else
-xmrig::OclConfig::OclConfig() = default;
+uvloop::OclConfig::OclConfig() = default;
 #endif
 
 
-xmrig::OclPlatform xmrig::OclConfig::platform() const
+uvloop::OclPlatform uvloop::OclConfig::platform() const
 {
     const auto platforms = OclPlatform::get();
     if (platforms.empty()) {
@@ -101,7 +101,7 @@ xmrig::OclPlatform xmrig::OclConfig::platform() const
 }
 
 
-rapidjson::Value xmrig::OclConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::OclConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -126,7 +126,7 @@ rapidjson::Value xmrig::OclConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::vector<xmrig::OclLaunchData> xmrig::OclConfig::get(const Miner *miner, const Algorithm &algorithm, const OclPlatform &platform, const std::vector<OclDevice> &devices) const
+std::vector<uvloop::OclLaunchData> uvloop::OclConfig::get(const Miner *miner, const Algorithm &algorithm, const OclPlatform &platform, const std::vector<OclDevice> &devices) const
 {
     std::vector<OclLaunchData> out;
     const auto &threads = m_threads.get(algorithm);
@@ -157,7 +157,7 @@ std::vector<xmrig::OclLaunchData> xmrig::OclConfig::get(const Miner *miner, cons
 }
 
 
-void xmrig::OclConfig::read(const rapidjson::Value &value)
+void uvloop::OclConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled   = Json::getBool(value, kEnabled, m_enabled);
@@ -191,7 +191,7 @@ void xmrig::OclConfig::read(const rapidjson::Value &value)
 }
 
 
-void xmrig::OclConfig::generate()
+void uvloop::OclConfig::generate()
 {
     if (!isEnabled() || m_threads.has("*")) {
         return;
@@ -208,20 +208,20 @@ void xmrig::OclConfig::generate()
 
     size_t count = 0;
 
-    count += xmrig::generate<Algorithm::CN>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_LITE>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_HEAVY>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_PICO>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_FEMTO>(m_threads, devices);
-    count += xmrig::generate<Algorithm::RANDOM_X>(m_threads, devices);
-    count += xmrig::generate<Algorithm::ASTROBWT>(m_threads, devices);
-    count += xmrig::generate<Algorithm::KAWPOW>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_LITE>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_HEAVY>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_PICO>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_FEMTO>(m_threads, devices);
+    count += uvloop::generate<Algorithm::RANDOM_X>(m_threads, devices);
+    count += uvloop::generate<Algorithm::ASTROBWT>(m_threads, devices);
+    count += uvloop::generate<Algorithm::KAWPOW>(m_threads, devices);
 
     m_shouldSave = count > 0;
 }
 
 
-void xmrig::OclConfig::setDevicesHint(const char *devicesHint)
+void uvloop::OclConfig::setDevicesHint(const char *devicesHint)
 {
     if (devicesHint == nullptr) {
         return;
@@ -237,7 +237,7 @@ void xmrig::OclConfig::setDevicesHint(const char *devicesHint)
 
 
 #ifndef XMRIG_OS_APPLE
-void xmrig::OclConfig::setPlatform(const rapidjson::Value &platform)
+void uvloop::OclConfig::setPlatform(const rapidjson::Value &platform)
 {
     if (platform.IsString()) {
         m_platformVendor = platform.GetString();

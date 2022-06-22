@@ -30,7 +30,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HttpData
@@ -77,7 +77,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPDATA_H

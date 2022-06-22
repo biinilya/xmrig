@@ -27,7 +27,7 @@
 #include <stdexcept>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<bool EXCEPTIONS>
@@ -128,7 +128,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BLOBREADER_H */

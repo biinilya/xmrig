@@ -29,7 +29,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class AstroBWT_Salsa20Kernel : public OclKernel
@@ -42,7 +42,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_ASTROBWT_SALSA20KERNEL_H */

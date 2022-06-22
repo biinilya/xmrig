@@ -33,7 +33,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const char *Algorithm::kINVALID         = "invalid";
@@ -325,22 +325,22 @@ static const std::map<const char *, Algorithm::Id, aliasCompare> kAlgorithmAlias
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
-xmrig::Algorithm::Algorithm(const rapidjson::Value &value) :
+uvloop::Algorithm::Algorithm(const rapidjson::Value &value) :
     m_id(parse(value.GetString()))
 {
 }
 
 
-xmrig::Algorithm::Algorithm(uint32_t id) :
+uvloop::Algorithm::Algorithm(uint32_t id) :
     m_id(kAlgorithmNames.count(id) ? static_cast<Id>(id) : INVALID)
 {
 }
 
 
-const char *xmrig::Algorithm::name() const
+const char *uvloop::Algorithm::name() const
 {
     if (!isValid()) {
         return kINVALID;
@@ -353,7 +353,7 @@ const char *xmrig::Algorithm::name() const
 }
 
 
-rapidjson::Value xmrig::Algorithm::toJSON() const
+rapidjson::Value uvloop::Algorithm::toJSON() const
 {
     using namespace rapidjson;
 
@@ -361,13 +361,13 @@ rapidjson::Value xmrig::Algorithm::toJSON() const
 }
 
 
-rapidjson::Value xmrig::Algorithm::toJSON(rapidjson::Document &) const
+rapidjson::Value uvloop::Algorithm::toJSON(rapidjson::Document &) const
 {
     return toJSON();
 }
 
 
-xmrig::Algorithm::Id xmrig::Algorithm::parse(const char *name)
+uvloop::Algorithm::Id uvloop::Algorithm::parse(const char *name)
 {
     if (name == nullptr || strlen(name) < 1) {
         return INVALID;
@@ -379,13 +379,13 @@ xmrig::Algorithm::Id xmrig::Algorithm::parse(const char *name)
 }
 
 
-size_t xmrig::Algorithm::count()
+size_t uvloop::Algorithm::count()
 {
     return kAlgorithmNames.size();
 }
 
 
-std::vector<xmrig::Algorithm> xmrig::Algorithm::all(const std::function<bool(const Algorithm &algo)> &filter)
+std::vector<uvloop::Algorithm> uvloop::Algorithm::all(const std::function<bool(const Algorithm &algo)> &filter)
 {
     static const std::vector<Id> order = {
         CN_0, CN_1, CN_2, CN_R, CN_FAST, CN_HALF, CN_XAO, CN_RTO, CN_RWZ, CN_ZLS, CN_DOUBLE, CN_CCX,

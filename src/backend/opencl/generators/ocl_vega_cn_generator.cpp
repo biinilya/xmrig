@@ -25,7 +25,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr const size_t oneMiB = 1024U * 1024U;
@@ -121,4 +121,4 @@ bool ocl_vega_cn_generator(const OclDevice &device, const Algorithm &algorithm, 
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

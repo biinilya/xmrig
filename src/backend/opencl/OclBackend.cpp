@@ -56,11 +56,11 @@
 #ifdef XMRIG_FEATURE_ADL
 #include "backend/opencl/wrappers/AdlLib.h"
 
-namespace xmrig { static const char *kAdlLabel = "ADL"; }
+namespace uvloop { static const char *kAdlLabel = "ADL"; }
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 extern template class Threads<OclThreads>;
@@ -280,23 +280,23 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-const char *xmrig::ocl_tag()
+const char *uvloop::ocl_tag()
 {
     return Tags::opencl();
 }
 
 
-xmrig::OclBackend::OclBackend(Controller *controller) :
+uvloop::OclBackend::OclBackend(Controller *controller) :
     d_ptr(new OclBackendPrivate(controller))
 {
     d_ptr->workers.setBackend(this);
 }
 
 
-xmrig::OclBackend::~OclBackend()
+uvloop::OclBackend::~OclBackend()
 {
     delete d_ptr;
 
@@ -308,42 +308,42 @@ xmrig::OclBackend::~OclBackend()
 }
 
 
-bool xmrig::OclBackend::isEnabled() const
+bool uvloop::OclBackend::isEnabled() const
 {
     return d_ptr->controller->config()->cl().isEnabled() && OclLib::isInitialized() && d_ptr->platform.isValid() && !d_ptr->devices.empty();
 }
 
 
-bool xmrig::OclBackend::isEnabled(const Algorithm &algorithm) const
+bool uvloop::OclBackend::isEnabled(const Algorithm &algorithm) const
 {
     return !d_ptr->controller->config()->cl().threads().get(algorithm).isEmpty();
 }
 
 
-const xmrig::Hashrate *xmrig::OclBackend::hashrate() const
+const uvloop::Hashrate *uvloop::OclBackend::hashrate() const
 {
     return d_ptr->workers.hashrate();
 }
 
 
-const xmrig::String &xmrig::OclBackend::profileName() const
+const uvloop::String &uvloop::OclBackend::profileName() const
 {
     return d_ptr->profileName;
 }
 
 
-const xmrig::String &xmrig::OclBackend::type() const
+const uvloop::String &uvloop::OclBackend::type() const
 {
     return kType;
 }
 
 
-void xmrig::OclBackend::execCommand(char)
+void uvloop::OclBackend::execCommand(char)
 {
 }
 
 
-void xmrig::OclBackend::prepare(const Job &job)
+void uvloop::OclBackend::prepare(const Job &job)
 {
     if (d_ptr) {
         d_ptr->workers.jobEarlyNotification(job);
@@ -351,7 +351,7 @@ void xmrig::OclBackend::prepare(const Job &job)
 }
 
 
-void xmrig::OclBackend::printHashrate(bool details)
+void uvloop::OclBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -397,7 +397,7 @@ void xmrig::OclBackend::printHashrate(bool details)
 }
 
 
-void xmrig::OclBackend::printHealth()
+void uvloop::OclBackend::printHealth()
 {
 #   ifdef XMRIG_FEATURE_ADL
     d_ptr->printHealth();
@@ -405,7 +405,7 @@ void xmrig::OclBackend::printHealth()
 }
 
 
-void xmrig::OclBackend::setJob(const Job &job)
+void uvloop::OclBackend::setJob(const Job &job)
 {
     const auto &cl = d_ptr->controller->config()->cl();
     if (cl.isEnabled()) {
@@ -443,7 +443,7 @@ void xmrig::OclBackend::setJob(const Job &job)
 }
 
 
-void xmrig::OclBackend::start(IWorker *worker, bool ready)
+void uvloop::OclBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -461,7 +461,7 @@ void xmrig::OclBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::OclBackend::stop()
+void uvloop::OclBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -478,14 +478,14 @@ void xmrig::OclBackend::stop()
 }
 
 
-bool xmrig::OclBackend::tick(uint64_t ticks)
+bool uvloop::OclBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::OclBackend::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::OclBackend::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -523,7 +523,7 @@ rapidjson::Value xmrig::OclBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::OclBackend::handleRequest(IApiRequest &)
+void uvloop::OclBackend::handleRequest(IApiRequest &)
 {
 }
 #endif

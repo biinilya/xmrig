@@ -29,10 +29,10 @@
 #include "base/net/stratum/Job.h"
 
 
-constexpr uint32_t xmrig::CudaAstroBWTRunner::BWT_DATA_STRIDE;
+constexpr uint32_t uvloop::CudaAstroBWTRunner::BWT_DATA_STRIDE;
 
 
-xmrig::CudaAstroBWTRunner::CudaAstroBWTRunner(size_t index, const CudaLaunchData &data)
+uvloop::CudaAstroBWTRunner::CudaAstroBWTRunner(size_t index, const CudaLaunchData &data)
     : CudaBaseRunner(index, data)
     , m_algorithm(data.algorithm)
 {
@@ -46,13 +46,13 @@ xmrig::CudaAstroBWTRunner::CudaAstroBWTRunner(size_t index, const CudaLaunchData
 }
 
 
-bool xmrig::CudaAstroBWTRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
+bool uvloop::CudaAstroBWTRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
 {
     return callWrapper(CudaLib::astroBWTHash(m_ctx, startNonce, m_target, rescount, resnonce));
 }
 
 
-bool xmrig::CudaAstroBWTRunner::set(const Job &job, uint8_t *blob)
+bool uvloop::CudaAstroBWTRunner::set(const Job &job, uint8_t *blob)
 {
     if (!CudaBaseRunner::set(job, blob)) {
         return false;
@@ -62,7 +62,7 @@ bool xmrig::CudaAstroBWTRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-size_t xmrig::CudaAstroBWTRunner::roundSize() const
+size_t uvloop::CudaAstroBWTRunner::roundSize() const
 {
     if (m_algorithm == Algorithm::ASTROBWT_DERO_2) {
         return m_intensity;
@@ -79,7 +79,7 @@ size_t xmrig::CudaAstroBWTRunner::roundSize() const
 }
 
 
-size_t xmrig::CudaAstroBWTRunner::processedHashes() const
+size_t uvloop::CudaAstroBWTRunner::processedHashes() const
 {
     return CudaLib::deviceInt(m_ctx, CudaLib::DeviceAstroBWTProcessedHashes);
 }

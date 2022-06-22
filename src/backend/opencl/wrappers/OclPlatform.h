@@ -36,7 +36,7 @@
 using cl_platform_id = struct _cl_platform_id *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclPlatform
@@ -66,7 +66,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLPLATFORM_H */

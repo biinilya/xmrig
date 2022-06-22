@@ -24,7 +24,7 @@
 #include "backend/common/interfaces/IRxStorage.h"
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -50,7 +50,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_BASICSTORAGE_H */

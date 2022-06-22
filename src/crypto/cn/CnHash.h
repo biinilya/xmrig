@@ -33,7 +33,7 @@
 struct cryptonight_ctx;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 using cn_hash_fun     = void (*)(const uint8_t *, size_t, uint8_t *, cryptonight_ctx **, uint64_t);
@@ -72,7 +72,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CN_HASH_H */

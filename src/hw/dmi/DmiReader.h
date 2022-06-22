@@ -29,7 +29,7 @@
 #include <functional>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DmiReader
@@ -64,7 +64,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DMIREADER_H */

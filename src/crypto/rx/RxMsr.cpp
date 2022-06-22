@@ -31,7 +31,7 @@
 #include <set>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 bool RxMsr::m_cacheQoS      = false;
@@ -125,10 +125,10 @@ static bool wrmsr(const MsrItems &preset, const std::vector<CpuThread> &threads,
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &threads)
+bool uvloop::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &threads)
 {
     if (isInitialized()) {
         return isEnabled();
@@ -162,7 +162,7 @@ bool xmrig::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &th
 }
 
 
-void xmrig::RxMsr::destroy()
+void uvloop::RxMsr::destroy()
 {
     if (!isInitialized()) {
         return;

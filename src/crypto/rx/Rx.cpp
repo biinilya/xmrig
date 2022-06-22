@@ -32,7 +32,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class RxPrivate;
@@ -51,22 +51,22 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::HugePagesInfo xmrig::Rx::hugePages()
+uvloop::HugePagesInfo uvloop::Rx::hugePages()
 {
     return d_ptr->queue.hugePages();
 }
 
 
-xmrig::RxDataset *xmrig::Rx::dataset(const Job &job, uint32_t nodeId)
+uvloop::RxDataset *uvloop::Rx::dataset(const Job &job, uint32_t nodeId)
 {
     return d_ptr->queue.dataset(job, nodeId);
 }
 
 
-void xmrig::Rx::destroy()
+void uvloop::Rx::destroy()
 {
 #   ifdef XMRIG_FEATURE_MSR
     RxMsr::destroy();
@@ -78,14 +78,14 @@ void xmrig::Rx::destroy()
 }
 
 
-void xmrig::Rx::init(IRxListener *listener)
+void uvloop::Rx::init(IRxListener *listener)
 {
     d_ptr = new RxPrivate(listener);
 }
 
 
 template<typename T>
-bool xmrig::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu)
+bool uvloop::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu)
 {
     const auto f = seed.algorithm().family();
     if ((f != Algorithm::RANDOM_X)
@@ -147,21 +147,21 @@ bool xmrig::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu
 
 
 template<typename T>
-bool xmrig::Rx::isReady(const T &seed)
+bool uvloop::Rx::isReady(const T &seed)
 {
     return d_ptr->queue.isReady(seed);
 }
 
 
 #ifdef XMRIG_FEATURE_MSR
-bool xmrig::Rx::isMSR()
+bool uvloop::Rx::isMSR()
 {
     return RxMsr::isEnabled();
 }
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template bool Rx::init(const RxSeed &seed, const RxConfig &config, const CpuConfig &cpu);
@@ -170,4 +170,4 @@ template bool Rx::init(const Job &seed, const RxConfig &config, const CpuConfig 
 template bool Rx::isReady(const Job &seed);
 
 
-} // namespace xmrig
+} // namespace uvloop

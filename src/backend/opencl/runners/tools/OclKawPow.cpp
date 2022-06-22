@@ -42,7 +42,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class KawPowCacheEntry
@@ -457,4 +457,4 @@ void OclKawPow::clear()
     cache.clear();
 }
 
-} // namespace xmrig
+} // namespace uvloop

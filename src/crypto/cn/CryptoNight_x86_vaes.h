@@ -33,7 +33,7 @@
 struct cryptonight_ctx;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 void cn_explode_scratchpad_vaes(cryptonight_ctx* ctx, size_t memory, bool half_mem);

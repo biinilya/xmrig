@@ -27,7 +27,7 @@
 #include <vector>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -53,7 +53,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_NUMASTORAGE_H */

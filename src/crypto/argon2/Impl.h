@@ -26,7 +26,7 @@
 #define XMRIG_ARGON2_IMPL_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class String;
@@ -43,7 +43,7 @@ public:
 };
 
 
-}} // namespace xmrig::argon2
+}} // namespace uvloop::argon2
 
 
 #endif /* XMRIG_ARGON2_IMPL_H */

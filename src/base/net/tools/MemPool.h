@@ -27,7 +27,7 @@
 #include <set>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<size_t CHUNK_SIZE, size_t INIT_SIZE>
@@ -91,7 +91,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_MEMPOOL_H */

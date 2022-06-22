@@ -26,7 +26,7 @@
 #include <map>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Env
@@ -38,7 +38,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_ENV_H */

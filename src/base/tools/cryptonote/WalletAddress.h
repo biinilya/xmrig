@@ -26,7 +26,7 @@
 #include "base/crypto/Coin.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class WalletAddress
@@ -98,7 +98,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_WALLETADDRESS_H */

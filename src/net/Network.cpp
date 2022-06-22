@@ -57,7 +57,7 @@
 #include <memory>
 
 
-xmrig::Network::Network(Controller *controller) :
+uvloop::Network::Network(Controller *controller) :
     m_controller(controller)
 {
     JobResults::setListener(this, controller->config()->cpu().isHwAES());
@@ -80,7 +80,7 @@ xmrig::Network::Network(Controller *controller) :
 }
 
 
-xmrig::Network::~Network()
+uvloop::Network::~Network()
 {
     JobResults::stop();
 
@@ -91,13 +91,13 @@ xmrig::Network::~Network()
 }
 
 
-void xmrig::Network::connect()
+void uvloop::Network::connect()
 {
     m_strategy->connect();
 }
 
 
-void xmrig::Network::execCommand(char command)
+void uvloop::Network::execCommand(char command)
 {
     switch (command) {
     case 's':
@@ -116,7 +116,7 @@ void xmrig::Network::execCommand(char command)
 }
 
 
-void xmrig::Network::onActive(IStrategy *strategy, IClient *client)
+void uvloop::Network::onActive(IStrategy *strategy, IClient *client)
 {
     if (m_donate && m_donate == strategy) {
         LOG_NOTICE("%s " WHITE_BOLD("dev donate started"), Tags::network());
@@ -147,7 +147,7 @@ void xmrig::Network::onActive(IStrategy *strategy, IClient *client)
 }
 
 
-void xmrig::Network::onConfigChanged(Config *config, Config *previousConfig)
+void uvloop::Network::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->pools() == previousConfig->pools() || !config->pools().active()) {
         return;
@@ -163,7 +163,7 @@ void xmrig::Network::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Network::onJob(IStrategy *strategy, IClient *client, const Job &job, const rapidjson::Value &)
+void uvloop::Network::onJob(IStrategy *strategy, IClient *client, const Job &job, const rapidjson::Value &)
 {
     if (m_donate && m_donate->isActive() && m_donate != strategy) {
         return;
@@ -173,7 +173,7 @@ void xmrig::Network::onJob(IStrategy *strategy, IClient *client, const Job &job,
 }
 
 
-void xmrig::Network::onJobResult(const JobResult &result)
+void uvloop::Network::onJobResult(const JobResult &result)
 {
     if (result.index == 1 && m_donate) {
         m_donate->submit(result);
@@ -184,7 +184,7 @@ void xmrig::Network::onJobResult(const JobResult &result)
 }
 
 
-void xmrig::Network::onLogin(IStrategy *, IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
+void uvloop::Network::onLogin(IStrategy *, IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -223,7 +223,7 @@ void xmrig::Network::onLogin(IStrategy *, IClient *client, rapidjson::Document &
 }
 
 
-void xmrig::Network::onPause(IStrategy *strategy)
+void uvloop::Network::onPause(IStrategy *strategy)
 {
     if (m_donate && m_donate == strategy) {
         LOG_NOTICE("%s " WHITE_BOLD("dev donate finished"), Tags::network());
@@ -238,7 +238,7 @@ void xmrig::Network::onPause(IStrategy *strategy)
 }
 
 
-void xmrig::Network::onResultAccepted(IStrategy *, IClient *, const SubmitResult &result, const char *error)
+void uvloop::Network::onResultAccepted(IStrategy *, IClient *, const SubmitResult &result, const char *error)
 {
     uint64_t diff     = result.diff;
     const char *scale = NetworkState::scaleDiff(diff);
@@ -254,7 +254,7 @@ void xmrig::Network::onResultAccepted(IStrategy *, IClient *, const SubmitResult
 }
 
 
-void xmrig::Network::onVerifyAlgorithm(IStrategy *, const IClient *, const Algorithm &algorithm, bool *ok)
+void uvloop::Network::onVerifyAlgorithm(IStrategy *, const IClient *, const Algorithm &algorithm, bool *ok)
 {
     if (!m_controller->miner()->isEnabled(algorithm)) {
         *ok = false;
@@ -265,7 +265,7 @@ void xmrig::Network::onVerifyAlgorithm(IStrategy *, const IClient *, const Algor
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::Network::onRequest(IApiRequest &request)
+void uvloop::Network::onRequest(IApiRequest &request)
 {
     if (request.type() == IApiRequest::REQ_SUMMARY) {
         request.accept();
@@ -277,7 +277,7 @@ void xmrig::Network::onRequest(IApiRequest &request)
 #endif
 
 
-void xmrig::Network::setJob(IClient *client, const Job &job, bool donate)
+void uvloop::Network::setJob(IClient *client, const Job &job, bool donate)
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     if (!BenchState::size())
@@ -315,7 +315,7 @@ void xmrig::Network::setJob(IClient *client, const Job &job, bool donate)
 }
 
 
-void xmrig::Network::tick()
+void uvloop::Network::tick()
 {
     const uint64_t now = Chrono::steadyMSecs();
 
@@ -328,7 +328,7 @@ void xmrig::Network::tick()
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::Network::getConnection(rapidjson::Value &reply, rapidjson::Document &doc, int version) const
+void uvloop::Network::getConnection(rapidjson::Value &reply, rapidjson::Document &doc, int version) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -338,7 +338,7 @@ void xmrig::Network::getConnection(rapidjson::Value &reply, rapidjson::Document 
 }
 
 
-void xmrig::Network::getResults(rapidjson::Value &reply, rapidjson::Document &doc, int version) const
+void uvloop::Network::getResults(rapidjson::Value &reply, rapidjson::Document &doc, int version) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

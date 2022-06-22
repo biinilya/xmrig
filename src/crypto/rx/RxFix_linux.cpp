@@ -27,7 +27,7 @@
 #include <ucontext.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static thread_local std::pair<const void*, const void*> mainLoopBounds = { nullptr, nullptr };
@@ -51,17 +51,17 @@ static void MainLoopHandler(int sig, siginfo_t *info, void *ucontext)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 
-void xmrig::RxFix::setMainLoopBounds(const std::pair<const void *, const void *> &bounds)
+void uvloop::RxFix::setMainLoopBounds(const std::pair<const void *, const void *> &bounds)
 {
     mainLoopBounds = bounds;
 }
 
 
-void xmrig::RxFix::setupMainLoopExceptionFrame()
+void uvloop::RxFix::setupMainLoopExceptionFrame()
 {
     struct sigaction act = {};
     act.sa_sigaction = MainLoopHandler;

@@ -40,7 +40,7 @@
 #endif
 
 
-xmrig::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, IClientListener* listener) :
+uvloop::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, IClientListener* listener) :
     m_listener(listener),
     m_benchmark(benchmark),
     m_hash(benchmark->hash())
@@ -121,19 +121,19 @@ xmrig::BenchClient::BenchClient(const std::shared_ptr<BenchConfig> &benchmark, I
 }
 
 
-xmrig::BenchClient::~BenchClient()
+uvloop::BenchClient::~BenchClient()
 {
     BenchState::destroy();
 }
 
 
-const char *xmrig::BenchClient::tag() const
+const char *uvloop::BenchClient::tag() const
 {
     return Tags::bench();
 }
 
 
-void xmrig::BenchClient::connect()
+void uvloop::BenchClient::connect()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     if (m_mode == ONLINE_BENCH || m_mode == ONLINE_VERIFY) {
@@ -145,13 +145,13 @@ void xmrig::BenchClient::connect()
 }
 
 
-void xmrig::BenchClient::setPool(const Pool &pool)
+void uvloop::BenchClient::setPool(const Pool &pool)
 {
     m_pool = pool;
 }
 
 
-void xmrig::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts)
+void uvloop::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts)
 {
     m_result    = result;
     m_diff      = diff;
@@ -175,7 +175,7 @@ void xmrig::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts
 }
 
 
-void xmrig::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBackend *backend)
+void uvloop::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBackend *backend)
 {
     m_readyTime = ts;
     m_threads   = threads;
@@ -189,7 +189,7 @@ void xmrig::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBack
 }
 
 
-void xmrig::BenchClient::onHttpData(const HttpData &data)
+void uvloop::BenchClient::onHttpData(const HttpData &data)
 {
 #   ifdef XMRIG_FEATURE_HTTP
     rapidjson::Document doc;
@@ -221,7 +221,7 @@ void xmrig::BenchClient::onHttpData(const HttpData &data)
 }
 
 
-void xmrig::BenchClient::onResolved(const DnsRecords &records, int status, const char *error)
+void uvloop::BenchClient::onResolved(const DnsRecords &records, int status, const char *error)
 {
 #   ifdef XMRIG_FEATURE_HTTP
     assert(!m_httpListener);
@@ -245,7 +245,7 @@ void xmrig::BenchClient::onResolved(const DnsRecords &records, int status, const
 }
 
 
-bool xmrig::BenchClient::setSeed(const char *seed)
+bool uvloop::BenchClient::setSeed(const char *seed)
 {
     if (!seed) {
         return false;
@@ -273,7 +273,7 @@ bool xmrig::BenchClient::setSeed(const char *seed)
 }
 
 
-uint64_t xmrig::BenchClient::referenceHash() const
+uint64_t uvloop::BenchClient::referenceHash() const
 {
     if (m_hash || m_mode == ONLINE_BENCH) {
         return m_hash;
@@ -283,13 +283,13 @@ uint64_t xmrig::BenchClient::referenceHash() const
 }
 
 
-void xmrig::BenchClient::printExit() const
+void uvloop::BenchClient::printExit() const
 {
     LOG_INFO("%s " WHITE_BOLD("press ") MAGENTA_BOLD("Ctrl+C") WHITE_BOLD(" to exit"), tag());
 }
 
 
-void xmrig::BenchClient::start()
+void uvloop::BenchClient::start()
 {
     const uint32_t size = BenchState::size();
 
@@ -306,7 +306,7 @@ void xmrig::BenchClient::start()
 
 
 #ifdef XMRIG_FEATURE_HTTP
-void xmrig::BenchClient::onCreateReply(const rapidjson::Value &value)
+void uvloop::BenchClient::onCreateReply(const rapidjson::Value &value)
 {
     m_startTime = Chrono::steadyMSecs();
     m_token     = Json::getString(value, BenchConfig::kToken);
@@ -320,14 +320,14 @@ void xmrig::BenchClient::onCreateReply(const rapidjson::Value &value)
 }
 
 
-void xmrig::BenchClient::onDoneReply(const rapidjson::Value &)
+void uvloop::BenchClient::onDoneReply(const rapidjson::Value &)
 {
     LOG_NOTICE("%s " WHITE_BOLD("benchmark submitted ") CYAN_BOLD("https://xmrig.com/benchmark/%s"), tag(), m_job.id().data());
     printExit();
 }
 
 
-void xmrig::BenchClient::onGetReply(const rapidjson::Value &value)
+void uvloop::BenchClient::onGetReply(const rapidjson::Value &value)
 {
     const char *hash = Json::getString(value, BenchConfig::kHash);
     if (hash) {
@@ -343,13 +343,13 @@ void xmrig::BenchClient::onGetReply(const rapidjson::Value &value)
 }
 
 
-void xmrig::BenchClient::resolve()
+void uvloop::BenchClient::resolve()
 {
     m_dns = Dns::resolve(BenchConfig::kApiHost, this);
 }
 
 
-void xmrig::BenchClient::send(Request request)
+void uvloop::BenchClient::send(Request request)
 {
     using namespace rapidjson;
 
@@ -413,7 +413,7 @@ void xmrig::BenchClient::send(Request request)
 }
 
 
-void xmrig::BenchClient::setError(const char *message, const char *label)
+void uvloop::BenchClient::setError(const char *message, const char *label)
 {
     LOG_ERR("%s " RED("%s: ") RED_BOLD("\"%s\""), tag(), label ? label : "benchmark failed", message);
     printExit();
@@ -422,7 +422,7 @@ void xmrig::BenchClient::setError(const char *message, const char *label)
 }
 
 
-void xmrig::BenchClient::update(const rapidjson::Value &body)
+void uvloop::BenchClient::update(const rapidjson::Value &body)
 {
     assert(!m_token.isEmpty());
 

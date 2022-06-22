@@ -24,7 +24,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Title
@@ -44,7 +44,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_TITLE_H */

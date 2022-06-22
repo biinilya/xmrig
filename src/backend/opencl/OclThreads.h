@@ -33,7 +33,7 @@
 #include "backend/opencl/wrappers/OclDevice.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclThreads
@@ -60,7 +60,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_OCLTHREADS_H */

@@ -30,7 +30,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const static uint8_t test_input[380] = {
@@ -503,7 +503,7 @@ const static uint8_t test_output_gr[256] = {
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CRYPTONIGHT_TEST_H */

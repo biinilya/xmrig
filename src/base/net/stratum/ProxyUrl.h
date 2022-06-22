@@ -23,7 +23,7 @@
 #include "base/net/stratum/Url.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ProxyUrl : public Url
@@ -40,7 +40,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_PROXYURL_H */

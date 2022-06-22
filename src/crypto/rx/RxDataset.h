@@ -33,7 +33,7 @@
 struct randomx_dataset;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -78,7 +78,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_DATASET_H */

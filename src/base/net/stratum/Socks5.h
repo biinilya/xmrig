@@ -23,7 +23,7 @@
 #include "base/net/stratum/Client.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Client::Socks5
@@ -55,7 +55,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_SOCKS5_H */

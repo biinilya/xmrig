@@ -29,7 +29,7 @@
 #include "base/tools/Span.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class BlockTemplate
@@ -150,7 +150,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BLOCKTEMPLATE_H */

@@ -46,7 +46,7 @@ using SSL_CTX       = struct ssl_ctx_st;
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsRequest;
@@ -185,7 +185,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DAEMONCLIENT_H */

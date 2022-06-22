@@ -26,7 +26,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class PciTopology
@@ -67,7 +67,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_PCITOPOLOGY_H */

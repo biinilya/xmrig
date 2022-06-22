@@ -32,7 +32,7 @@ using X509      = struct x509_st;
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HttpsClient : public HttpClient
@@ -66,7 +66,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPSCLIENT_H

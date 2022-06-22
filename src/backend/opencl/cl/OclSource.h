@@ -26,7 +26,7 @@
 #define XMRIG_OCLSOURCE_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -40,7 +40,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLSOURCE_H */

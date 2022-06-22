@@ -22,13 +22,13 @@
 #include "net/JobResult.h"
 
 
-xmrig::AutoClient::AutoClient(int id, const char *agent, IClientListener *listener) :
+uvloop::AutoClient::AutoClient(int id, const char *agent, IClientListener *listener) :
     EthStratumClient(id, agent, listener)
 {
 }
 
 
-bool xmrig::AutoClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
+bool uvloop::AutoClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (m_mode == DEFAULT_MODE) {
         return Client::handleResponse(id, result, error); // NOLINT(bugprone-parent-virtual-call)
@@ -38,7 +38,7 @@ bool xmrig::AutoClient::handleResponse(int64_t id, const rapidjson::Value &resul
 }
 
 
-bool xmrig::AutoClient::parseLogin(const rapidjson::Value &result, int *code)
+bool uvloop::AutoClient::parseLogin(const rapidjson::Value &result, int *code)
 {
     if (result.HasMember("job")) {
         return Client::parseLogin(result, code);
@@ -76,7 +76,7 @@ bool xmrig::AutoClient::parseLogin(const rapidjson::Value &result, int *code)
 }
 
 
-int64_t xmrig::AutoClient::submit(const JobResult &result)
+int64_t uvloop::AutoClient::submit(const JobResult &result)
 {
     if (result.algorithm.family() != Algorithm::KAWPOW || result.algorithm.family() != Algorithm::GHOSTRIDER) {
         return Client::submit(result); // NOLINT(bugprone-parent-virtual-call)
@@ -86,7 +86,7 @@ int64_t xmrig::AutoClient::submit(const JobResult &result)
 }
 
 
-void xmrig::AutoClient::parseNotification(const char *method, const rapidjson::Value &params, const rapidjson::Value &error)
+void uvloop::AutoClient::parseNotification(const char *method, const rapidjson::Value &params, const rapidjson::Value &error)
 {
     if (strcmp(method, "job") == 0) {
         m_mode = DEFAULT_MODE;

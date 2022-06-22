@@ -31,7 +31,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IHttpListener;
@@ -65,7 +65,7 @@ public:
 void fetch(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener, int type = 0, uint64_t rpcId = 0);
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_FETCH_H

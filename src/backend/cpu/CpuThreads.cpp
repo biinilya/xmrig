@@ -24,7 +24,7 @@
 #include "base/io/json/Json.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *kAffinity    = "affinity";
@@ -73,10 +73,10 @@ static inline int64_t getAffinity(uint64_t index, int64_t affinity)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::CpuThreads::CpuThreads(const rapidjson::Value &value)
+uvloop::CpuThreads::CpuThreads(const rapidjson::Value &value)
 {
     if (value.IsArray()) {
         for (auto &v : value.GetArray()) {
@@ -103,7 +103,7 @@ xmrig::CpuThreads::CpuThreads(const rapidjson::Value &value)
 }
 
 
-xmrig::CpuThreads::CpuThreads(size_t count, uint32_t intensity)
+uvloop::CpuThreads::CpuThreads(size_t count, uint32_t intensity)
 {
     m_data.reserve(count);
 
@@ -113,7 +113,7 @@ xmrig::CpuThreads::CpuThreads(size_t count, uint32_t intensity)
 }
 
 
-bool xmrig::CpuThreads::isEqual(const CpuThreads &other) const
+bool uvloop::CpuThreads::isEqual(const CpuThreads &other) const
 {
     if (isEmpty() && other.isEmpty()) {
         return true;
@@ -123,7 +123,7 @@ bool xmrig::CpuThreads::isEqual(const CpuThreads &other) const
 }
 
 
-rapidjson::Value xmrig::CpuThreads::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::CpuThreads::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

@@ -32,7 +32,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ConfigPrivate;
@@ -115,7 +115,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CONFIG_H */

@@ -23,7 +23,7 @@
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Assembly
@@ -64,7 +64,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_ASSEMBLY_H */

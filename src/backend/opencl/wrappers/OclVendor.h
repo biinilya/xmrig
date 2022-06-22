@@ -26,7 +26,7 @@
 #define XMRIG_OCLVENDOR_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 enum OclVendor : unsigned {
@@ -38,7 +38,7 @@ enum OclVendor : unsigned {
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLVENDOR_H */

@@ -26,7 +26,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Json
@@ -82,7 +82,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_JSON_H */

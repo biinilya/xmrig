@@ -44,7 +44,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 #ifdef XMRIG_FEATURE_MO_BENCHMARK
@@ -79,10 +79,10 @@ const char *BaseConfig::kTls            = "tls";
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::BaseConfig::read(const IJsonReader &reader, const char *fileName)
+bool uvloop::BaseConfig::read(const IJsonReader &reader, const char *fileName)
 {
     m_fileName = fileName;
 
@@ -129,7 +129,7 @@ bool xmrig::BaseConfig::read(const IJsonReader &reader, const char *fileName)
 }
 
 
-bool xmrig::BaseConfig::save()
+bool uvloop::BaseConfig::save()
 {
     if (m_fileName.isNull()) {
         return false;
@@ -147,7 +147,7 @@ bool xmrig::BaseConfig::save()
 }
 
 
-void xmrig::BaseConfig::printVersions()
+void uvloop::BaseConfig::printVersions()
 {
     char buf[256] = { 0 };
 
@@ -184,7 +184,7 @@ void xmrig::BaseConfig::printVersions()
 }
 
 
-void xmrig::BaseConfig::setVerbose(const rapidjson::Value &value)
+void uvloop::BaseConfig::setVerbose(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         Log::setVerbose(value.GetBool() ? 1 : 0);

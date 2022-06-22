@@ -23,7 +23,7 @@
 #include <chrono>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 #define XMRIG_DISABLE_COPY_MOVE(X) \
@@ -41,6 +41,6 @@ namespace xmrig {
     X &operator=(X &&other)      = delete;
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_OBJECT_H */

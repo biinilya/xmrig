@@ -24,7 +24,7 @@
 #include <map>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template <class TYPE>
@@ -79,7 +79,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_STORAGE_H */

@@ -26,7 +26,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static MemPool<XMRIG_NET_BUFFER_CHUNK_SIZE, XMRIG_NET_BUFFER_INIT_CHUNKS> *pool = nullptr;
@@ -42,16 +42,16 @@ inline MemPool<XMRIG_NET_BUFFER_CHUNK_SIZE, XMRIG_NET_BUFFER_INIT_CHUNKS> *getPo
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-char *xmrig::NetBuffer::allocate()
+char *uvloop::NetBuffer::allocate()
 {
     return getPool()->allocate();
 }
 
 
-void xmrig::NetBuffer::destroy()
+void uvloop::NetBuffer::destroy()
 {
     if (!pool) {
         return;
@@ -64,14 +64,14 @@ void xmrig::NetBuffer::destroy()
 }
 
 
-void xmrig::NetBuffer::onAlloc(uv_handle_t *, size_t, uv_buf_t *buf)
+void uvloop::NetBuffer::onAlloc(uv_handle_t *, size_t, uv_buf_t *buf)
 {
     buf->base = getPool()->allocate();
     buf->len  = XMRIG_NET_BUFFER_CHUNK_SIZE;
 }
 
 
-void xmrig::NetBuffer::release(const char *buf)
+void uvloop::NetBuffer::release(const char *buf)
 {
     if (buf == nullptr) {
         return;
@@ -81,7 +81,7 @@ void xmrig::NetBuffer::release(const char *buf)
 }
 
 
-void xmrig::NetBuffer::release(const uv_buf_t *buf)
+void uvloop::NetBuffer::release(const uv_buf_t *buf)
 {
     if (buf->base == nullptr) {
         return;

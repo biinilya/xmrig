@@ -29,7 +29,7 @@ using hwloc_obj_t           = struct hwloc_obj *;
 using hwloc_topology_t      = struct hwloc_topology *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HwlocCpuInfo : public BasicCpuInfo
@@ -80,7 +80,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_HWLOCCPUINFO_H */

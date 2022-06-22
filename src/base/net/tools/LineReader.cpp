@@ -27,13 +27,13 @@
 #include <cstring>
 
 
-xmrig::LineReader::~LineReader()
+uvloop::LineReader::~LineReader()
 {
     NetBuffer::release(m_buf);
 }
 
 
-void xmrig::LineReader::parse(char *data, size_t size)
+void uvloop::LineReader::parse(char *data, size_t size)
 {
     assert(m_listener != nullptr && size > 0);
     if (!m_listener || size == 0) {
@@ -44,7 +44,7 @@ void xmrig::LineReader::parse(char *data, size_t size)
 }
 
 
-void xmrig::LineReader::reset()
+void uvloop::LineReader::reset()
 {
     if (m_buf) {
         NetBuffer::release(m_buf);
@@ -54,7 +54,7 @@ void xmrig::LineReader::reset()
 }
 
 
-void xmrig::LineReader::add(const char *data, size_t size)
+void uvloop::LineReader::add(const char *data, size_t size)
 {
     if (size + m_pos > XMRIG_NET_BUFFER_CHUNK_SIZE) {
         // it breaks correctness silently for long lines
@@ -71,7 +71,7 @@ void xmrig::LineReader::add(const char *data, size_t size)
 }
 
 
-void xmrig::LineReader::getline(char *data, size_t size)
+void uvloop::LineReader::getline(char *data, size_t size)
 {
     char *end        = nullptr;
     char *start      = data;

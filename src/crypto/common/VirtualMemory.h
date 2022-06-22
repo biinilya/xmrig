@@ -31,7 +31,7 @@
 #include <utility>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class VirtualMemory
@@ -99,7 +99,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 

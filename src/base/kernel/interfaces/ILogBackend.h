@@ -27,7 +27,7 @@
 #include <cstddef>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ILogBackend
@@ -42,7 +42,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ILOGBACKEND_H

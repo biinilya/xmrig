@@ -27,7 +27,7 @@
 #include "backend/common/Worker.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class GpuWorker : public Worker
@@ -52,7 +52,7 @@ protected:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_GPUWORKER_H */

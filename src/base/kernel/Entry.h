@@ -26,7 +26,7 @@
 #define XMRIG_ENTRY_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Process;
@@ -48,7 +48,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_ENTRY_H */

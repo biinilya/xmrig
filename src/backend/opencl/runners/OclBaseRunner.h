@@ -34,7 +34,7 @@
 #include "base/crypto/Algorithm.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclLaunchData;
@@ -91,7 +91,7 @@ protected:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLBASERUNNER_H

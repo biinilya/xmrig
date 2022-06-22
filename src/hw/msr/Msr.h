@@ -28,7 +28,7 @@
 #include <memory>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -63,7 +63,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_MSR_H */

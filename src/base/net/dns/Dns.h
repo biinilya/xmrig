@@ -28,7 +28,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsConfig;
@@ -51,7 +51,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DNS_H */

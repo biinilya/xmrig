@@ -22,14 +22,14 @@
 #include "base/tools/Handle.h"
 
 
-xmrig::Timer::Timer(ITimerListener *listener) :
+uvloop::Timer::Timer(ITimerListener *listener) :
     m_listener(listener)
 {
     init();
 }
 
 
-xmrig::Timer::Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat) :
+uvloop::Timer::Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat) :
     m_listener(listener)
 {
     init();
@@ -37,25 +37,25 @@ xmrig::Timer::Timer(ITimerListener *listener, uint64_t timeout, uint64_t repeat)
 }
 
 
-xmrig::Timer::~Timer()
+uvloop::Timer::~Timer()
 {
     Handle::close(m_timer);
 }
 
 
-uint64_t xmrig::Timer::repeat() const
+uint64_t uvloop::Timer::repeat() const
 {
     return uv_timer_get_repeat(m_timer);
 }
 
 
-void xmrig::Timer::setRepeat(uint64_t repeat)
+void uvloop::Timer::setRepeat(uint64_t repeat)
 {
     uv_timer_set_repeat(m_timer, repeat);
 }
 
 
-void xmrig::Timer::singleShot(uint64_t timeout, int id)
+void uvloop::Timer::singleShot(uint64_t timeout, int id)
 {
     m_id = id;
 
@@ -64,20 +64,20 @@ void xmrig::Timer::singleShot(uint64_t timeout, int id)
 }
 
 
-void xmrig::Timer::start(uint64_t timeout, uint64_t repeat)
+void uvloop::Timer::start(uint64_t timeout, uint64_t repeat)
 {
     uv_timer_start(m_timer, onTimer, timeout, repeat);
 }
 
 
-void xmrig::Timer::stop()
+void uvloop::Timer::stop()
 {
     setRepeat(0);
     uv_timer_stop(m_timer);
 }
 
 
-void xmrig::Timer::init()
+void uvloop::Timer::init()
 {
     m_timer = new uv_timer_t;
     m_timer->data = this;
@@ -85,7 +85,7 @@ void xmrig::Timer::init()
 }
 
 
-void xmrig::Timer::onTimer(uv_timer_t *handle)
+void uvloop::Timer::onTimer(uv_timer_t *handle)
 {
     const auto timer = static_cast<Timer *>(handle->data);
 

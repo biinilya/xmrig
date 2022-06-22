@@ -35,7 +35,7 @@
 #include <map>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IMemoryPool;
@@ -65,7 +65,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 

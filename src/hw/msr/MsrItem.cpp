@@ -24,7 +24,7 @@
 #include <cstdio>
 
 
-xmrig::MsrItem::MsrItem(const rapidjson::Value &value)
+uvloop::MsrItem::MsrItem(const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return;
@@ -41,13 +41,13 @@ xmrig::MsrItem::MsrItem(const rapidjson::Value &value)
 }
 
 
-rapidjson::Value xmrig::MsrItem::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::MsrItem::toJSON(rapidjson::Document &doc) const
 {
     return toString().toJSON(doc);
 }
 
 
-xmrig::String xmrig::MsrItem::toString() const
+uvloop::String uvloop::MsrItem::toString() const
 {
     constexpr size_t size = 48;
 

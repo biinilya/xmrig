@@ -29,7 +29,7 @@
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CpuThread
@@ -56,7 +56,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CPUTHREAD_H */

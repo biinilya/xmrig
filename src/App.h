@@ -35,7 +35,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Console;
@@ -69,7 +69,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_APP_H */

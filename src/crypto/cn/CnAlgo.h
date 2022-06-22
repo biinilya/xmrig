@@ -27,7 +27,7 @@
 #include "base/crypto/Algorithm.h"
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -173,7 +173,7 @@ template<> constexpr inline uint32_t CnAlgo<Algorithm::CN_GR_5>::mask() const   
 #endif
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CN_ALGO_H */

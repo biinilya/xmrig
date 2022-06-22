@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::AstroBWT_SHA3InitialKernel::enqueue(cl_command_queue queue, size_t threads)
+void uvloop::AstroBWT_SHA3InitialKernel::enqueue(cl_command_queue queue, size_t threads)
 {
     const size_t workgroup_size = 32;
     const size_t gthreads       = threads * workgroup_size;
@@ -35,7 +35,7 @@ void xmrig::AstroBWT_SHA3InitialKernel::enqueue(cl_command_queue queue, size_t t
 }
 
 
-void xmrig::AstroBWT_SHA3InitialKernel::setArgs(cl_mem input, uint32_t input_size, uint32_t nonce, cl_mem output_salsa20_keys)
+void uvloop::AstroBWT_SHA3InitialKernel::setArgs(cl_mem input, uint32_t input_size, uint32_t nonce, cl_mem output_salsa20_keys)
 {
     setArg(0, sizeof(cl_mem), &input);
     setArg(1, sizeof(uint32_t), &input_size);

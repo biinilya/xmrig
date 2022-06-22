@@ -28,7 +28,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class AstroBWT_v2_FindSharesKernel : public OclKernel
@@ -42,4 +42,4 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop

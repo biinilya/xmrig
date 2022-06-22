@@ -29,7 +29,7 @@
 #include "base/net/stratum/Job.h"
 
 
-xmrig::OclAstroBWT_v2_Runner::OclAstroBWT_v2_Runner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
+uvloop::OclAstroBWT_v2_Runner::OclAstroBWT_v2_Runner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
 {
     switch (data.device.type())
     {
@@ -53,7 +53,7 @@ xmrig::OclAstroBWT_v2_Runner::OclAstroBWT_v2_Runner(size_t index, const OclLaunc
 }
 
 
-xmrig::OclAstroBWT_v2_Runner::~OclAstroBWT_v2_Runner()
+uvloop::OclAstroBWT_v2_Runner::~OclAstroBWT_v2_Runner()
 {
     delete m_find_shares_kernel;
     delete m_bwt_fix_order_kernel;
@@ -70,7 +70,7 @@ xmrig::OclAstroBWT_v2_Runner::~OclAstroBWT_v2_Runner()
 }
 
 
-size_t xmrig::OclAstroBWT_v2_Runner::bufferSize() const
+size_t uvloop::OclAstroBWT_v2_Runner::bufferSize() const
 {
     return OclBaseRunner::bufferSize() +
         align(m_intensity * 32) +                      // m_hashes
@@ -80,7 +80,7 @@ size_t xmrig::OclAstroBWT_v2_Runner::bufferSize() const
 }
 
 
-void xmrig::OclAstroBWT_v2_Runner::run(uint32_t nonce, uint32_t *hashOutput)
+void uvloop::OclAstroBWT_v2_Runner::run(uint32_t nonce, uint32_t *hashOutput)
 {
     const uint32_t zero = 0;
     enqueueWriteBuffer(m_output, CL_FALSE, sizeof(cl_uint) * 0xFF, sizeof(uint32_t), &zero);
@@ -107,7 +107,7 @@ void xmrig::OclAstroBWT_v2_Runner::run(uint32_t nonce, uint32_t *hashOutput)
 }
 
 
-void xmrig::OclAstroBWT_v2_Runner::set(const Job &job, uint8_t *blob)
+void uvloop::OclAstroBWT_v2_Runner::set(const Job &job, uint8_t *blob)
 {
     if (job.size() > (Job::kMaxBlobSize - 4)) {
         throw std::length_error("job size too big");
@@ -129,7 +129,7 @@ void xmrig::OclAstroBWT_v2_Runner::set(const Job &job, uint8_t *blob)
 }
 
 
-void xmrig::OclAstroBWT_v2_Runner::build()
+void uvloop::OclAstroBWT_v2_Runner::build()
 {
     OclBaseRunner::build();
 
@@ -142,7 +142,7 @@ void xmrig::OclAstroBWT_v2_Runner::build()
 }
 
 
-void xmrig::OclAstroBWT_v2_Runner::init()
+void uvloop::OclAstroBWT_v2_Runner::init()
 {
     OclBaseRunner::init();
 

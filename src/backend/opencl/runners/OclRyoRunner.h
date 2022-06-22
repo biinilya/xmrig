@@ -29,7 +29,7 @@
 #include "backend/opencl/runners/OclBaseRunner.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Cn00RyoKernel;
@@ -64,7 +64,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLRYORUNNER_H

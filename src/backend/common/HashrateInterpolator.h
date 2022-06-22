@@ -25,7 +25,7 @@
 #include <utility>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HashrateInterpolator
@@ -45,7 +45,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_HASHRATE_INTERPOLATOR_H */

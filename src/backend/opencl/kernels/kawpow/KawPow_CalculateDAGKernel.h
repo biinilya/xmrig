@@ -23,7 +23,7 @@
 #include "backend/opencl/wrappers/OclKernel.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class KawPow_CalculateDAGKernel : public OclKernel
@@ -36,7 +36,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_KAWPOW_CALCULATEDAGKERNEL_H */

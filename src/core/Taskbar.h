@@ -20,7 +20,7 @@
 #define XMRIG_TASKBAR_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 struct TaskbarPrivate;
@@ -45,7 +45,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_TASKBAR_H */

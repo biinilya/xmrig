@@ -212,7 +212,7 @@ RandomX_ConfigurationBase::RandomX_ConfigurationBase()
 		memcpy(codeReadDatasetRyzenTweaked, a, b - a);
 		codeReadDatasetRyzenTweakedSize = b - a;
 	}
-	if (xmrig::Cpu::info()->hasBMI2()) {
+	if (uvloop::Cpu::info()->hasBMI2()) {
 		const uint8_t* a = addr(randomx_prefetch_scratchpad_bmi2);
 		const uint8_t* b = addr(randomx_prefetch_scratchpad_end);
 		memcpy(codePrefetchScratchpadTweaked, a, b - a);
@@ -262,7 +262,7 @@ void RandomX_ConfigurationBase::Apply()
 	*(uint32_t*)(codeReadDatasetTweaked + 23) = DatasetBaseMask;
 	//*(uint32_t*)(codeReadDatasetLightSshInitTweaked + 59) = DatasetBaseMask;
 
-	const bool hasBMI2 = xmrig::Cpu::info()->hasBMI2();
+	const bool hasBMI2 = uvloop::Cpu::info()->hasBMI2();
 
 	*(uint32_t*)(codePrefetchScratchpadTweaked + (hasBMI2 ? 7 : 4)) = ScratchpadL3Mask64_Calculated;
 	*(uint32_t*)(codePrefetchScratchpadTweaked + (hasBMI2 ? 17 : 18)) = ScratchpadL3Mask64_Calculated;
@@ -368,7 +368,7 @@ typedef void(randomx::JitCompilerX86::* InstructionGeneratorX86_2)(const randomx
 	INST_HANDLE(FSQRT_R, FDIV_M);
 
 #if defined(_M_X64) || defined(__x86_64__)
-	if (xmrig::Cpu::info()->jccErratum()) {
+	if (uvloop::Cpu::info()->jccErratum()) {
 		INST_HANDLE2(CBRANCH, CBRANCH<true>, FSQRT_R);
 	}
 	else {
@@ -517,7 +517,7 @@ extern "C" {
 		}
 
 		if (!vm_pool[node]) {
-			vm_pool[node] = (uint8_t*) xmrig::VirtualMemory::allocateLargePagesMemory(VM_POOL_SIZE);
+			vm_pool[node] = (uint8_t*) uvloop::VirtualMemory::allocateLargePagesMemory(VM_POOL_SIZE);
 			if (!vm_pool[node]) {
 				vm_pool[node] = (uint8_t*) rx_aligned_alloc(VM_POOL_SIZE, 4096);
 			}
@@ -614,13 +614,13 @@ extern "C" {
 		vm->~randomx_vm();
 	}
 
-	void randomx_calculate_hash(randomx_vm *machine, const void *input, size_t inputSize, void *output, const xmrig::Algorithm algo) {
+	void randomx_calculate_hash(randomx_vm *machine, const void *input, size_t inputSize, void *output, const uvloop::Algorithm algo) {
 		assert(machine != nullptr);
 		assert(inputSize == 0 || input != nullptr);
 		assert(output != nullptr);
 		alignas(16) uint64_t tempHash[8];
                 switch (algo) {
-                    case xmrig::Algorithm::RX_XLA:   rx_yespower_k12(tempHash, sizeof(tempHash), input, inputSize); break;
+                    case uvloop::Algorithm::RX_XLA:   rx_yespower_k12(tempHash, sizeof(tempHash), input, inputSize); break;
 		    default: rx_blake2b_wrapper::run(tempHash, sizeof(tempHash), input, inputSize);
 		}
 		machine->initScratchpad(&tempHash);
@@ -633,15 +633,15 @@ extern "C" {
 		machine->getFinalResult(output);
 	}
 
-	void randomx_calculate_hash_first(randomx_vm* machine, uint64_t (&tempHash)[8], const void* input, size_t inputSize, const xmrig::Algorithm algo) {
+	void randomx_calculate_hash_first(randomx_vm* machine, uint64_t (&tempHash)[8], const void* input, size_t inputSize, const uvloop::Algorithm algo) {
                 switch (algo) {
-                    case xmrig::Algorithm::RX_XLA:   rx_yespower_k12(tempHash, sizeof(tempHash), input, inputSize); break;
+                    case uvloop::Algorithm::RX_XLA:   rx_yespower_k12(tempHash, sizeof(tempHash), input, inputSize); break;
 		    default: rx_blake2b_wrapper::run(tempHash, sizeof(tempHash), input, inputSize);
 		}
 		machine->initScratchpad(tempHash);
 	}
 
-	void randomx_calculate_hash_next(randomx_vm* machine, uint64_t (&tempHash)[8], const void* nextInput, size_t nextInputSize, void* output, const xmrig::Algorithm algo) {
+	void randomx_calculate_hash_next(randomx_vm* machine, uint64_t (&tempHash)[8], const void* nextInput, size_t nextInputSize, void* output, const uvloop::Algorithm algo) {
 		PROFILE_SCOPE(RandomX_hash);
 
 		machine->resetRoundingMode();
@@ -653,7 +653,7 @@ extern "C" {
 
 		// Finish current hash and fill the scratchpad for the next hash at the same time
                 switch (algo) {
-                    case xmrig::Algorithm::RX_XLA:   rx_yespower_k12(tempHash, sizeof(tempHash), nextInput, nextInputSize); break;
+                    case uvloop::Algorithm::RX_XLA:   rx_yespower_k12(tempHash, sizeof(tempHash), nextInput, nextInputSize); break;
 		    default: rx_blake2b_wrapper::run(tempHash, sizeof(tempHash), nextInput, nextInputSize);
 		}
 		machine->hashAndFill(output, tempHash);

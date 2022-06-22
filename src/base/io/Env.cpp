@@ -40,7 +40,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 #ifdef XMRIG_FEATURE_ENV
@@ -67,10 +67,10 @@ static void createVariables()
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::String xmrig::Env::expand(const char *in, const std::map<String, String> &extra)
+uvloop::String uvloop::Env::expand(const char *in, const std::map<String, String> &extra)
 {
 #   ifdef XMRIG_FEATURE_ENV
     if (in == nullptr) {
@@ -116,7 +116,7 @@ xmrig::String xmrig::Env::expand(const char *in, const std::map<String, String> 
 }
 
 
-xmrig::String xmrig::Env::get(const String &name, const std::map<String, String> &extra)
+uvloop::String uvloop::Env::get(const String &name, const std::map<String, String> &extra)
 {
 #   ifdef XMRIG_FEATURE_ENV
     if (variables.empty()) {
@@ -140,7 +140,7 @@ xmrig::String xmrig::Env::get(const String &name, const std::map<String, String>
 }
 
 
-xmrig::String xmrig::Env::hostname()
+uvloop::String uvloop::Env::hostname()
 {
     char buf[UV_MAXHOSTNAMESIZE]{};
 

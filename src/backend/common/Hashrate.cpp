@@ -41,7 +41,7 @@ inline static const char *format(double h, char *buf, size_t size)
 }
 
 
-xmrig::Hashrate::Hashrate(size_t threads) :
+uvloop::Hashrate::Hashrate(size_t threads) :
     m_threads(threads + 1)
 {
     m_counts     = new uint64_t*[m_threads];
@@ -59,7 +59,7 @@ xmrig::Hashrate::Hashrate(size_t threads) :
 }
 
 
-xmrig::Hashrate::~Hashrate()
+uvloop::Hashrate::~Hashrate()
 {
     for (size_t i = 0; i < m_threads; i++) {
         delete [] m_counts[i];
@@ -73,27 +73,27 @@ xmrig::Hashrate::~Hashrate()
 }
 
 
-double xmrig::Hashrate::average() const
+double uvloop::Hashrate::average() const
 {
     const uint64_t ts = Chrono::steadyMSecs();
     return (ts > m_earliestTimestamp) ? (m_totalCount * 1e3 / (ts - m_earliestTimestamp)) : 0.0;
 }
 
 
-const char *xmrig::Hashrate::format(double h, char *buf, size_t size)
+const char *uvloop::Hashrate::format(double h, char *buf, size_t size)
 {
     return ::format(h, buf, size);
 }
 
 
-rapidjson::Value xmrig::Hashrate::normalize(double d)
+rapidjson::Value uvloop::Hashrate::normalize(double d)
 {
     return Json::normalize(d, false);
 }
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::Hashrate::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::Hashrate::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -107,7 +107,7 @@ rapidjson::Value xmrig::Hashrate::toJSON(rapidjson::Document &doc) const
 }
 
 
-rapidjson::Value xmrig::Hashrate::toJSON(size_t threadId, rapidjson::Document &doc) const
+rapidjson::Value uvloop::Hashrate::toJSON(size_t threadId, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -122,7 +122,7 @@ rapidjson::Value xmrig::Hashrate::toJSON(size_t threadId, rapidjson::Document &d
 #endif
 
 
-double xmrig::Hashrate::hashrate(size_t index, size_t ms) const
+double uvloop::Hashrate::hashrate(size_t index, size_t ms) const
 {
     assert(index < m_threads);
     if (index >= m_threads) {
@@ -133,7 +133,7 @@ double xmrig::Hashrate::hashrate(size_t index, size_t ms) const
     uint64_t earliestStamp     = 0;
     bool haveFullSet           = false;
 
-    const uint64_t timeStampLimit = xmrig::Chrono::steadyMSecs() - ms;
+    const uint64_t timeStampLimit = uvloop::Chrono::steadyMSecs() - ms;
     uint64_t* timestamps          = m_timestamps[index];
     uint64_t* counts              = m_counts[index];
 
@@ -171,7 +171,7 @@ double xmrig::Hashrate::hashrate(size_t index, size_t ms) const
 }
 
 
-void xmrig::Hashrate::addData(size_t index, uint64_t count, uint64_t timestamp)
+void uvloop::Hashrate::addData(size_t index, uint64_t count, uint64_t timestamp)
 {
     const size_t top         = m_top[index];
     m_counts[index][top]     = count;

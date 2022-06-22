@@ -26,7 +26,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HwApi;
@@ -64,7 +64,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CONTROLLER_H */

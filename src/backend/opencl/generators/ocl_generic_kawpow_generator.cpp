@@ -31,7 +31,7 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 bool ocl_generic_kawpow_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
@@ -62,4 +62,4 @@ bool ocl_generic_kawpow_generator(const OclDevice &device, const Algorithm &algo
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

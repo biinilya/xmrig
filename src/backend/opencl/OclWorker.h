@@ -27,7 +27,7 @@
 #include "net/JobResult.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IOclRunner;
@@ -64,7 +64,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLWORKER_H */

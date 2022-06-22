@@ -31,7 +31,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IJobResultListener;
@@ -55,7 +55,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_JOBRESULTS_H */

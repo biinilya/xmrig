@@ -25,7 +25,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 const char *CpuConfig::kEnabled             = "enabled";
 const char *CpuConfig::kField               = "cpu";
@@ -53,16 +53,16 @@ const char *CpuConfig::kAstroBWTAVX2        = "astrobwt-avx2";
 
 extern template class Threads<CpuThreads>;
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::CpuConfig::isHwAES() const
+bool uvloop::CpuConfig::isHwAES() const
 {
     return (m_aes == AES_AUTO ? (Cpu::info()->hasAES() ? AES_HW : AES_SOFT) : m_aes) == AES_HW;
 }
 
 
-rapidjson::Value xmrig::CpuConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::CpuConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -100,13 +100,13 @@ rapidjson::Value xmrig::CpuConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-size_t xmrig::CpuConfig::memPoolSize() const
+size_t uvloop::CpuConfig::memPoolSize() const
 {
     return m_memoryPool < 0 ? std::max(Cpu::info()->threads(), Cpu::info()->L3() >> 21) : m_memoryPool;
 }
 
 
-std::vector<xmrig::CpuLaunchData> xmrig::CpuConfig::get(const Miner *miner, const Algorithm &algorithm) const
+std::vector<uvloop::CpuLaunchData> uvloop::CpuConfig::get(const Miner *miner, const Algorithm &algorithm) const
 {
     if (algorithm.family() == Algorithm::KAWPOW) {
         return {};
@@ -137,7 +137,7 @@ std::vector<xmrig::CpuLaunchData> xmrig::CpuConfig::get(const Miner *miner, cons
 }
 
 
-void xmrig::CpuConfig::read(const rapidjson::Value &value)
+void uvloop::CpuConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled      = Json::getBool(value, kEnabled, m_enabled);
@@ -191,7 +191,7 @@ void xmrig::CpuConfig::read(const rapidjson::Value &value)
 }
 
 
-void xmrig::CpuConfig::generate()
+void uvloop::CpuConfig::generate()
 {
     if (!isEnabled() || m_threads.has("*")) {
         return;
@@ -199,21 +199,21 @@ void xmrig::CpuConfig::generate()
 
     size_t count = 0;
 
-    count += xmrig::generate<Algorithm::CN>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::CN_LITE>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::CN_HEAVY>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::CN_PICO>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::CN_FEMTO>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::RANDOM_X>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::ARGON2>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::ASTROBWT>(m_threads, m_limit);
-    count += xmrig::generate<Algorithm::GHOSTRIDER>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::CN>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::CN_LITE>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::CN_HEAVY>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::CN_PICO>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::CN_FEMTO>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::RANDOM_X>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::ARGON2>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::ASTROBWT>(m_threads, m_limit);
+    count += uvloop::generate<Algorithm::GHOSTRIDER>(m_threads, m_limit);
 
     m_shouldSave |= count > 0;
 }
 
 
-void xmrig::CpuConfig::setAesMode(const rapidjson::Value &value)
+void uvloop::CpuConfig::setAesMode(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_aes = value.GetBool() ? AES_HW : AES_SOFT;
@@ -224,7 +224,7 @@ void xmrig::CpuConfig::setAesMode(const rapidjson::Value &value)
 }
 
 
-void xmrig::CpuConfig::setHugePages(const rapidjson::Value &value)
+void uvloop::CpuConfig::setHugePages(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_hugePageSize = value.GetBool() ? kDefaultHugePageSizeKb : 0U;
@@ -237,7 +237,7 @@ void xmrig::CpuConfig::setHugePages(const rapidjson::Value &value)
 }
 
 
-void xmrig::CpuConfig::setMemoryPool(const rapidjson::Value &value)
+void uvloop::CpuConfig::setMemoryPool(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_memoryPool = value.GetBool() ? -1 : 0;

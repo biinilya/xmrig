@@ -34,7 +34,7 @@
 #define OCL_ERR_BAD_PARAMS (1)
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclError
@@ -44,7 +44,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLERROR_H */

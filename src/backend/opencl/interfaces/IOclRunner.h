@@ -35,7 +35,7 @@
 using cl_context = struct _cl_context *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -73,7 +73,7 @@ protected:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_IOCLRUNNER_H

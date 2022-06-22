@@ -34,7 +34,7 @@
 #include <mutex>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 size_t VirtualMemory::m_hugePageSize    = VirtualMemory::kDefaultHugePageSize;
@@ -42,10 +42,10 @@ static IMemoryPool *pool                = nullptr;
 static std::mutex mutex;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::VirtualMemory::VirtualMemory(size_t size, bool hugePages, bool oneGbPages, bool usePool, uint32_t node, size_t alignSize) :
+uvloop::VirtualMemory::VirtualMemory(size_t size, bool hugePages, bool oneGbPages, bool usePool, uint32_t node, size_t alignSize) :
     m_size(alignToHugePageSize(size)),
     m_node(node),
     m_capacity(m_size)
@@ -78,7 +78,7 @@ xmrig::VirtualMemory::VirtualMemory(size_t size, bool hugePages, bool oneGbPages
 }
 
 
-xmrig::VirtualMemory::~VirtualMemory()
+uvloop::VirtualMemory::~VirtualMemory()
 {
     if (!m_scratchpad) {
         return;
@@ -97,27 +97,27 @@ xmrig::VirtualMemory::~VirtualMemory()
 }
 
 
-xmrig::HugePagesInfo xmrig::VirtualMemory::hugePages() const
+uvloop::HugePagesInfo uvloop::VirtualMemory::hugePages() const
 {
     return { this };
 }
 
 
 #ifndef XMRIG_FEATURE_HWLOC
-uint32_t xmrig::VirtualMemory::bindToNUMANode(int64_t)
+uint32_t uvloop::VirtualMemory::bindToNUMANode(int64_t)
 {
     return 0;
 }
 #endif
 
 
-void xmrig::VirtualMemory::destroy()
+void uvloop::VirtualMemory::destroy()
 {
     delete pool;
 }
 
 
-void xmrig::VirtualMemory::init(size_t poolSize, size_t hugePageSize)
+void uvloop::VirtualMemory::init(size_t poolSize, size_t hugePageSize)
 {
     if (!pool) {
         osInit(hugePageSize);

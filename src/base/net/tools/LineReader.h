@@ -27,7 +27,7 @@
 #include <cstddef>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ILineListener;
@@ -57,7 +57,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_NETBUFFER_H */

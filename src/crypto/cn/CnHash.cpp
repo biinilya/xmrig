@@ -70,7 +70,7 @@ bool cn_vaes_enabled = false;
     } while (0)
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 cn_mainloop_fun        cn_half_mainloop_ivybridge_asm             = nullptr;
@@ -306,16 +306,16 @@ static void patchAsmVariants()
     VirtualMemory::protectRX(base, allocation_size);
     VirtualMemory::flushInstructionCache(base, allocation_size);
 }
-} // namespace xmrig
+} // namespace uvloop
 #else
 #   define ADD_FN_ASM(algo)
 #endif
 
 
-static const xmrig::CnHash cnHash;
+static const uvloop::CnHash cnHash;
 
 
-xmrig::CnHash::CnHash()
+uvloop::CnHash::CnHash()
 {
     ADD_FN(Algorithm::CN_0);
     ADD_FN(Algorithm::CN_1);
@@ -406,7 +406,7 @@ xmrig::CnHash::CnHash()
 }
 
 
-xmrig::CnHash::~CnHash()
+uvloop::CnHash::~CnHash()
 {
     for (auto const& x : m_map) {
       delete m_map[x.first];
@@ -414,7 +414,7 @@ xmrig::CnHash::~CnHash()
 }
 
 
-xmrig::cn_hash_fun xmrig::CnHash::fn(const Algorithm &algorithm, AlgoVariant av, Assembly::Id assembly)
+uvloop::cn_hash_fun uvloop::CnHash::fn(const Algorithm &algorithm, AlgoVariant av, Assembly::Id assembly)
 {
     assert(cnHash.m_map.count(algorithm));
 

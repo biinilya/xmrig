@@ -37,7 +37,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const char *Pools::kDonateLevel     = "donate-level";
@@ -47,10 +47,10 @@ const char *Pools::kRetries         = "retries";
 const char *Pools::kRetryPause      = "retry-pause";
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Pools::Pools() :
+uvloop::Pools::Pools() :
     m_donateLevel(kDefaultDonateLevel)
 {
 #   ifdef XMRIG_PROXY_PROJECT
@@ -60,7 +60,7 @@ xmrig::Pools::Pools() :
 }
 
 
-bool xmrig::Pools::isEqual(const Pools &other) const
+bool uvloop::Pools::isEqual(const Pools &other) const
 {
     if (m_data.size() != other.m_data.size() || m_retries != other.m_retries || m_retryPause != other.m_retryPause) {
         return false;
@@ -70,7 +70,7 @@ bool xmrig::Pools::isEqual(const Pools &other) const
 }
 
 
-int xmrig::Pools::donateLevel() const
+int uvloop::Pools::donateLevel() const
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     return benchSize() || (m_benchmark && !m_benchmark->id().isEmpty()) ? 0 : m_donateLevel;
@@ -80,7 +80,7 @@ int xmrig::Pools::donateLevel() const
 }
 
 
-xmrig::IStrategy *xmrig::Pools::createStrategy(IStrategyListener *listener) const
+uvloop::IStrategy *uvloop::Pools::createStrategy(IStrategyListener *listener) const
 {
     if (active() == 1) {
         for (const Pool &pool : m_data) {
@@ -101,7 +101,7 @@ xmrig::IStrategy *xmrig::Pools::createStrategy(IStrategyListener *listener) cons
 }
 
 
-rapidjson::Value xmrig::Pools::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::Pools::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -116,7 +116,7 @@ rapidjson::Value xmrig::Pools::toJSON(rapidjson::Document &doc) const
 }
 
 
-size_t xmrig::Pools::active() const
+size_t uvloop::Pools::active() const
 {
     size_t count = 0;
     for (const Pool &pool : m_data) {
@@ -129,7 +129,7 @@ size_t xmrig::Pools::active() const
 }
 
 
-void xmrig::Pools::load(const IJsonReader &reader)
+void uvloop::Pools::load(const IJsonReader &reader)
 {
     m_data.clear();
 
@@ -168,7 +168,7 @@ void xmrig::Pools::load(const IJsonReader &reader)
 }
 
 
-uint32_t xmrig::Pools::benchSize() const
+uint32_t uvloop::Pools::benchSize() const
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     return m_benchmark ? m_benchmark->size() : 0;
@@ -178,7 +178,7 @@ uint32_t xmrig::Pools::benchSize() const
 }
 
 
-void xmrig::Pools::print() const
+void uvloop::Pools::print() const
 {
     size_t i = 1;
     for (const Pool &pool : m_data) {
@@ -197,7 +197,7 @@ void xmrig::Pools::print() const
 }
 
 
-void xmrig::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
+void uvloop::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -218,7 +218,7 @@ void xmrig::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 }
 
 
-void xmrig::Pools::setDonateLevel(int level)
+void uvloop::Pools::setDonateLevel(int level)
 {
     if (level >= kMinimumDonateLevel && level <= 99) {
         m_donateLevel = level;
@@ -226,7 +226,7 @@ void xmrig::Pools::setDonateLevel(int level)
 }
 
 
-void xmrig::Pools::setProxyDonate(int value)
+void uvloop::Pools::setProxyDonate(int value)
 {
     switch (value) {
     case PROXY_DONATE_NONE:
@@ -240,7 +240,7 @@ void xmrig::Pools::setProxyDonate(int value)
 }
 
 
-void xmrig::Pools::setRetries(int retries)
+void uvloop::Pools::setRetries(int retries)
 {
     if (retries > 0 && retries <= 1000) {
         m_retries = retries;
@@ -248,7 +248,7 @@ void xmrig::Pools::setRetries(int retries)
 }
 
 
-void xmrig::Pools::setRetryPause(int retryPause)
+void uvloop::Pools::setRetryPause(int retryPause)
 {
     if (retryPause > 0 && retryPause <= 3600) {
         m_retryPause = retryPause;

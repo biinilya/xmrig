@@ -38,7 +38,7 @@
 using cl_context = struct _cl_context *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclConfig;
@@ -71,7 +71,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLLAUNCHDATA_H */

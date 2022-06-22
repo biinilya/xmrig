@@ -25,7 +25,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 void generate_signature(const uint8_t* prefix_hash, const uint8_t* pub, const uint8_t* sec, uint8_t* sig);
@@ -40,7 +40,7 @@ void derive_view_secret_key(const uint8_t* spend_secret_key, uint8_t* view_secre
 void generate_keys(uint8_t* pub, uint8_t* sec);
 bool secret_key_to_public_key(const uint8_t* sec, uint8_t* pub);
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_SIGNATURES_H */

@@ -29,7 +29,7 @@
 #include "base/tools/Chrono.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IClientListener;
@@ -107,7 +107,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BASECLIENT_H */

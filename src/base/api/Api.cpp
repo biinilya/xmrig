@@ -41,7 +41,7 @@
 #include <thread>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static rapidjson::Value getResources(rapidjson::Document &doc)
@@ -75,10 +75,10 @@ static rapidjson::Value getResources(rapidjson::Document &doc)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Api::Api(Base *base) :
+uvloop::Api::Api(Base *base) :
     m_base(base),
     m_timestamp(Chrono::currentMSecsSinceEpoch())
 {
@@ -88,7 +88,7 @@ xmrig::Api::Api(Base *base) :
 }
 
 
-xmrig::Api::~Api()
+uvloop::Api::~Api()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     delete m_httpd;
@@ -96,7 +96,7 @@ xmrig::Api::~Api()
 }
 
 
-void xmrig::Api::request(const HttpData &req)
+void uvloop::Api::request(const HttpData &req)
 {
     HttpApiRequest request(req, m_base->config()->http().isRestricted());
 
@@ -104,7 +104,7 @@ void xmrig::Api::request(const HttpData &req)
 }
 
 
-void xmrig::Api::start()
+void uvloop::Api::start()
 {
     genWorkerId(m_base->config()->apiWorkerId());
 
@@ -115,7 +115,7 @@ void xmrig::Api::start()
 }
 
 
-void xmrig::Api::stop()
+void uvloop::Api::stop()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     m_httpd->stop();
@@ -123,7 +123,7 @@ void xmrig::Api::stop()
 }
 
 
-void xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
+void uvloop::Api::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->apiId() != previousConfig->apiId()) {
         genId(config->apiId());
@@ -135,7 +135,7 @@ void xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Api::exec(IApiRequest &request)
+void uvloop::Api::exec(IApiRequest &request)
 {
     using namespace rapidjson;
 
@@ -188,7 +188,7 @@ void xmrig::Api::exec(IApiRequest &request)
 }
 
 
-void xmrig::Api::genId(const String &id)
+void uvloop::Api::genId(const String &id)
 {
     memset(m_id, 0, sizeof(m_id));
 
@@ -228,7 +228,7 @@ void xmrig::Api::genId(const String &id)
 }
 
 
-void xmrig::Api::genWorkerId(const String &id)
+void uvloop::Api::genWorkerId(const String &id)
 {
     m_workerId = Env::expand(id);
     if (m_workerId.isEmpty()) {

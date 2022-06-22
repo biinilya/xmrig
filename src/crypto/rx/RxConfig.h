@@ -31,7 +31,7 @@
 #include <vector>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class RxConfig
@@ -123,7 +123,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RXCONFIG_H */

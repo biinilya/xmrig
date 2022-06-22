@@ -28,7 +28,7 @@
 struct option;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IConfigTransform;
@@ -117,7 +117,7 @@ inline void BaseTransform::set(rapidjson::Document &doc, rapidjson::Value &obj, 
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_BASETRANSFORM_H */

@@ -34,7 +34,7 @@
 using cl_context = struct _cl_context *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Job;
@@ -59,7 +59,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLCONTEXT_H */

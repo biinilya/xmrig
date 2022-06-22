@@ -32,7 +32,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class SelfSelectClient : public IClient, public IClientListener, public IHttpListener
@@ -124,7 +124,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_SELFSELECTCLIENT_H */

@@ -23,7 +23,7 @@
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class JsonRequest
@@ -57,7 +57,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_JSONREQUEST_H */

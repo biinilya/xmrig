@@ -25,7 +25,7 @@
 #include "backend/cpu/CpuThreads.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static inline size_t generate(const char *key, Threads<CpuThreads> &threads, const Algorithm &algorithm, uint32_t limit)
@@ -186,7 +186,7 @@ size_t inline generate<Algorithm::GHOSTRIDER>(Threads<CpuThreads>& threads, uint
 #endif
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CPUCONFIG_GEN_H */

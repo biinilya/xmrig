@@ -31,7 +31,7 @@
 #include "crypto/cn/CryptoNight.h"
 
 
-namespace xmrig { namespace argon2 {
+namespace uvloop { namespace argon2 {
 
 
 template<Algorithm::Id ALGO>
@@ -49,7 +49,7 @@ inline void single_hash(const uint8_t *__restrict__ input, size_t size, uint8_t 
 }
 
 
-}} // namespace xmrig::argon2
+}} // namespace uvloop::argon2
 
 
 #endif /* XMRIG_ARGON2_HASH_H */

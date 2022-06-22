@@ -46,7 +46,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr static uint32_t kIdleTime     = 60U;
@@ -111,41 +111,41 @@ public:
     }
 };
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Config::Config() :
+uvloop::Config::Config() :
     d_ptr(new ConfigPrivate())
 {
 }
 
 
-xmrig::Config::~Config()
+uvloop::Config::~Config()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Config::isPauseOnBattery() const
+bool uvloop::Config::isPauseOnBattery() const
 {
     return d_ptr->pauseOnBattery;
 }
 
 
-const xmrig::CpuConfig &xmrig::Config::cpu() const
+const uvloop::CpuConfig &uvloop::Config::cpu() const
 {
     return d_ptr->cpu;
 }
 
 
-uint32_t xmrig::Config::idleTime() const
+uint32_t uvloop::Config::idleTime() const
 {
     return d_ptr->idleTime * 1000U;
 }
 
 
 #ifdef XMRIG_FEATURE_OPENCL
-const xmrig::OclConfig &xmrig::Config::cl() const
+const uvloop::OclConfig &uvloop::Config::cl() const
 {
     return d_ptr->cl;
 }
@@ -153,7 +153,7 @@ const xmrig::OclConfig &xmrig::Config::cl() const
 
 
 #ifdef XMRIG_FEATURE_CUDA
-const xmrig::CudaConfig &xmrig::Config::cuda() const
+const uvloop::CudaConfig &uvloop::Config::cuda() const
 {
     return d_ptr->cuda;
 }
@@ -161,7 +161,7 @@ const xmrig::CudaConfig &xmrig::Config::cuda() const
 
 
 #ifdef XMRIG_ALGO_RANDOMX
-const xmrig::RxConfig &xmrig::Config::rx() const
+const uvloop::RxConfig &uvloop::Config::rx() const
 {
     return d_ptr->rx;
 }
@@ -169,7 +169,7 @@ const xmrig::RxConfig &xmrig::Config::rx() const
 
 
 #if defined(XMRIG_FEATURE_NVML) || defined (XMRIG_FEATURE_ADL)
-uint32_t xmrig::Config::healthPrintTime() const
+uint32_t uvloop::Config::healthPrintTime() const
 {
     return d_ptr->healthPrintTime;
 }
@@ -177,14 +177,14 @@ uint32_t xmrig::Config::healthPrintTime() const
 
 
 #ifdef XMRIG_FEATURE_DMI
-bool xmrig::Config::isDMI() const
+bool uvloop::Config::isDMI() const
 {
     return d_ptr->dmi;
 }
 #endif
 
 
-bool xmrig::Config::isShouldSave() const
+bool uvloop::Config::isShouldSave() const
 {
     if (!isAutoSave()) {
         return false;
@@ -212,7 +212,7 @@ bool xmrig::Config::isShouldSave() const
 }
 
 
-bool xmrig::Config::read(const IJsonReader &reader, const char *fileName)
+bool uvloop::Config::read(const IJsonReader &reader, const char *fileName)
 {
     if (!BaseConfig::read(reader, fileName)) {
         return false;
@@ -257,7 +257,7 @@ bool xmrig::Config::read(const IJsonReader &reader, const char *fileName)
 }
 
 
-void xmrig::Config::getJSON(rapidjson::Document &doc) const
+void uvloop::Config::getJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 

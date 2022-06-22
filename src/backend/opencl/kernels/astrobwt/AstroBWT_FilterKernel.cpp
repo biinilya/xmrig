@@ -27,13 +27,13 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::AstroBWT_FilterKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
+void uvloop::AstroBWT_FilterKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
 {
     enqueueNDRange(queue, 1, nullptr, &threads, &workgroup_size);
 }
 
 
-void xmrig::AstroBWT_FilterKernel::setArgs(uint32_t nonce, uint32_t bwt_max_size, cl_mem hashes, cl_mem filtered_hashes)
+void uvloop::AstroBWT_FilterKernel::setArgs(uint32_t nonce, uint32_t bwt_max_size, cl_mem hashes, cl_mem filtered_hashes)
 {
     setArg(0, sizeof(uint32_t), &nonce);
     setArg(1, sizeof(uint32_t), &bwt_max_size);

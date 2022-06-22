@@ -32,7 +32,7 @@
 typedef struct uv_stream_s uv_stream_t;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class String;
@@ -47,7 +47,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ITCPSERVERLISTENER_H

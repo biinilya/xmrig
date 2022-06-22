@@ -237,4 +237,4 @@ void cn_gpu_inner_arm(const uint8_t *spad, uint8_t *lpad)
     }
 }
 
-template void cn_gpu_inner_arm<xmrig::CnAlgo<xmrig::Algorithm::CN_GPU>().iterations(), xmrig::CnAlgo<xmrig::Algorithm::CN_GPU>().mask()>(const uint8_t* spad, uint8_t* lpad);
+template void cn_gpu_inner_arm<uvloop::CnAlgo<uvloop::Algorithm::CN_GPU>().iterations(), uvloop::CnAlgo<uvloop::Algorithm::CN_GPU>().mask()>(const uint8_t* spad, uint8_t* lpad);

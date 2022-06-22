@@ -24,7 +24,7 @@
 #include "base/crypto/Algorithm.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Coin
@@ -84,7 +84,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_COIN_H */

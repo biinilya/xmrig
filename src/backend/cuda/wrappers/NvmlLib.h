@@ -24,7 +24,7 @@
 #include "backend/cuda/wrappers/NvmlHealth.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class NvmlLib
@@ -54,7 +54,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_NVMLLIB_H */

@@ -29,7 +29,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Base;
@@ -69,7 +69,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_HTTPD_H */

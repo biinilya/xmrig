@@ -22,7 +22,7 @@
 
 #include "backend/opencl/runners/OclBaseRunner.h"
 
-namespace xmrig {
+namespace uvloop {
 
 
 class AstroBWT_v2_FindSharesKernel;
@@ -72,7 +72,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OclAstroBWT_v2_Runner_H

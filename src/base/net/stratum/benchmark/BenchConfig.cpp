@@ -30,7 +30,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const char *BenchConfig::kAlgo      = "algo";
@@ -51,10 +51,10 @@ const char *BenchConfig::kApiHost   = "api.xmrig.com";
 const char *BenchConfig::kApiHost   = "127.0.0.1";
 #endif
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::BenchConfig::BenchConfig(uint32_t size, const String &id, const rapidjson::Value &object, bool dmi, uint32_t rotation) :
+uvloop::BenchConfig::BenchConfig(uint32_t size, const String &id, const rapidjson::Value &object, bool dmi, uint32_t rotation) :
     m_algorithm(Json::getString(object, kAlgo)),
     m_dmi(dmi),
     m_submit(Json::getBool(object, kSubmit)),
@@ -81,7 +81,7 @@ xmrig::BenchConfig::BenchConfig(uint32_t size, const String &id, const rapidjson
 }
 
 
-xmrig::BenchConfig *xmrig::BenchConfig::create(const rapidjson::Value &object, bool dmi)
+uvloop::BenchConfig *uvloop::BenchConfig::create(const rapidjson::Value &object, bool dmi)
 {
     if (!object.IsObject() || object.ObjectEmpty()) {
         return nullptr;
@@ -101,7 +101,7 @@ xmrig::BenchConfig *xmrig::BenchConfig::create(const rapidjson::Value &object, b
 }
 
 
-rapidjson::Value xmrig::BenchConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::BenchConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     Value out(kObjectType);
@@ -135,7 +135,7 @@ rapidjson::Value xmrig::BenchConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-uint32_t xmrig::BenchConfig::getSize(const char *benchmark)
+uint32_t uvloop::BenchConfig::getSize(const char *benchmark)
 {
     if (!benchmark) {
         return 0;

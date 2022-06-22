@@ -27,7 +27,7 @@
 #include <functional>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -88,7 +88,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ICLIENT_H

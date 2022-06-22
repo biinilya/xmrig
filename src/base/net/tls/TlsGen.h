@@ -28,7 +28,7 @@ using EVP_PKEY  = struct evp_pkey_st;
 using X509      = struct x509_st;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class TlsGen
@@ -55,7 +55,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_TLSGEN_H */

@@ -31,7 +31,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IJsonReader;
@@ -136,7 +136,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_BASECONFIG_H */

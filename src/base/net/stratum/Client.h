@@ -41,7 +41,7 @@
 using BIO = struct bio_st;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsRequest;
@@ -149,7 +149,7 @@ template<> inline bool Client::has<Client::EXT_NICEHASH>() const noexcept  { ret
 template<> inline bool Client::has<Client::EXT_KEEPALIVE>() const noexcept { return m_extensions.test(EXT_KEEPALIVE) || m_pool.keepAlive() > 0; }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CLIENT_H */

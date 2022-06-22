@@ -47,7 +47,7 @@
 #endif
 
 
-const char *xmrig::OclSource::get(const Algorithm &algorithm)
+const char *uvloop::OclSource::get(const Algorithm &algorithm)
 {
 #   ifdef XMRIG_ALGO_CN_GPU
     if (algorithm == Algorithm::CN_GPU) {

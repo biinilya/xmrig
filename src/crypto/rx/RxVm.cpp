@@ -30,7 +30,7 @@ extern "C" uint32_t rx_blake2b_use_sse41;
 #endif
 
 
-randomx_vm *xmrig::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool softAes, const Assembly &assembly, uint32_t node)
+randomx_vm *uvloop::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool softAes, const Assembly &assembly, uint32_t node)
 {
     int flags = 0;
 
@@ -59,7 +59,7 @@ randomx_vm *xmrig::RxVm::create(RxDataset *dataset, uint8_t *scratchpad, bool so
 }
 
 
-void xmrig::RxVm::destroy(randomx_vm* vm)
+void uvloop::RxVm::destroy(randomx_vm* vm)
 {
     if (vm) {
         randomx_destroy_vm(vm);

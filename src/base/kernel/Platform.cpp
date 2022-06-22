@@ -30,14 +30,14 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 String Platform::m_userAgent;
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-void xmrig::Platform::init(const char *userAgent)
+void uvloop::Platform::init(const char *userAgent)
 {
 #   ifdef XMRIG_FEATURE_TLS
     SSL_library_init();

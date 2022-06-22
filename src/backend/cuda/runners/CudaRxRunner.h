@@ -29,7 +29,7 @@
 #include "backend/cuda/runners/CudaBaseRunner.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaRxRunner : public CudaBaseRunner
@@ -50,7 +50,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_CUDARXRUNNER_H

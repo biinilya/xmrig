@@ -22,7 +22,7 @@
 
 #include "backend/opencl/runners/OclBaseRunner.h"
 
-namespace xmrig {
+namespace uvloop {
 
 
 class AstroBWT_FilterKernel;
@@ -83,7 +83,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLASTROBWTRUNNER_H

@@ -26,7 +26,7 @@
 #include "crypto/common/Assembly.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ICpuInfo
@@ -117,7 +117,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_CPUINFO_H

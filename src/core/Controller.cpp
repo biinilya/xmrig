@@ -33,19 +33,19 @@
 #include <cassert>
 
 
-xmrig::Controller::Controller(Process *process) :
+uvloop::Controller::Controller(Process *process) :
     Base(process)
 {
 }
 
 
-xmrig::Controller::~Controller()
+uvloop::Controller::~Controller()
 {
     VirtualMemory::destroy();
 }
 
 
-int xmrig::Controller::init()
+int uvloop::Controller::init()
 {
     Base::init();
 
@@ -62,14 +62,14 @@ int xmrig::Controller::init()
 }
 
 #ifdef XMRIG_FEATURE_MO_BENCHMARK
-void xmrig::Controller::pre_start()
+void uvloop::Controller::pre_start()
 {
     m_miner = std::make_shared<Miner>(this);
 }
 #endif
 
 
-void xmrig::Controller::start()
+void uvloop::Controller::start()
 {
     Base::start();
 
@@ -79,7 +79,7 @@ void xmrig::Controller::start()
 }
 
 
-void xmrig::Controller::stop()
+void uvloop::Controller::stop()
 {
     Base::stop();
 
@@ -90,7 +90,7 @@ void xmrig::Controller::stop()
 }
 
 
-xmrig::Miner *xmrig::Controller::miner() const
+uvloop::Miner *uvloop::Controller::miner() const
 {
     assert(m_miner);
 
@@ -98,7 +98,7 @@ xmrig::Miner *xmrig::Controller::miner() const
 }
 
 
-xmrig::Network *xmrig::Controller::network() const
+uvloop::Network *uvloop::Controller::network() const
 {
     assert(m_network);
 
@@ -106,7 +106,7 @@ xmrig::Network *xmrig::Controller::network() const
 }
 
 
-void xmrig::Controller::execCommand(char command) const
+void uvloop::Controller::execCommand(char command) const
 {
     miner()->execCommand(command);
     network()->execCommand(command);

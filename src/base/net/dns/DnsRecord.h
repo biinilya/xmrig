@@ -27,7 +27,7 @@ struct sockaddr;
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsRecord
@@ -54,7 +54,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DNSRECORD_H */

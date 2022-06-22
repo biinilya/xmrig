@@ -26,7 +26,7 @@
 #define XMRIG_IWATCHERLISTENER_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class String;
@@ -41,7 +41,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_IWATCHERLISTENER_H

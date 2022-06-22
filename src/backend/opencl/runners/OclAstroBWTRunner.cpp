@@ -30,7 +30,7 @@
 #include "base/net/stratum/Job.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 constexpr int STAGE1_SIZE = 147253;
@@ -38,10 +38,10 @@ constexpr uint32_t STAGE1_DATA_STRIDE = (STAGE1_SIZE + 256 + 255) & ~255U;
 constexpr uint32_t OclAstroBWTRunner::BWT_DATA_STRIDE;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::OclAstroBWTRunner::OclAstroBWTRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
+uvloop::OclAstroBWTRunner::OclAstroBWTRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
 {
     switch (data.device.type())
     {
@@ -71,7 +71,7 @@ xmrig::OclAstroBWTRunner::OclAstroBWTRunner(size_t index, const OclLaunchData &d
 }
 
 
-xmrig::OclAstroBWTRunner::~OclAstroBWTRunner()
+uvloop::OclAstroBWTRunner::~OclAstroBWTRunner()
 {
     delete m_sha3_initial_kernel;
     delete m_sha3_kernel;
@@ -92,7 +92,7 @@ xmrig::OclAstroBWTRunner::~OclAstroBWTRunner()
 }
 
 
-size_t xmrig::OclAstroBWTRunner::bufferSize() const
+size_t uvloop::OclAstroBWTRunner::bufferSize() const
 {
     return OclBaseRunner::bufferSize() +
         align(m_batch_size1 * 32) +                    // m_salsa20_keys
@@ -104,7 +104,7 @@ size_t xmrig::OclAstroBWTRunner::bufferSize() const
 }
 
 
-void xmrig::OclAstroBWTRunner::run(uint32_t nonce, uint32_t *hashOutput)
+void uvloop::OclAstroBWTRunner::run(uint32_t nonce, uint32_t *hashOutput)
 {
     m_sha3_initial_kernel->setArg(2, sizeof(nonce), &nonce);
     m_salsa20_kernel->setArg(3, sizeof(STAGE1_DATA_STRIDE), &STAGE1_DATA_STRIDE);
@@ -159,7 +159,7 @@ void xmrig::OclAstroBWTRunner::run(uint32_t nonce, uint32_t *hashOutput)
 }
 
 
-void xmrig::OclAstroBWTRunner::set(const Job &job, uint8_t *blob)
+void uvloop::OclAstroBWTRunner::set(const Job &job, uint8_t *blob)
 {
     if (job.size() > (Job::kMaxBlobSize - 4)) {
         throw std::length_error("job size too big");
@@ -185,7 +185,7 @@ void xmrig::OclAstroBWTRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-void xmrig::OclAstroBWTRunner::build()
+void uvloop::OclAstroBWTRunner::build()
 {
     OclBaseRunner::build();
 
@@ -199,7 +199,7 @@ void xmrig::OclAstroBWTRunner::build()
 }
 
 
-void xmrig::OclAstroBWTRunner::init()
+void uvloop::OclAstroBWTRunner::init()
 {
     OclBaseRunner::init();
 

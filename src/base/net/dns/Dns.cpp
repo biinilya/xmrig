@@ -21,17 +21,17 @@
 #include "base/net/dns/DnsUvBackend.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 DnsConfig Dns::m_config;
 std::map<String, std::shared_ptr<IDnsBackend> > Dns::m_backends;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-std::shared_ptr<xmrig::DnsRequest> xmrig::Dns::resolve(const String &host, IDnsListener *listener, uint64_t ttl)
+std::shared_ptr<uvloop::DnsRequest> uvloop::Dns::resolve(const String &host, IDnsListener *listener, uint64_t ttl)
 {
     if (m_backends.find(host) == m_backends.end()) {
         m_backends.insert({ host, std::make_shared<DnsUvBackend>() });

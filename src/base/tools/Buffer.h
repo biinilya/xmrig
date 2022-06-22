@@ -24,13 +24,13 @@
 #include <vector>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 using Buffer = std::vector<uint8_t>;
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BUFFER_H */

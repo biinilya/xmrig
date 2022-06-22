@@ -26,7 +26,7 @@
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsRecords;
@@ -48,7 +48,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_IDNSBACKEND_H

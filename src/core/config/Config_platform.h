@@ -31,7 +31,7 @@
 #include "version.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char short_options[] = "a:c:kBp:Px:r:R:s:t:T:o:u:O:v:l:Sx:";
@@ -176,7 +176,7 @@ static const option options[] = {
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CONFIG_PLATFORM_H */

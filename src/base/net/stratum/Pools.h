@@ -32,7 +32,7 @@
 #include "base/net/stratum/Pool.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IJsonReader;
@@ -99,7 +99,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_POOLS_H */

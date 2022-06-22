@@ -30,7 +30,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 struct CoinInfo
@@ -65,10 +65,10 @@ const char *Coin::kDisabled = "DISABLED_COIN";
 const char *Coin::kField    = "coin";
 const char *Coin::kUnknown  = "UNKNOWN_COIN";
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
-xmrig::Coin::Coin(const rapidjson::Value &value)
+uvloop::Coin::Coin(const rapidjson::Value &value)
 {
     if (value.IsString()) {
         m_id = parse(value.GetString());
@@ -79,25 +79,25 @@ xmrig::Coin::Coin(const rapidjson::Value &value)
 }
 
 
-xmrig::Algorithm xmrig::Coin::algorithm(uint8_t) const
+uvloop::Algorithm uvloop::Coin::algorithm(uint8_t) const
 {
     return coinInfo[m_id].algorithm;
 }
 
 
-const char *xmrig::Coin::code() const
+const char *uvloop::Coin::code() const
 {
     return coinInfo[m_id].code;
 }
 
 
-const char *xmrig::Coin::name() const
+const char *uvloop::Coin::name() const
 {
     return coinInfo[m_id].name;
 }
 
 
-rapidjson::Value xmrig::Coin::toJSON() const
+rapidjson::Value uvloop::Coin::toJSON() const
 {
     using namespace rapidjson;
 
@@ -105,19 +105,19 @@ rapidjson::Value xmrig::Coin::toJSON() const
 }
 
 
-uint64_t xmrig::Coin::target(uint8_t) const
+uint64_t uvloop::Coin::target(uint8_t) const
 {
     return coinInfo[m_id].target;
 }
 
 
-uint64_t xmrig::Coin::units() const
+uint64_t uvloop::Coin::units() const
 {
     return coinInfo[m_id].units;
 }
 
 
-xmrig::Coin::Id xmrig::Coin::parse(const char *name)
+uvloop::Coin::Id uvloop::Coin::parse(const char *name)
 {
     if (name == nullptr || strlen(name) < 3) {
         return INVALID;
@@ -133,7 +133,7 @@ xmrig::Coin::Id xmrig::Coin::parse(const char *name)
 }
 
 
-const char *xmrig::Coin::tag(Id id)
+const char *uvloop::Coin::tag(Id id)
 {
     return coinInfo[id].tag;
 }

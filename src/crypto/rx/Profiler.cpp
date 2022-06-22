@@ -93,7 +93,7 @@ NOINLINE void ProfileScopeData::Init()
 
         if (t2 - t1 > 1000000000) {
             s_tscSpeed = (count2 - count1) * 1e9 / (t2 - t1);
-            LOG_INFO("%s TSC speed = %.3f GHz", xmrig::Tags::profiler(), s_tscSpeed / 1e9);
+            LOG_INFO("%s TSC speed = %.3f GHz", uvloop::Tags::profiler(), s_tscSpeed / 1e9);
             return;
         }
     }

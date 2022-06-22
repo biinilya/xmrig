@@ -27,7 +27,7 @@
 #include "net/JobResult.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ICudaRunner;
@@ -62,7 +62,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CUDAWORKER_H */

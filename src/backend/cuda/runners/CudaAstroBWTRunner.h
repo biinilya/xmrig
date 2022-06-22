@@ -30,7 +30,7 @@
 #include "base/crypto/Algorithm.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaAstroBWTRunner : public CudaBaseRunner
@@ -55,7 +55,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_CUDAASTROBWTRUNNER_H

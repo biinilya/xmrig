@@ -48,14 +48,14 @@ static inline void random_scalar(ec_scalar& res)
 {
     // Don't care about bias or possible 0 after reduce: probability ~10^-76, not happening in this universe.
     // Performance matters more. It's a miner after all.
-    xmrig::Cvt::randomBytes(res.data, sizeof(res.data));
+    uvloop::Cvt::randomBytes(res.data, sizeof(res.data));
     sc_reduce32((uint8_t*) res.data);
 }
 
 
 static void hash_to_scalar(const void* data, size_t length, ec_scalar& res)
 {
-    xmrig::keccak((const uint8_t*) data, length, (uint8_t*) &res, sizeof(res));
+    uvloop::keccak((const uint8_t*) data, length, (uint8_t*) &res, sizeof(res));
     sc_reduce32((uint8_t*) &res);
 }
 
@@ -81,7 +81,7 @@ static void derivation_to_scalar(const uint8_t* derivation, size_t output_index,
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 void generate_signature(const uint8_t* prefix_hash, const uint8_t* pub, const uint8_t* sec, uint8_t* sig_bytes)
@@ -230,4 +230,4 @@ bool secret_key_to_public_key(const uint8_t* sec, uint8_t* pub)
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */

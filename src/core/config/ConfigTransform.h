@@ -23,7 +23,7 @@
 #include "base/kernel/config/BaseTransform.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ConfigTransform : public BaseTransform
@@ -47,7 +47,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_CONFIGTRANSFORM_H */

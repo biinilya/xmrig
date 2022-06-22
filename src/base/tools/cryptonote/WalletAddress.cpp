@@ -31,7 +31,7 @@
 #include <map>
 
 
-bool xmrig::WalletAddress::decode(const char *address, size_t size)
+bool uvloop::WalletAddress::decode(const char *address, size_t size)
 {
     static constexpr std::array<int, 9> block_sizes{ 0, 2, 3, 5, 6, 7, 9, 10, 11 };
     static constexpr char alphabet[] = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -124,13 +124,13 @@ bool xmrig::WalletAddress::decode(const char *address, size_t size)
 }
 
 
-bool xmrig::WalletAddress::decode(const rapidjson::Value &address)
+bool uvloop::WalletAddress::decode(const rapidjson::Value &address)
 {
     return address.IsString() && decode(address.GetString(), address.GetStringLength());
 }
 
 
-const char *xmrig::WalletAddress::netName() const
+const char *uvloop::WalletAddress::netName() const
 {
     static const std::array<const char *, 3> names = { "mainnet", "testnet", "stagenet" };
 
@@ -138,7 +138,7 @@ const char *xmrig::WalletAddress::netName() const
 }
 
 
-const char *xmrig::WalletAddress::typeName() const
+const char *uvloop::WalletAddress::typeName() const
 {
     static const std::array<const char *, 3> names = { "public", "integrated", "subaddress" };
 
@@ -146,7 +146,7 @@ const char *xmrig::WalletAddress::typeName() const
 }
 
 
-rapidjson::Value xmrig::WalletAddress::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::WalletAddress::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -155,7 +155,7 @@ rapidjson::Value xmrig::WalletAddress::toJSON(rapidjson::Document &doc) const
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::WalletAddress::toAPI(rapidjson::Document &doc) const
+rapidjson::Value uvloop::WalletAddress::toAPI(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -181,7 +181,7 @@ rapidjson::Value xmrig::WalletAddress::toAPI(rapidjson::Document &doc) const
 #endif
 
 
-const xmrig::WalletAddress::TagInfo &xmrig::WalletAddress::tagInfo(uint64_t tag)
+const uvloop::WalletAddress::TagInfo &uvloop::WalletAddress::tagInfo(uint64_t tag)
 {
     static TagInfo dummy = { Coin::INVALID, MAINNET, PUBLIC, 0, 0 };
     static const std::map<uint64_t, TagInfo> tags = {

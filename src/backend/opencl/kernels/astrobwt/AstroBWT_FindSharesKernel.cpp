@@ -27,13 +27,13 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::AstroBWT_FindSharesKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
+void uvloop::AstroBWT_FindSharesKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
 {
     enqueueNDRange(queue, 1, nullptr, &threads, &workgroup_size);
 }
 
 
-void xmrig::AstroBWT_FindSharesKernel::setArgs(cl_mem hashes, cl_mem filtered_hashes, cl_mem shares)
+void uvloop::AstroBWT_FindSharesKernel::setArgs(cl_mem hashes, cl_mem filtered_hashes, cl_mem shares)
 {
     setArg(0, sizeof(cl_mem), &hashes);
     setArg(1, sizeof(cl_mem), &filtered_hashes);
@@ -41,7 +41,7 @@ void xmrig::AstroBWT_FindSharesKernel::setArgs(cl_mem hashes, cl_mem filtered_ha
 }
 
 
-void xmrig::AstroBWT_FindSharesKernel::setTarget(uint64_t target)
+void uvloop::AstroBWT_FindSharesKernel::setTarget(uint64_t target)
 {
     setArg(2, sizeof(uint64_t), &target);
 }

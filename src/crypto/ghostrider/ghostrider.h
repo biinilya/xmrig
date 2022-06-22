@@ -28,7 +28,7 @@
 struct cryptonight_ctx;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -47,6 +47,6 @@ void hash_octa(const uint8_t* data, size_t size, uint8_t* output, cryptonight_ct
 } // namespace ghostrider
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 #endif // XMRIG_GR_HASH_H

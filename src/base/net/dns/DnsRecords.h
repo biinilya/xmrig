@@ -23,7 +23,7 @@
 #include "base/net/dns/DnsRecord.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class DnsRecords
@@ -42,7 +42,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_DNSRECORDS_H */

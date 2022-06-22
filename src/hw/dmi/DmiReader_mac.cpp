@@ -25,7 +25,7 @@
 #include <Carbon/Carbon.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static int checksum(const uint8_t *buf, size_t len)
@@ -77,10 +77,10 @@ static uint8_t *smbios_decode(uint8_t *buf, uint32_t &size, uint32_t &version, i
     return dmi_table(dmi_get<uint32_t>(buf + 0x18), size, service);
 }
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::DmiReader::read()
+bool uvloop::DmiReader::read()
 {
     mach_port_t port;
     IOMasterPort(MACH_PORT_NULL, &port);

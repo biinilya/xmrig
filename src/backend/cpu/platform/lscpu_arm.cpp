@@ -26,7 +26,7 @@
 #include <cctype>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 struct lscpu_desc
@@ -333,4 +333,4 @@ String cpu_name_arm()
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

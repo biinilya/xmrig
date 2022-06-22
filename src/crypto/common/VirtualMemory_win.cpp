@@ -36,7 +36,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static bool hugepagesAvailable = false;
@@ -147,22 +147,22 @@ static BOOL TrySetLockPagesPrivilege() {
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::VirtualMemory::isHugepagesAvailable()
+bool uvloop::VirtualMemory::isHugepagesAvailable()
 {
     return hugepagesAvailable;
 }
 
 
-bool xmrig::VirtualMemory::isOneGbPagesAvailable()
+bool uvloop::VirtualMemory::isOneGbPagesAvailable()
 {
     return false;
 }
 
 
-bool xmrig::VirtualMemory::protectRW(void *p, size_t size)
+bool uvloop::VirtualMemory::protectRW(void *p, size_t size)
 {
     DWORD oldProtect;
 
@@ -170,7 +170,7 @@ bool xmrig::VirtualMemory::protectRW(void *p, size_t size)
 }
 
 
-bool xmrig::VirtualMemory::protectRWX(void *p, size_t size)
+bool uvloop::VirtualMemory::protectRWX(void *p, size_t size)
 {
     DWORD oldProtect;
 
@@ -178,7 +178,7 @@ bool xmrig::VirtualMemory::protectRWX(void *p, size_t size)
 }
 
 
-bool xmrig::VirtualMemory::protectRX(void *p, size_t size)
+bool uvloop::VirtualMemory::protectRX(void *p, size_t size)
 {
     DWORD oldProtect;
 
@@ -186,7 +186,7 @@ bool xmrig::VirtualMemory::protectRX(void *p, size_t size)
 }
 
 
-void *xmrig::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
+void *uvloop::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
 {
     void* result = nullptr;
 
@@ -202,7 +202,7 @@ void *xmrig::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages
 }
 
 
-void *xmrig::VirtualMemory::allocateLargePagesMemory(size_t size)
+void *uvloop::VirtualMemory::allocateLargePagesMemory(size_t size)
 {
     const size_t min = GetLargePageMinimum();
     void *mem        = nullptr;
@@ -215,25 +215,25 @@ void *xmrig::VirtualMemory::allocateLargePagesMemory(size_t size)
 }
 
 
-void *xmrig::VirtualMemory::allocateOneGbPagesMemory(size_t)
+void *uvloop::VirtualMemory::allocateOneGbPagesMemory(size_t)
 {
     return nullptr;
 }
 
 
-void xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
+void uvloop::VirtualMemory::flushInstructionCache(void *p, size_t size)
 {
     ::FlushInstructionCache(GetCurrentProcess(), p, size);
 }
 
 
-void xmrig::VirtualMemory::freeLargePagesMemory(void *p, size_t)
+void uvloop::VirtualMemory::freeLargePagesMemory(void *p, size_t)
 {
     VirtualFree(p, 0, MEM_RELEASE);
 }
 
 
-void xmrig::VirtualMemory::osInit(size_t hugePageSize)
+void uvloop::VirtualMemory::osInit(size_t hugePageSize)
 {
     if (hugePageSize) {
         hugepagesAvailable = TrySetLockPagesPrivilege();
@@ -241,7 +241,7 @@ void xmrig::VirtualMemory::osInit(size_t hugePageSize)
 }
 
 
-bool xmrig::VirtualMemory::allocateLargePagesMemory()
+bool uvloop::VirtualMemory::allocateLargePagesMemory()
 {
     m_scratchpad = static_cast<uint8_t*>(allocateLargePagesMemory(m_size));
     if (m_scratchpad) {
@@ -253,14 +253,14 @@ bool xmrig::VirtualMemory::allocateLargePagesMemory()
     return false;
 }
 
-bool xmrig::VirtualMemory::allocateOneGbPagesMemory()
+bool uvloop::VirtualMemory::allocateOneGbPagesMemory()
 {
     m_scratchpad = nullptr;
     return false;
 }
 
 
-void xmrig::VirtualMemory::freeLargePagesMemory()
+void uvloop::VirtualMemory::freeLargePagesMemory()
 {
     freeLargePagesMemory(m_scratchpad, m_size);
 }

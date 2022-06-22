@@ -26,7 +26,7 @@
 #define XMRIG_ICONFIGLISTENER_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IConfig;
@@ -41,7 +41,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_ICONFIGLISTENER_H

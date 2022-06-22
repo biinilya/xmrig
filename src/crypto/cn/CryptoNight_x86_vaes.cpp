@@ -159,7 +159,7 @@ static FORCEINLINE void vaes_round(__m256i key, __m256i& x0, __m256i& x1, __m256
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 NOINLINE void cn_explode_scratchpad_vaes(cryptonight_ctx* ctx, size_t memory, bool half_mem)

@@ -27,7 +27,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static std::mutex mutex;
@@ -46,10 +46,10 @@ static inline int64_t free_hugepages(uint32_t node, size_t hugePageSize)        
 static inline int64_t nr_hugepages(uint32_t node, size_t hugePageSize)                      { return LinuxMemory::read(sysfs_path(node, hugePageSize, true).c_str()); }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::LinuxMemory::reserve(size_t size, uint32_t node, size_t hugePageSize)
+bool uvloop::LinuxMemory::reserve(size_t size, uint32_t node, size_t hugePageSize)
 {
     std::lock_guard<std::mutex> lock(mutex);
 
@@ -64,7 +64,7 @@ bool xmrig::LinuxMemory::reserve(size_t size, uint32_t node, size_t hugePageSize
 }
 
 
-bool xmrig::LinuxMemory::write(const char *path, uint64_t value)
+bool uvloop::LinuxMemory::write(const char *path, uint64_t value)
 {
     std::ofstream file(path, std::ios::out | std::ios::binary | std::ios::trunc);
     if (!file.is_open()) {
@@ -78,7 +78,7 @@ bool xmrig::LinuxMemory::write(const char *path, uint64_t value)
 }
 
 
-int64_t xmrig::LinuxMemory::read(const char *path)
+int64_t uvloop::LinuxMemory::read(const char *path)
 {
     std::ifstream file(path);
     if (!file.is_open()) {

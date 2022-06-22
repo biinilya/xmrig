@@ -33,7 +33,7 @@
 constexpr size_t oneGiB = 1024 * 1024 * 1024;
 
 
-cl_mem xmrig::OclSharedData::createBuffer(cl_context context, size_t size, size_t &offset, size_t limit)
+cl_mem uvloop::OclSharedData::createBuffer(cl_context context, size_t size, size_t &offset, size_t limit)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -55,7 +55,7 @@ cl_mem xmrig::OclSharedData::createBuffer(cl_context context, size_t size, size_
 }
 
 
-uint64_t xmrig::OclSharedData::adjustDelay(size_t /*id*/)
+uint64_t uvloop::OclSharedData::adjustDelay(size_t /*id*/)
 {
     if (m_threads < 2) {
         return 0;
@@ -96,7 +96,7 @@ uint64_t xmrig::OclSharedData::adjustDelay(size_t /*id*/)
 }
 
 
-uint64_t xmrig::OclSharedData::resumeDelay(size_t /*id*/)
+uint64_t uvloop::OclSharedData::resumeDelay(size_t /*id*/)
 {
     if (m_threads < 2) {
         return 0;
@@ -130,7 +130,7 @@ uint64_t xmrig::OclSharedData::resumeDelay(size_t /*id*/)
 }
 
 
-void xmrig::OclSharedData::release()
+void uvloop::OclSharedData::release()
 {
     OclLib::release(m_buffer);
 
@@ -140,7 +140,7 @@ void xmrig::OclSharedData::release()
 }
 
 
-void xmrig::OclSharedData::setResumeCounter(uint32_t value)
+void uvloop::OclSharedData::setResumeCounter(uint32_t value)
 {
     if (m_threads < 2) {
         return;
@@ -151,7 +151,7 @@ void xmrig::OclSharedData::setResumeCounter(uint32_t value)
 }
 
 
-void xmrig::OclSharedData::setRunTime(uint64_t time)
+void uvloop::OclSharedData::setRunTime(uint64_t time)
 {
     // averagingBias = 1.0 - only the last delta time is taken into account
     // averagingBias = 0.5 - the last delta time has the same weight as all the previous ones combined
@@ -164,7 +164,7 @@ void xmrig::OclSharedData::setRunTime(uint64_t time)
 
 
 #ifdef XMRIG_ALGO_RANDOMX
-cl_mem xmrig::OclSharedData::dataset() const
+cl_mem uvloop::OclSharedData::dataset() const
 {
     if (!m_dataset) {
         throw std::runtime_error("RandomX dataset is not available");
@@ -174,7 +174,7 @@ cl_mem xmrig::OclSharedData::dataset() const
 }
 
 
-void xmrig::OclSharedData::createDataset(cl_context ctx, const Job &job, bool host)
+void uvloop::OclSharedData::createDataset(cl_context ctx, const Job &job, bool host)
 {
     if (m_dataset) {
         return;

@@ -27,14 +27,14 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::AstroBWT_v2_BWT_PreprocessKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
+void uvloop::AstroBWT_v2_BWT_PreprocessKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
 {
     const size_t gthreads       = threads * workgroup_size;
     enqueueNDRange(queue, 1, nullptr, &gthreads, &workgroup_size);
 }
 
 
-void xmrig::AstroBWT_v2_BWT_PreprocessKernel::setArgs(cl_mem datas, cl_mem keys)
+void uvloop::AstroBWT_v2_BWT_PreprocessKernel::setArgs(cl_mem datas, cl_mem keys)
 {
     setArg(0, sizeof(cl_mem), &datas);
     setArg(1, sizeof(cl_mem), &keys);

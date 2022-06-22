@@ -32,17 +32,17 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *kAsterisk = "*";
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 template <class T>
-const T &xmrig::Threads<T>::get(const String &profileName) const
+const T &uvloop::Threads<T>::get(const String &profileName) const
 {
     static T empty;
     if (profileName.isNull() || !has(profileName)) {
@@ -54,7 +54,7 @@ const T &xmrig::Threads<T>::get(const String &profileName) const
 
 
 template <class T>
-size_t xmrig::Threads<T>::read(const rapidjson::Value &value)
+size_t uvloop::Threads<T>::read(const rapidjson::Value &value)
 {
     using namespace rapidjson;
 
@@ -98,7 +98,7 @@ size_t xmrig::Threads<T>::read(const rapidjson::Value &value)
 
 
 template <class T>
-xmrig::String xmrig::Threads<T>::profileName(const Algorithm &algorithm, bool strict) const
+uvloop::String uvloop::Threads<T>::profileName(const Algorithm &algorithm, bool strict) const
 {
     if (isDisabled(algorithm)) {
         return String();
@@ -139,7 +139,7 @@ xmrig::String xmrig::Threads<T>::profileName(const Algorithm &algorithm, bool st
 
 
 template <class T>
-void xmrig::Threads<T>::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
+void uvloop::Threads<T>::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -158,7 +158,7 @@ void xmrig::Threads<T>::toJSON(rapidjson::Value &out, rapidjson::Document &doc) 
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 template class Threads<CpuThreads>;
 
@@ -170,4 +170,4 @@ template class Threads<OclThreads>;
 template class Threads<CudaThreads>;
 #endif
 
-} // namespace xmrig
+} // namespace uvloop

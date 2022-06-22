@@ -27,7 +27,7 @@
 #include <utility>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Controller;
@@ -74,7 +74,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CPUBACKEND_H */

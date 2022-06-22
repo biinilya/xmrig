@@ -27,7 +27,7 @@
 #include <vector>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -64,7 +64,7 @@ private:
 using MsrItems = std::vector<MsrItem>;
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_MSRITEM_H */

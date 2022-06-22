@@ -40,7 +40,7 @@ typedef union
 } topology_amd;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 #ifdef XMRIG_ALGO_RANDOMX
@@ -228,10 +228,10 @@ static OclDevice::Type getType(const String &name, const OclVendor platformVendo
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::OclDevice::OclDevice(uint32_t index, cl_device_id id, cl_platform_id platform) :
+uvloop::OclDevice::OclDevice(uint32_t index, cl_device_id id, cl_platform_id platform) :
     m_id(id),
     m_platform(platform),
     m_platformVendor(OclLib::getString(platform, CL_PLATFORM_VENDOR)),
@@ -265,7 +265,7 @@ xmrig::OclDevice::OclDevice(uint32_t index, cl_device_id id, cl_platform_id plat
 }
 
 
-xmrig::String xmrig::OclDevice::printableName() const
+uvloop::String uvloop::OclDevice::printableName() const
 {
     const size_t size = m_board.size() + m_name.size() + 64;
     char *buf         = new char[size]();
@@ -281,13 +281,13 @@ xmrig::String xmrig::OclDevice::printableName() const
 }
 
 
-uint32_t xmrig::OclDevice::clock() const
+uint32_t uvloop::OclDevice::clock() const
 {
     return OclLib::getUint(id(), CL_DEVICE_MAX_CLOCK_FREQUENCY);
 }
 
 
-void xmrig::OclDevice::generate(const Algorithm &algorithm, OclThreads &threads) const
+void uvloop::OclDevice::generate(const Algorithm &algorithm, OclThreads &threads) const
 {
     for (auto fn : generators) {
         if (fn(*this, algorithm, threads)) {
@@ -298,7 +298,7 @@ void xmrig::OclDevice::generate(const Algorithm &algorithm, OclThreads &threads)
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
+void uvloop::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

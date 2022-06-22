@@ -30,7 +30,7 @@
 #include "base/tools/Buffer.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Blake2bHashRegistersKernel;
@@ -76,7 +76,7 @@ protected:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_OCLRXBASERUNNER_H

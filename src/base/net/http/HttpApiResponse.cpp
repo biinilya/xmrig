@@ -24,22 +24,22 @@
 #include "base/net/http/HttpData.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 static const char *kError  = "error";
 static const char *kStatus = "status";
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::HttpApiResponse::HttpApiResponse(uint64_t id) :
+uvloop::HttpApiResponse::HttpApiResponse(uint64_t id) :
     HttpResponse(id),
     m_doc(rapidjson::kObjectType)
 {
 }
 
 
-xmrig::HttpApiResponse::HttpApiResponse(uint64_t id, int status) :
+uvloop::HttpApiResponse::HttpApiResponse(uint64_t id, int status) :
     HttpResponse(id),
     m_doc(rapidjson::kObjectType)
 {
@@ -47,7 +47,7 @@ xmrig::HttpApiResponse::HttpApiResponse(uint64_t id, int status) :
 }
 
 
-void xmrig::HttpApiResponse::end()
+void uvloop::HttpApiResponse::end()
 {
     using namespace rapidjson;
 

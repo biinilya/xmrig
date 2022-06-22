@@ -29,7 +29,7 @@
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Client;
@@ -79,6 +79,6 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 #endif /* XMRIG_FAILOVERSTRATEGY_H */

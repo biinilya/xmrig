@@ -37,7 +37,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Benchmark;
@@ -78,7 +78,7 @@ private:
 
 
 template<class T>
-void xmrig::Workers<T>::jobEarlyNotification(const Job &job)
+void uvloop::Workers<T>::jobEarlyNotification(const Job &job)
 {
     for (Thread<T>* t : m_workers) {
         if (t->worker()) {
@@ -107,7 +107,7 @@ extern template class Workers<CudaLaunchData>;
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_WORKERS_H */

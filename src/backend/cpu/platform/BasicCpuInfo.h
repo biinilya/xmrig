@@ -27,7 +27,7 @@
 #include <bitset>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class BasicCpuInfo : public ICpuInfo
@@ -94,7 +94,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BASICCPUINFO_H */

@@ -37,7 +37,7 @@ using uv_tcp_t              = struct uv_tcp_s;
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IHttpListener;
@@ -91,7 +91,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPCONTEXT_H

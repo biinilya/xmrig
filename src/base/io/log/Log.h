@@ -25,7 +25,7 @@
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ILogBackend;
@@ -138,36 +138,36 @@ private:
 #define CYAN_BG_BOLD(x)     CYAN_BG_BOLD_S x CLEAR
 
 
-#define LOG_EMERG(x, ...)   xmrig::Log::print(xmrig::Log::EMERG,   x, ##__VA_ARGS__)
-#define LOG_ALERT(x, ...)   xmrig::Log::print(xmrig::Log::ALERT,   x, ##__VA_ARGS__)
-#define LOG_CRIT(x, ...)    xmrig::Log::print(xmrig::Log::CRIT,    x, ##__VA_ARGS__)
-#define LOG_ERR(x, ...)     xmrig::Log::print(xmrig::Log::ERR,     x, ##__VA_ARGS__)
-#define LOG_WARN(x, ...)    xmrig::Log::print(xmrig::Log::WARNING, x, ##__VA_ARGS__)
-#define LOG_NOTICE(x, ...)  xmrig::Log::print(xmrig::Log::NOTICE,  x, ##__VA_ARGS__)
-#define LOG_INFO(x, ...)    xmrig::Log::print(xmrig::Log::INFO,    x, ##__VA_ARGS__)
-#define LOG_VERBOSE(x, ...) if (xmrig::Log::verbose() > 0) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V1(x, ...)      if (xmrig::Log::verbose() > 0) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V2(x, ...)      if (xmrig::Log::verbose() > 1) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V3(x, ...)      if (xmrig::Log::verbose() > 2) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V4(x, ...)      if (xmrig::Log::verbose() > 3) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
-#define LOG_V5(x, ...)      if (xmrig::Log::verbose() > 4) { xmrig::Log::print(xmrig::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_EMERG(x, ...)   uvloop::Log::print(uvloop::Log::EMERG,   x, ##__VA_ARGS__)
+#define LOG_ALERT(x, ...)   uvloop::Log::print(uvloop::Log::ALERT,   x, ##__VA_ARGS__)
+#define LOG_CRIT(x, ...)    uvloop::Log::print(uvloop::Log::CRIT,    x, ##__VA_ARGS__)
+#define LOG_ERR(x, ...)     uvloop::Log::print(uvloop::Log::ERR,     x, ##__VA_ARGS__)
+#define LOG_WARN(x, ...)    uvloop::Log::print(uvloop::Log::WARNING, x, ##__VA_ARGS__)
+#define LOG_NOTICE(x, ...)  uvloop::Log::print(uvloop::Log::NOTICE,  x, ##__VA_ARGS__)
+#define LOG_INFO(x, ...)    uvloop::Log::print(uvloop::Log::INFO,    x, ##__VA_ARGS__)
+#define LOG_VERBOSE(x, ...) if (uvloop::Log::verbose() > 0) { uvloop::Log::print(uvloop::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V1(x, ...)      if (uvloop::Log::verbose() > 0) { uvloop::Log::print(uvloop::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V2(x, ...)      if (uvloop::Log::verbose() > 1) { uvloop::Log::print(uvloop::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V3(x, ...)      if (uvloop::Log::verbose() > 2) { uvloop::Log::print(uvloop::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V4(x, ...)      if (uvloop::Log::verbose() > 3) { uvloop::Log::print(uvloop::Log::INFO, x, ##__VA_ARGS__); }
+#define LOG_V5(x, ...)      if (uvloop::Log::verbose() > 4) { uvloop::Log::print(uvloop::Log::INFO, x, ##__VA_ARGS__); }
 
 #ifdef APP_DEBUG
-#   define LOG_DEBUG(x, ...) xmrig::Log::print(xmrig::Log::DEBUG, x, ##__VA_ARGS__)
+#   define LOG_DEBUG(x, ...) uvloop::Log::print(uvloop::Log::DEBUG, x, ##__VA_ARGS__)
 #else
 #   define LOG_DEBUG(x, ...)
 #endif
 
 #if defined(APP_DEBUG) || defined(APP_DEVEL)
-#   define LOG_DEBUG_ERR(x, ...)  xmrig::Log::print(xmrig::Log::ERR,     x, ##__VA_ARGS__)
-#   define LOG_DEBUG_WARN(x, ...) xmrig::Log::print(xmrig::Log::WARNING, x, ##__VA_ARGS__)
+#   define LOG_DEBUG_ERR(x, ...)  uvloop::Log::print(uvloop::Log::ERR,     x, ##__VA_ARGS__)
+#   define LOG_DEBUG_WARN(x, ...) uvloop::Log::print(uvloop::Log::WARNING, x, ##__VA_ARGS__)
 #else
 #   define LOG_DEBUG_ERR(x, ...)
 #   define LOG_DEBUG_WARN(x, ...)
 #endif
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_LOG_H */

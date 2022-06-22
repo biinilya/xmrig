@@ -25,7 +25,7 @@
 #include "crypto/common/Nonce.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaDevice;
@@ -55,7 +55,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLLAUNCHDATA_H */

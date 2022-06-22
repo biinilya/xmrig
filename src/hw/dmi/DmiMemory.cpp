@@ -30,7 +30,7 @@
 #include <regex>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *kIdFormat = "DIMM_{}{}";
@@ -127,11 +127,11 @@ static uint64_t dmi_memory_device_speed(uint16_t code1, uint32_t code2)
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 
-xmrig::DmiMemory::DmiMemory(dmi_header *h)
+uvloop::DmiMemory::DmiMemory(dmi_header *h)
 {
     if (h->length < 0x15) {
         return;
@@ -187,20 +187,20 @@ xmrig::DmiMemory::DmiMemory(dmi_header *h)
 }
 
 
-const char *xmrig::DmiMemory::formFactor() const
+const char *uvloop::DmiMemory::formFactor() const
 {
     return dmi_memory_device_form_factor(m_formFactor);
 }
 
 
-const char *xmrig::DmiMemory::type() const
+const char *uvloop::DmiMemory::type() const
 {
     return dmi_memory_device_type(m_type);
 }
 
 
 #ifdef XMRIG_FEATURE_API
-rapidjson::Value xmrig::DmiMemory::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::DmiMemory::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -225,7 +225,7 @@ rapidjson::Value xmrig::DmiMemory::toJSON(rapidjson::Document &doc) const
 #endif
 
 
-void xmrig::DmiMemory::setId(const char *slot, const char *bank)
+void uvloop::DmiMemory::setId(const char *slot, const char *bank)
 {
     m_slot = slot;
     m_bank = bank;

@@ -29,7 +29,7 @@
 #include "base/kernel/interfaces/IStrategyListener.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class StrategyProxy : public IStrategyListener
@@ -73,7 +73,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_STRATEGYPROXY_H */

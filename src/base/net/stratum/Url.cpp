@@ -30,7 +30,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 static const char kStratumTcp[]            = "stratum+tcp://";
 static const char kStratumSsl[]            = "stratum+ssl://";
@@ -42,16 +42,16 @@ static const char kDaemonHttps[]           = "daemon+https://";
 static const char kDaemonWss[]             = "daemon+wss://";
 #endif
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Url::Url(const char *url)
+uvloop::Url::Url(const char *url)
 {
     parse(url);
 }
 
 
-xmrig::Url::Url(const char *host, uint16_t port, bool tls, Scheme scheme) :
+uvloop::Url::Url(const char *host, uint16_t port, bool tls, Scheme scheme) :
     m_tls(tls),
     m_scheme(scheme),
     m_host(host),
@@ -67,13 +67,13 @@ xmrig::Url::Url(const char *host, uint16_t port, bool tls, Scheme scheme) :
 }
 
 
-bool xmrig::Url::isEqual(const Url &other) const
+bool uvloop::Url::isEqual(const Url &other) const
 {
     return (m_tls == other.m_tls && m_scheme == other.m_scheme && m_host == other.m_host && m_url == other.m_url && m_port == other.m_port);
 }
 
 
-bool xmrig::Url::parse(const char *url)
+bool uvloop::Url::parse(const char *url)
 {
     if (url == nullptr) {
         return false;
@@ -143,7 +143,7 @@ bool xmrig::Url::parse(const char *url)
 }
 
 
-bool xmrig::Url::parseIPv6(const char *addr)
+bool uvloop::Url::parseIPv6(const char *addr)
 {
     const char *end = strchr(addr, ']');
     if (!end) {

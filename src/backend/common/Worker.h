@@ -23,7 +23,7 @@
 #include "backend/common/interfaces/IWorker.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Worker : public IWorker
@@ -47,7 +47,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_WORKER_H */

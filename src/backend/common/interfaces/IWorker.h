@@ -27,7 +27,7 @@
 #include <cstddef>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Job;
@@ -53,7 +53,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_IWORKER_H

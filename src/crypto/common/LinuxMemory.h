@@ -24,7 +24,7 @@
 #include <cstddef>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class LinuxMemory
@@ -37,7 +37,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_LINUXMEMORY_H */

@@ -31,7 +31,7 @@
 struct RandomX_ConfigurationBase;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -56,7 +56,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_ALGO_H */

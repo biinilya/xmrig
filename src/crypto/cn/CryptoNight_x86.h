@@ -272,7 +272,7 @@ inline void mix_and_propagate(__m128i& x0, __m128i& x1, __m128i& x2, __m128i& x3
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<int interleave>
@@ -554,7 +554,7 @@ static NOINLINE void cn_implode_scratchpad(cryptonight_ctx *ctx)
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 static inline __m128i aes_round_tweak_div(const __m128i &in, const __m128i &key)
@@ -601,13 +601,13 @@ static inline __m128i int_sqrt_v2(const uint64_t n0)
 }
 
 
-void v4_soft_aes_compile_code(const V4_Instruction *code, int code_size, void *machine_code, xmrig::Assembly ASM);
+void v4_soft_aes_compile_code(const V4_Instruction *code, int code_size, void *machine_code, uvloop::Assembly ASM);
 
 
 alignas(64) static const uint32_t tweak1_table[256] = { 268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,268435456,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,805306368,0,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456,805306368,268435456 };
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<Algorithm::Id ALGO>
@@ -857,7 +857,7 @@ inline void cryptonight_single_hash(const uint8_t *__restrict__ input, size_t si
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #ifdef XMRIG_ALGO_CN_GPU
@@ -869,7 +869,7 @@ template<size_t ITER, uint32_t MASK>
 void cn_gpu_inner_ssse3(const uint8_t *spad, uint8_t *lpad);
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<size_t MEM>
@@ -885,15 +885,15 @@ static NOINLINE void cn_explode_scratchpad_gpu(cryptonight_ctx *ctx)
         memcpy(hash, input, hash_size);
         hash[0] ^= i;
 
-        xmrig::keccakf(hash, 24);
+        uvloop::keccakf(hash, 24);
         memcpy(output, hash, 160);
         output += 160;
 
-        xmrig::keccakf(hash, 24);
+        uvloop::keccakf(hash, 24);
         memcpy(output, hash, 176);
         output += 176;
 
-        xmrig::keccakf(hash, 24);
+        uvloop::keccakf(hash, 24);
         memcpy(output, hash, 176);
         output += 176;
     }
@@ -914,7 +914,7 @@ inline void cryptonight_single_hash_gpu(const uint8_t *__restrict__ input, size_
     fesetround(FE_TONEAREST);
 #   endif
 
-    if (xmrig::Cpu::info()->hasAVX2()) {
+    if (uvloop::Cpu::info()->hasAVX2()) {
         cn_gpu_inner_avx<props.iterations(), props.mask()>(ctx[0]->state, ctx[0]->memory);
     } else {
         cn_gpu_inner_ssse3<props.iterations(), props.mask()>(ctx[0]->state, ctx[0]->memory);
@@ -926,7 +926,7 @@ inline void cryptonight_single_hash_gpu(const uint8_t *__restrict__ input, size_
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 #endif
 
 
@@ -943,7 +943,7 @@ extern "C" void cnv2_rwz_double_mainloop_asm(cryptonight_ctx **ctx);
 extern "C" void cnv2_upx_double_mainloop_zen3_asm(cryptonight_ctx **ctx);
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 typedef void (*cn_mainloop_fun)(cryptonight_ctx **ctx);
@@ -999,28 +999,28 @@ extern cn_mainloop_fun cn_gr4_quad_mainloop_asm;
 extern cn_mainloop_fun cn_gr5_quad_mainloop_asm;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-void v4_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM);
-void v4_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM);
+void v4_compile_code(const V4_Instruction* code, int code_size, void* machine_code, uvloop::Assembly ASM);
+void v4_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, uvloop::Assembly ASM);
 
 
-template<xmrig::Algorithm::Id ALGO>
-void cn_r_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+template<uvloop::Algorithm::Id ALGO>
+void cn_r_compile_code(const V4_Instruction* code, int code_size, void* machine_code, uvloop::Assembly ASM)
 {
     v4_compile_code(code, code_size, machine_code, ASM);
 }
 
 
-template<xmrig::Algorithm::Id ALGO>
-void cn_r_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+template<uvloop::Algorithm::Id ALGO>
+void cn_r_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, uvloop::Assembly ASM)
 {
     v4_compile_code_double(code, code_size, machine_code, ASM);
 }
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 template<Algorithm::Id ALGO, Assembly::Id ASM>
@@ -1217,11 +1217,11 @@ inline void cryptonight_double_hash_asm(const uint8_t *__restrict__ input, size_
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 #ifdef XMRIG_FEATURE_ASM
@@ -2101,7 +2101,7 @@ inline void cryptonight_penta_hash(const uint8_t *__restrict__ input, size_t siz
 }
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CRYPTONIGHT_X86_H */

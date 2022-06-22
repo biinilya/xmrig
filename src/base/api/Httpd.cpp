@@ -34,7 +34,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 static const char *kAuthorization = "authorization";
 
@@ -43,10 +43,10 @@ static const char *favicon = nullptr;
 static size_t faviconSize  = 0;
 #endif
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Httpd::Httpd(Base *base) :
+uvloop::Httpd::Httpd(Base *base) :
     m_base(base)
 {
     m_httpListener = std::make_shared<HttpListener>(this);
@@ -55,10 +55,10 @@ xmrig::Httpd::Httpd(Base *base) :
 }
 
 
-xmrig::Httpd::~Httpd() = default;
+uvloop::Httpd::~Httpd() = default;
 
 
-bool xmrig::Httpd::start()
+bool uvloop::Httpd::start()
 {
     const auto &config = m_base->config()->http();
 
@@ -110,7 +110,7 @@ bool xmrig::Httpd::start()
 }
 
 
-void xmrig::Httpd::stop()
+void uvloop::Httpd::stop()
 {
     delete m_server;
     delete m_http;
@@ -122,7 +122,7 @@ void xmrig::Httpd::stop()
 
 
 
-void xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
+void uvloop::Httpd::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->http() == previousConfig->http()) {
         return;
@@ -133,7 +133,7 @@ void xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Httpd::onHttpData(const HttpData &data)
+void uvloop::Httpd::onHttpData(const HttpData &data)
 {
     if (data.method == HTTP_OPTIONS) {
         return HttpApiResponse(data.id()).end();
@@ -175,7 +175,7 @@ void xmrig::Httpd::onHttpData(const HttpData &data)
 }
 
 
-int xmrig::Httpd::auth(const HttpData &req) const
+int uvloop::Httpd::auth(const HttpData &req) const
 {
     const Http &config = m_base->config()->http();
 

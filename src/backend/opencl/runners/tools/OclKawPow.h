@@ -27,7 +27,7 @@
 using cl_kernel = struct _cl_kernel *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IOclRunner;
@@ -41,7 +41,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLKAWPOW_H */

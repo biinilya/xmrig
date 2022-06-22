@@ -349,7 +349,7 @@ void sort_indices2(uint32_t N, const uint8_t* v, uint64_t* indices, uint64_t* tm
 	}
 }
 
-bool xmrig::astrobwt::astrobwt_dero(const void* input_data, uint32_t input_size, void* scratchpad, uint8_t* output_hash, int stage2_max_size, bool avx2)
+bool uvloop::astrobwt::astrobwt_dero(const void* input_data, uint32_t input_size, void* scratchpad, uint8_t* output_hash, int stage2_max_size, bool avx2)
 {
 	alignas(8) uint8_t key[32];
 	uint8_t* scratchpad_ptr = (uint8_t*)(scratchpad) + 64;
@@ -434,7 +434,7 @@ bool xmrig::astrobwt::astrobwt_dero(const void* input_data, uint32_t input_size,
 }
 
 
-bool xmrig::astrobwt::astrobwt_dero_v2(const void* input_data, uint32_t input_size, void* scratchpad, uint8_t* output_hash)
+bool uvloop::astrobwt::astrobwt_dero_v2(const void* input_data, uint32_t input_size, void* scratchpad, uint8_t* output_hash)
 {
 	constexpr size_t N = 9973;
 	constexpr size_t STRIDE = 10240;
@@ -473,7 +473,7 @@ bool xmrig::astrobwt::astrobwt_dero_v2(const void* input_data, uint32_t input_si
 }
 
 
-void xmrig::astrobwt::init()
+void uvloop::astrobwt::init()
 {
 	if (!astrobwtInitialized) {
 #		ifdef ASTROBWT_AVX2
@@ -486,14 +486,14 @@ void xmrig::astrobwt::init()
 
 
 template<>
-void xmrig::astrobwt::single_hash<xmrig::Algorithm::ASTROBWT_DERO>(const uint8_t* input, size_t size, uint8_t* output, cryptonight_ctx** ctx, uint64_t)
+void uvloop::astrobwt::single_hash<uvloop::Algorithm::ASTROBWT_DERO>(const uint8_t* input, size_t size, uint8_t* output, cryptonight_ctx** ctx, uint64_t)
 {
 	astrobwt_dero(input, static_cast<uint32_t>(size), ctx[0]->memory, output, std::numeric_limits<int>::max(), true);
 }
 
 
 template<>
-void xmrig::astrobwt::single_hash<xmrig::Algorithm::ASTROBWT_DERO_2>(const uint8_t* input, size_t size, uint8_t* output, cryptonight_ctx** ctx, uint64_t)
+void uvloop::astrobwt::single_hash<uvloop::Algorithm::ASTROBWT_DERO_2>(const uint8_t* input, size_t size, uint8_t* output, cryptonight_ctx** ctx, uint64_t)
 {
 	astrobwt_dero_v2(input, static_cast<uint32_t>(size), ctx[0]->memory, output);
 }

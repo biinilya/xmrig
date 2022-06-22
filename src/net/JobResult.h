@@ -35,7 +35,7 @@
 #include "base/net/stratum/Job.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class JobResult
@@ -105,7 +105,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_JOBRESULT_H */

@@ -28,19 +28,19 @@
 #include "crypto/kawpow/KPHash.h"
 
 
-xmrig::CudaKawPowRunner::CudaKawPowRunner(size_t index, const CudaLaunchData &data) :
+uvloop::CudaKawPowRunner::CudaKawPowRunner(size_t index, const CudaLaunchData &data) :
     CudaBaseRunner(index, data)
 {
 }
 
 
-bool xmrig::CudaKawPowRunner::run(uint32_t /*startNonce*/, uint32_t *rescount, uint32_t *resnonce)
+bool uvloop::CudaKawPowRunner::run(uint32_t /*startNonce*/, uint32_t *rescount, uint32_t *resnonce)
 {
     return callWrapper(CudaLib::kawPowHash(m_ctx, m_jobBlob, m_target, rescount, resnonce, &m_skippedHashes));
 }
 
 
-bool xmrig::CudaKawPowRunner::set(const Job &job, uint8_t *blob)
+bool uvloop::CudaKawPowRunner::set(const Job &job, uint8_t *blob)
 {
     if (!CudaBaseRunner::set(job, blob)) {
         return false;
@@ -74,7 +74,7 @@ bool xmrig::CudaKawPowRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-void xmrig::CudaKawPowRunner::jobEarlyNotification(const Job&)
+void uvloop::CudaKawPowRunner::jobEarlyNotification(const Job&)
 {
     CudaLib::kawPowStopHash(m_ctx);
 }

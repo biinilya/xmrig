@@ -25,19 +25,19 @@
 #include "version.h"
 
 
-xmrig::SysLog::SysLog()
+uvloop::SysLog::SysLog()
 {
     openlog(APP_ID, LOG_PID, LOG_USER);
 }
 
 
-xmrig::SysLog::~SysLog()
+uvloop::SysLog::~SysLog()
 {
     closelog();
 }
 
 
-void xmrig::SysLog::print(uint64_t, int level, const char *line, size_t offset, size_t, bool colors)
+void uvloop::SysLog::print(uint64_t, int level, const char *line, size_t offset, size_t, bool colors)
 {
     if (colors) {
         return;

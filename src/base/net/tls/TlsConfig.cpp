@@ -24,7 +24,7 @@
 #include "base/net/tls/TlsGen.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const char *TlsConfig::kCert            = "cert";
@@ -42,7 +42,7 @@ static const char *kTLSv1_2             = "TLSv1.2";
 static const char *kTLSv1_3             = "TLSv1.3";
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 /**
@@ -52,7 +52,7 @@ static const char *kTLSv1_3             = "TLSv1.3";
  * "ciphersuites" set list of available TLSv1.3 ciphersuites.
  * "dhparam"      load DH parameters for DHE ciphers from file.
  */
-xmrig::TlsConfig::TlsConfig(const rapidjson::Value &value)
+uvloop::TlsConfig::TlsConfig(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled = Json::getBool(value, kEnabled, m_enabled);
@@ -93,7 +93,7 @@ xmrig::TlsConfig::TlsConfig(const rapidjson::Value &value)
 }
 
 
-bool xmrig::TlsConfig::generate(const char *commonName)
+bool uvloop::TlsConfig::generate(const char *commonName)
 {
     TlsGen gen;
 
@@ -115,7 +115,7 @@ bool xmrig::TlsConfig::generate(const char *commonName)
 }
 
 
-rapidjson::Value xmrig::TlsConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::TlsConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 
@@ -158,7 +158,7 @@ rapidjson::Value xmrig::TlsConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::TlsConfig::setProtocols(const char *protocols)
+void uvloop::TlsConfig::setProtocols(const char *protocols)
 {
     const std::vector<String> vec = String(protocols).split(' ');
 
@@ -179,7 +179,7 @@ void xmrig::TlsConfig::setProtocols(const char *protocols)
 }
 
 
-void xmrig::TlsConfig::setProtocols(const rapidjson::Value &protocols)
+void uvloop::TlsConfig::setProtocols(const rapidjson::Value &protocols)
 {
     m_protocols = 0;
 

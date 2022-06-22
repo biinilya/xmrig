@@ -23,7 +23,7 @@
 #include "backend/cpu/interfaces/ICpuInfo.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Cpu
@@ -37,7 +37,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CPU_H */

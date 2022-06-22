@@ -22,17 +22,17 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 static const rapidjson::Value kNullValue;
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::JsonChain::JsonChain() = default;
+uvloop::JsonChain::JsonChain() = default;
 
 
-bool xmrig::JsonChain::add(rapidjson::Document &&doc)
+bool uvloop::JsonChain::add(rapidjson::Document &&doc)
 {
     if (doc.HasParseError() || !doc.IsObject() || doc.ObjectEmpty()) {
         return false;
@@ -44,7 +44,7 @@ bool xmrig::JsonChain::add(rapidjson::Document &&doc)
 }
 
 
-bool xmrig::JsonChain::addFile(const char *fileName)
+bool uvloop::JsonChain::addFile(const char *fileName)
 {
     using namespace rapidjson;
     Document doc;
@@ -84,7 +84,7 @@ bool xmrig::JsonChain::addFile(const char *fileName)
 }
 
 
-bool xmrig::JsonChain::addRaw(const char *json)
+bool uvloop::JsonChain::addRaw(const char *json)
 {
     using namespace rapidjson;
     Document doc;
@@ -94,7 +94,7 @@ bool xmrig::JsonChain::addRaw(const char *json)
 }
 
 
-void xmrig::JsonChain::dump(const char *fileName)
+void uvloop::JsonChain::dump(const char *fileName)
 {
     rapidjson::Document doc(rapidjson::kArrayType);
 
@@ -106,7 +106,7 @@ void xmrig::JsonChain::dump(const char *fileName)
 }
 
 
-bool xmrig::JsonChain::getBool(const char *key, bool defaultValue) const
+bool uvloop::JsonChain::getBool(const char *key, bool defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -119,7 +119,7 @@ bool xmrig::JsonChain::getBool(const char *key, bool defaultValue) const
 }
 
 
-const char *xmrig::JsonChain::getString(const char *key, const char *defaultValue) const
+const char *uvloop::JsonChain::getString(const char *key, const char *defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -132,7 +132,7 @@ const char *xmrig::JsonChain::getString(const char *key, const char *defaultValu
 }
 
 
-const rapidjson::Value &xmrig::JsonChain::getArray(const char *key) const
+const rapidjson::Value &uvloop::JsonChain::getArray(const char *key) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -145,7 +145,7 @@ const rapidjson::Value &xmrig::JsonChain::getArray(const char *key) const
 }
 
 
-const rapidjson::Value &xmrig::JsonChain::getObject(const char *key) const
+const rapidjson::Value &uvloop::JsonChain::getObject(const char *key) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -158,7 +158,7 @@ const rapidjson::Value &xmrig::JsonChain::getObject(const char *key) const
 }
 
 
-const rapidjson::Value &xmrig::JsonChain::getValue(const char *key) const
+const rapidjson::Value &uvloop::JsonChain::getValue(const char *key) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -171,7 +171,7 @@ const rapidjson::Value &xmrig::JsonChain::getValue(const char *key) const
 }
 
 
-const rapidjson::Value &xmrig::JsonChain::object() const
+const rapidjson::Value &uvloop::JsonChain::object() const
 {
     assert(false);
 
@@ -179,7 +179,7 @@ const rapidjson::Value &xmrig::JsonChain::object() const
 }
 
 
-double xmrig::JsonChain::getDouble(const char *key, double defaultValue) const
+double uvloop::JsonChain::getDouble(const char *key, double defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -192,7 +192,7 @@ double xmrig::JsonChain::getDouble(const char *key, double defaultValue) const
 }
 
 
-int xmrig::JsonChain::getInt(const char *key, int defaultValue) const
+int uvloop::JsonChain::getInt(const char *key, int defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -205,7 +205,7 @@ int xmrig::JsonChain::getInt(const char *key, int defaultValue) const
 }
 
 
-int64_t xmrig::JsonChain::getInt64(const char *key, int64_t defaultValue) const
+int64_t uvloop::JsonChain::getInt64(const char *key, int64_t defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -219,7 +219,7 @@ int64_t xmrig::JsonChain::getInt64(const char *key, int64_t defaultValue) const
 
 
 
-xmrig::String xmrig::JsonChain::getString(const char *key, size_t maxSize) const
+uvloop::String uvloop::JsonChain::getString(const char *key, size_t maxSize) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -236,7 +236,7 @@ xmrig::String xmrig::JsonChain::getString(const char *key, size_t maxSize) const
 }
 
 
-uint64_t xmrig::JsonChain::getUint64(const char *key, uint64_t defaultValue) const
+uint64_t uvloop::JsonChain::getUint64(const char *key, uint64_t defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);
@@ -249,7 +249,7 @@ uint64_t xmrig::JsonChain::getUint64(const char *key, uint64_t defaultValue) con
 }
 
 
-unsigned xmrig::JsonChain::getUint(const char *key, unsigned defaultValue) const
+unsigned uvloop::JsonChain::getUint(const char *key, unsigned defaultValue) const
 {
     for (auto it = m_chain.rbegin(); it != m_chain.rend(); ++it) {
         auto i = it->FindMember(key);

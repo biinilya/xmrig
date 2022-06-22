@@ -30,7 +30,7 @@
 using uv_signal_t = struct uv_signal_s;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ISignalListener;
@@ -60,7 +60,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_SIGNALS_H */

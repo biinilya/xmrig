@@ -35,7 +35,7 @@
 #include <unistd.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static int msr_open(int32_t cpu, int flags)
@@ -73,10 +73,10 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::Msr::Msr() : d_ptr(new MsrPrivate())
+uvloop::Msr::Msr() : d_ptr(new MsrPrivate())
 {
     if (!isAvailable()) {
         LOG_WARN("%s " YELLOW_BOLD("msr kernel module is not available"), tag());
@@ -84,19 +84,19 @@ xmrig::Msr::Msr() : d_ptr(new MsrPrivate())
 }
 
 
-xmrig::Msr::~Msr()
+uvloop::Msr::~Msr()
 {
     delete d_ptr;
 }
 
 
-bool xmrig::Msr::isAvailable() const
+bool uvloop::Msr::isAvailable() const
 {
     return d_ptr->isAvailable();
 }
 
 
-bool xmrig::Msr::write(Callback &&callback)
+bool uvloop::Msr::write(Callback &&callback)
 {
     const auto &units = Cpu::info()->units();
 
@@ -110,7 +110,7 @@ bool xmrig::Msr::write(Callback &&callback)
 }
 
 
-bool xmrig::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
+bool uvloop::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
 {
     const int fd = msr_open(cpu, O_RDONLY);
 
@@ -125,7 +125,7 @@ bool xmrig::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
 }
 
 
-bool xmrig::Msr::wrmsr(uint32_t reg, uint64_t value, int32_t cpu)
+bool uvloop::Msr::wrmsr(uint32_t reg, uint64_t value, int32_t cpu)
 {
     const int fd = msr_open(cpu, O_WRONLY);
 

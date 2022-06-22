@@ -23,13 +23,13 @@
 #include "3rdparty/epee/span.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 using Span = epee::span<const uint8_t>;
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_SPAN_H */

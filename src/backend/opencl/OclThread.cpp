@@ -24,7 +24,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 static const char *kIndex        = "index";
 static const char *kIntensity    = "intensity";
@@ -39,10 +39,10 @@ static const char *kGCNAsm       = "gcn_asm";
 static const char* kDatasetHost  = "dataset_host";
 #endif
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::OclThread::OclThread(const rapidjson::Value &value)
+uvloop::OclThread::OclThread(const rapidjson::Value &value)
 {
     if (!value.IsObject()) {
         return;
@@ -91,7 +91,7 @@ xmrig::OclThread::OclThread(const rapidjson::Value &value)
 }
 
 
-bool xmrig::OclThread::isEqual(const OclThread &other) const
+bool uvloop::OclThread::isEqual(const OclThread &other) const
 {
     return other.m_threads.size() == m_threads.size() &&
            std::equal(m_threads.begin(), m_threads.end(), other.m_threads.begin()) &&
@@ -107,7 +107,7 @@ bool xmrig::OclThread::isEqual(const OclThread &other) const
 }
 
 
-rapidjson::Value xmrig::OclThread::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::OclThread::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

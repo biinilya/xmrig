@@ -39,7 +39,7 @@
 #define FLAG_NO_FILE_OFFSET     (1 << 0)
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static const char *kMemDevice       = "/dev/mem";
@@ -322,10 +322,10 @@ static off_t address_from_efi()
 }
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::DmiReader::read()
+bool uvloop::DmiReader::read()
 {
     size_t size  = 0x20;
     uint8_t *buf = read_file(0, &size, kSysEntryFile);

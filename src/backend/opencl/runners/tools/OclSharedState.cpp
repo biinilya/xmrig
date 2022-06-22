@@ -31,22 +31,22 @@
 #include <map>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static std::map<uint32_t, OclSharedData> map;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::OclSharedData &xmrig::OclSharedState::get(uint32_t index)
+uvloop::OclSharedData &uvloop::OclSharedState::get(uint32_t index)
 {
     return map[index];
 }
 
 
-void xmrig::OclSharedState::release()
+void uvloop::OclSharedState::release()
 {
     for (auto &kv : map) {
         kv.second.release();
@@ -56,7 +56,7 @@ void xmrig::OclSharedState::release()
 }
 
 
-void xmrig::OclSharedState::start(const std::vector<OclLaunchData> &threads, const Job &job)
+void uvloop::OclSharedState::start(const std::vector<OclLaunchData> &threads, const Job &job)
 {
     assert(map.empty());
 

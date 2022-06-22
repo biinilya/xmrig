@@ -36,7 +36,7 @@
 #include "crypto/cn/CnAlgo.h"
 
 
-xmrig::OclRyoRunner::OclRyoRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
+uvloop::OclRyoRunner::OclRyoRunner(size_t index, const OclLaunchData &data) : OclBaseRunner(index, data)
 {
     m_options += " -DITERATIONS="   + std::to_string(CnAlgo<>::iterations(m_algorithm)) + "U";
     m_options += " -DMASK="         + std::to_string(CnAlgo<>::mask(m_algorithm)) + "U";
@@ -48,7 +48,7 @@ xmrig::OclRyoRunner::OclRyoRunner(size_t index, const OclLaunchData &data) : Ocl
 }
 
 
-xmrig::OclRyoRunner::~OclRyoRunner()
+uvloop::OclRyoRunner::~OclRyoRunner()
 {
     delete m_cn00;
     delete m_cn0;
@@ -60,13 +60,13 @@ xmrig::OclRyoRunner::~OclRyoRunner()
 }
 
 
-size_t xmrig::OclRyoRunner::bufferSize() const
+size_t uvloop::OclRyoRunner::bufferSize() const
 {
     return OclBaseRunner::bufferSize() + align(data().algorithm.l3() * m_intensity) + align(200 * m_intensity);
 }
 
 
-void xmrig::OclRyoRunner::run(uint32_t nonce, uint32_t *hashOutput)
+void uvloop::OclRyoRunner::run(uint32_t nonce, uint32_t *hashOutput)
 {
     static const cl_uint zero = 0;
 
@@ -86,7 +86,7 @@ void xmrig::OclRyoRunner::run(uint32_t nonce, uint32_t *hashOutput)
 }
 
 
-void xmrig::OclRyoRunner::set(const Job &job, uint8_t *blob)
+void uvloop::OclRyoRunner::set(const Job &job, uint8_t *blob)
 {
     if (job.size() > (Job::kMaxBlobSize - 4)) {
         throw std::length_error("job size too big");
@@ -101,7 +101,7 @@ void xmrig::OclRyoRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-void xmrig::OclRyoRunner::build()
+void uvloop::OclRyoRunner::build()
 {
     OclBaseRunner::build();
 
@@ -119,7 +119,7 @@ void xmrig::OclRyoRunner::build()
 }
 
 
-void xmrig::OclRyoRunner::init()
+void uvloop::OclRyoRunner::init()
 {
     OclBaseRunner::init();
 

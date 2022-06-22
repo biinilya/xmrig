@@ -26,7 +26,7 @@
 #include "base/net/stratum/Client.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class BenchClient : public IClient, public IHttpListener, public IBenchListener, public IDnsListener
@@ -125,7 +125,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_BENCHCLIENT_H */

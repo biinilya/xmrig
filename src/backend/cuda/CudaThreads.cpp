@@ -24,7 +24,7 @@
 #include <algorithm>
 
 
-xmrig::CudaThreads::CudaThreads(const rapidjson::Value &value)
+uvloop::CudaThreads::CudaThreads(const rapidjson::Value &value)
 {
     if (value.IsArray()) {
         for (auto &v : value.GetArray()) {
@@ -37,7 +37,7 @@ xmrig::CudaThreads::CudaThreads(const rapidjson::Value &value)
 }
 
 
-xmrig::CudaThreads::CudaThreads(const std::vector<CudaDevice> &devices, const Algorithm &algorithm)
+uvloop::CudaThreads::CudaThreads(const std::vector<CudaDevice> &devices, const Algorithm &algorithm)
 {
     for (const auto &device : devices) {
         device.generate(algorithm, *this);
@@ -45,7 +45,7 @@ xmrig::CudaThreads::CudaThreads(const std::vector<CudaDevice> &devices, const Al
 }
 
 
-bool xmrig::CudaThreads::isEqual(const CudaThreads &other) const
+bool uvloop::CudaThreads::isEqual(const CudaThreads &other) const
 {
     if (isEmpty() && other.isEmpty()) {
         return true;
@@ -55,7 +55,7 @@ bool xmrig::CudaThreads::isEqual(const CudaThreads &other) const
 }
 
 
-rapidjson::Value xmrig::CudaThreads::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::CudaThreads::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

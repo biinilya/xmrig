@@ -24,7 +24,7 @@
 #include <algorithm>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 const char *DnsConfig::kField   = "dns";
@@ -32,17 +32,17 @@ const char *DnsConfig::kIPv6    = "ipv6";
 const char *DnsConfig::kTTL     = "ttl";
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-xmrig::DnsConfig::DnsConfig(const rapidjson::Value &value)
+uvloop::DnsConfig::DnsConfig(const rapidjson::Value &value)
 {
     m_ipv6  = Json::getBool(value, kIPv6, m_ipv6);
     m_ttl   = std::max(Json::getUint(value, kTTL, m_ttl), 1U);
 }
 
 
-rapidjson::Value xmrig::DnsConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::DnsConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
 

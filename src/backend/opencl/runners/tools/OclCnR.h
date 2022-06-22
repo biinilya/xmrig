@@ -33,7 +33,7 @@
 using cl_program = struct _cl_program *;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -50,7 +50,7 @@ public:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLCNR_H */

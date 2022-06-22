@@ -40,7 +40,7 @@
 struct randomx_cache;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -73,7 +73,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_CACHE_H */

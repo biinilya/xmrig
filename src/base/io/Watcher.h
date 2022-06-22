@@ -33,7 +33,7 @@
 typedef struct uv_fs_event_s uv_fs_event_t;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IWatcherListener;
@@ -65,7 +65,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_WATCHER_H */

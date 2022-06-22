@@ -31,7 +31,7 @@
 #include "crypto/common/VirtualMemory.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 std::mutex KPCache::s_cacheMutex;
@@ -176,4 +176,4 @@ void KPCache::calculate_fast_mod_data(uint32_t divisor, uint32_t& reciprocal, ui
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

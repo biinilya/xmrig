@@ -43,7 +43,7 @@
 #endif
 
 
-void xmrig::BaseTransform::load(JsonChain &chain, Process *process, IConfigTransform &transform)
+void uvloop::BaseTransform::load(JsonChain &chain, Process *process, IConfigTransform &transform)
 {
     using namespace rapidjson;
 
@@ -79,7 +79,7 @@ void xmrig::BaseTransform::load(JsonChain &chain, Process *process, IConfigTrans
 }
 
 
-void xmrig::BaseTransform::finalize(rapidjson::Document &doc)
+void uvloop::BaseTransform::finalize(rapidjson::Document &doc)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -108,7 +108,7 @@ void xmrig::BaseTransform::finalize(rapidjson::Document &doc)
 }
 
 
-void xmrig::BaseTransform::transform(rapidjson::Document &doc, int key, const char *arg)
+void uvloop::BaseTransform::transform(rapidjson::Document &doc, int key, const char *arg)
 {
     switch (key) {
     case IConfig::AlgorithmKey: /* --algo */
@@ -287,7 +287,7 @@ void xmrig::BaseTransform::transform(rapidjson::Document &doc, int key, const ch
 }
 
 
-void xmrig::BaseTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
+void uvloop::BaseTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
 {
     switch (key) {
     case IConfig::BackgroundKey: /* --background */
@@ -348,7 +348,7 @@ void xmrig::BaseTransform::transformBoolean(rapidjson::Document &doc, int key, b
 }
 
 
-void xmrig::BaseTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
+void uvloop::BaseTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
 {
     switch (key) {
     case IConfig::RetriesKey: /* --retries */

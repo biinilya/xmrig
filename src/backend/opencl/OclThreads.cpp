@@ -31,7 +31,7 @@
 #include "base/io/json/Json.h"
 
 
-xmrig::OclThreads::OclThreads(const rapidjson::Value &value)
+uvloop::OclThreads::OclThreads(const rapidjson::Value &value)
 {
     if (value.IsArray()) {
         for (auto &v : value.GetArray()) {
@@ -44,7 +44,7 @@ xmrig::OclThreads::OclThreads(const rapidjson::Value &value)
 }
 
 
-xmrig::OclThreads::OclThreads(const std::vector<OclDevice> &devices, const Algorithm &algorithm)
+uvloop::OclThreads::OclThreads(const std::vector<OclDevice> &devices, const Algorithm &algorithm)
 {
     for (const auto &device : devices) {
         device.generate(algorithm, *this);
@@ -52,7 +52,7 @@ xmrig::OclThreads::OclThreads(const std::vector<OclDevice> &devices, const Algor
 }
 
 
-bool xmrig::OclThreads::isEqual(const OclThreads &other) const
+bool uvloop::OclThreads::isEqual(const OclThreads &other) const
 {
     if (isEmpty() && other.isEmpty()) {
         return true;
@@ -62,7 +62,7 @@ bool xmrig::OclThreads::isEqual(const OclThreads &other) const
 }
 
 
-rapidjson::Value xmrig::OclThreads::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::OclThreads::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

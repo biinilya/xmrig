@@ -30,7 +30,7 @@
 #include <utility>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Job;
@@ -53,7 +53,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_IRXSTORAGE_H

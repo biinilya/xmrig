@@ -27,7 +27,7 @@
 #include "backend/cuda/wrappers/CudaDevice.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaThreads
@@ -54,7 +54,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CUDATHREADS_H */

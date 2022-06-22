@@ -34,7 +34,7 @@
 #include <thread>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -105,7 +105,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_QUEUE_H */

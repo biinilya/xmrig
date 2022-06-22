@@ -23,7 +23,7 @@
 #include "base/net/dns/Dns.h"
 
 
-const xmrig::DnsRecord &xmrig::DnsRecords::get(DnsRecord::Type prefered) const
+const uvloop::DnsRecord &uvloop::DnsRecords::get(DnsRecord::Type prefered) const
 {
     static const DnsRecord defaultRecord;
 
@@ -46,7 +46,7 @@ const xmrig::DnsRecord &xmrig::DnsRecords::get(DnsRecord::Type prefered) const
 }
 
 
-size_t xmrig::DnsRecords::count(DnsRecord::Type type) const
+size_t uvloop::DnsRecords::count(DnsRecord::Type type) const
 {
     if (type == DnsRecord::A) {
         return m_ipv4.size();
@@ -60,14 +60,14 @@ size_t xmrig::DnsRecords::count(DnsRecord::Type type) const
 }
 
 
-void xmrig::DnsRecords::clear()
+void uvloop::DnsRecords::clear()
 {
     m_ipv4.clear();
     m_ipv6.clear();
 }
 
 
-void xmrig::DnsRecords::parse(addrinfo *res)
+void uvloop::DnsRecords::parse(addrinfo *res)
 {
     clear();
 

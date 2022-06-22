@@ -26,7 +26,7 @@ using nvid_ctx = struct nvid_ctx;
 #include "3rdparty/rapidjson/fwd.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaThread
@@ -68,7 +68,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CUDATHREAD_H */

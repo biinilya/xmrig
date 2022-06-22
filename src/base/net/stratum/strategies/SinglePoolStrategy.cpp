@@ -31,7 +31,7 @@
 #include "base/net/stratum/Pool.h"
 
 
-xmrig::SinglePoolStrategy::SinglePoolStrategy(const Pool &pool, int retryPause, int retries, IStrategyListener *listener, bool quiet) :
+uvloop::SinglePoolStrategy::SinglePoolStrategy(const Pool &pool, int retryPause, int retries, IStrategyListener *listener, bool quiet) :
     m_active(false),
     m_listener(listener)
 {
@@ -42,25 +42,25 @@ xmrig::SinglePoolStrategy::SinglePoolStrategy(const Pool &pool, int retryPause, 
 }
 
 
-xmrig::SinglePoolStrategy::~SinglePoolStrategy()
+uvloop::SinglePoolStrategy::~SinglePoolStrategy()
 {
     m_client->deleteLater();
 }
 
 
-int64_t xmrig::SinglePoolStrategy::submit(const JobResult &result)
+int64_t uvloop::SinglePoolStrategy::submit(const JobResult &result)
 {
     return m_client->submit(result);
 }
 
 
-void xmrig::SinglePoolStrategy::connect()
+void uvloop::SinglePoolStrategy::connect()
 {
     m_client->connect();
 }
 
 
-void xmrig::SinglePoolStrategy::resume()
+void uvloop::SinglePoolStrategy::resume()
 {
     if (!isActive()) {
         return;
@@ -70,31 +70,31 @@ void xmrig::SinglePoolStrategy::resume()
 }
 
 
-void xmrig::SinglePoolStrategy::setAlgo(const Algorithm &algo)
+void uvloop::SinglePoolStrategy::setAlgo(const Algorithm &algo)
 {
     m_client->setAlgo(algo);
 }
 
 
-void xmrig::SinglePoolStrategy::setProxy(const ProxyUrl &proxy)
+void uvloop::SinglePoolStrategy::setProxy(const ProxyUrl &proxy)
 {
     m_client->setProxy(proxy);
 }
 
 
-void xmrig::SinglePoolStrategy::stop()
+void uvloop::SinglePoolStrategy::stop()
 {
     m_client->disconnect();
 }
 
 
-void xmrig::SinglePoolStrategy::tick(uint64_t now)
+void uvloop::SinglePoolStrategy::tick(uint64_t now)
 {
     m_client->tick(now);
 }
 
 
-void xmrig::SinglePoolStrategy::onClose(IClient *, int)
+void uvloop::SinglePoolStrategy::onClose(IClient *, int)
 {
     if (!isActive()) {
         return;
@@ -105,32 +105,32 @@ void xmrig::SinglePoolStrategy::onClose(IClient *, int)
 }
 
 
-void xmrig::SinglePoolStrategy::onJobReceived(IClient *client, const Job &job, const rapidjson::Value &params)
+void uvloop::SinglePoolStrategy::onJobReceived(IClient *client, const Job &job, const rapidjson::Value &params)
 {
     m_listener->onJob(this, client, job, params);
 }
 
 
-void xmrig::SinglePoolStrategy::onLogin(IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
+void uvloop::SinglePoolStrategy::onLogin(IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
 {
     m_listener->onLogin(this, client, doc, params);
 }
 
 
-void xmrig::SinglePoolStrategy::onLoginSuccess(IClient *client)
+void uvloop::SinglePoolStrategy::onLoginSuccess(IClient *client)
 {
     m_active = true;
     m_listener->onActive(this, client);
 }
 
 
-void xmrig::SinglePoolStrategy::onResultAccepted(IClient *client, const SubmitResult &result, const char *error)
+void uvloop::SinglePoolStrategy::onResultAccepted(IClient *client, const SubmitResult &result, const char *error)
 {
     m_listener->onResultAccepted(this, client, result, error);
 }
 
 
-void xmrig::SinglePoolStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
+void uvloop::SinglePoolStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
 {
     m_listener->onVerifyAlgorithm(this, client, algorithm, ok);
 }

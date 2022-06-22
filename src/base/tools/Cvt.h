@@ -29,7 +29,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Cvt
@@ -60,7 +60,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CVT_H */

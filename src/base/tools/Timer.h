@@ -29,7 +29,7 @@ using uv_timer_t = struct uv_timer_s;
 #include <cstdint>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class ITimerListener;
@@ -63,7 +63,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_TIMER_H */

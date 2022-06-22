@@ -31,7 +31,7 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 bool ocl_generic_astrobwt_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
@@ -70,4 +70,4 @@ bool ocl_generic_astrobwt_generator(const OclDevice &device, const Algorithm &al
 }
 
 
-} // namespace xmrig
+} // namespace uvloop

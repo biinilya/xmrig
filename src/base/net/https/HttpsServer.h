@@ -34,7 +34,7 @@ struct uv_buf_t;
 #include <memory>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class IHttpListener;
@@ -63,7 +63,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPSSERVER_H

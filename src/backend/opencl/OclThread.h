@@ -27,7 +27,7 @@
 #include <vector>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclThread
@@ -148,7 +148,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_OCLTHREAD_H */

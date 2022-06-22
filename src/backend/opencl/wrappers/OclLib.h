@@ -43,7 +43,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class OclLib
@@ -120,7 +120,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLLIB_H */

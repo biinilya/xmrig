@@ -27,7 +27,7 @@
 class randomx_vm;
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -43,7 +43,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_VM_H */

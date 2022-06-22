@@ -25,7 +25,7 @@
 #include "base/net/http/HttpResponse.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HttpApiResponse : public HttpResponse
@@ -43,7 +43,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPAPIRESPONSE_H

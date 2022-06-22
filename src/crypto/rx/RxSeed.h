@@ -32,7 +32,7 @@
 #include "base/tools/Buffer.h"
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -63,7 +63,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RX_CACHE_H */

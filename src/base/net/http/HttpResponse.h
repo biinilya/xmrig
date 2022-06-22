@@ -25,7 +25,7 @@
 #include <string>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class HttpResponse
@@ -47,7 +47,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPRESPONSE_H

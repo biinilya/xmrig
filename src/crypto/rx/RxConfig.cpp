@@ -37,7 +37,7 @@
 #endif
 
 
-namespace xmrig {
+namespace uvloop {
 
 const char *RxConfig::kInit                     = "init";
 const char *RxConfig::kInitAVX2                 = "init-avx2";
@@ -74,10 +74,10 @@ static_assert (kMsrArraySize == ICpuInfo::MSR_MOD_MAX, "kMsrArraySize and MSR_MO
 #endif
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-bool xmrig::RxConfig::read(const rapidjson::Value &value)
+bool uvloop::RxConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_threads         = Json::getInt(value, kInit, m_threads);
@@ -129,7 +129,7 @@ bool xmrig::RxConfig::read(const rapidjson::Value &value)
 }
 
 
-rapidjson::Value xmrig::RxConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::RxConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -183,7 +183,7 @@ rapidjson::Value xmrig::RxConfig::toJSON(rapidjson::Document &doc) const
 
 
 #ifdef XMRIG_FEATURE_HWLOC
-std::vector<uint32_t> xmrig::RxConfig::nodeset() const
+std::vector<uint32_t> uvloop::RxConfig::nodeset() const
 {
     if (!m_nodeset.empty()) {
         return m_nodeset;
@@ -194,13 +194,13 @@ std::vector<uint32_t> xmrig::RxConfig::nodeset() const
 #endif
 
 
-const char *xmrig::RxConfig::modeName() const
+const char *uvloop::RxConfig::modeName() const
 {
     return modeNames[m_mode];
 }
 
 
-uint32_t xmrig::RxConfig::threads(uint32_t limit) const
+uint32_t uvloop::RxConfig::threads(uint32_t limit) const
 {
     if (m_threads > 0) {
         return m_threads;
@@ -215,13 +215,13 @@ uint32_t xmrig::RxConfig::threads(uint32_t limit) const
 
 
 #ifdef XMRIG_FEATURE_MSR
-const char *xmrig::RxConfig::msrPresetName() const
+const char *uvloop::RxConfig::msrPresetName() const
 {
     return modNames[msrMod()];
 }
 
 
-const xmrig::MsrItems &xmrig::RxConfig::msrPreset() const
+const uvloop::MsrItems &uvloop::RxConfig::msrPreset() const
 {
     const auto mod = msrMod();
 
@@ -233,7 +233,7 @@ const xmrig::MsrItems &xmrig::RxConfig::msrPreset() const
 }
 
 
-uint32_t xmrig::RxConfig::msrMod() const
+uint32_t uvloop::RxConfig::msrMod() const
 {
     if (!wrmsr()) {
         return ICpuInfo::MSR_MOD_NONE;
@@ -247,7 +247,7 @@ uint32_t xmrig::RxConfig::msrMod() const
 }
 
 
-void xmrig::RxConfig::readMSR(const rapidjson::Value &value)
+void uvloop::RxConfig::readMSR(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_wrmsr = value.GetBool();
@@ -279,7 +279,7 @@ void xmrig::RxConfig::readMSR(const rapidjson::Value &value)
 #endif
 
 
-xmrig::RxConfig::Mode xmrig::RxConfig::readMode(const rapidjson::Value &value)
+uvloop::RxConfig::Mode uvloop::RxConfig::readMode(const rapidjson::Value &value)
 {
     if (value.IsUint()) {
         return static_cast<Mode>(std::min(value.GetUint(), ModeMax - 1));

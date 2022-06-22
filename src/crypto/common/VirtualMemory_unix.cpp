@@ -73,7 +73,7 @@ static inline int hugePagesFlag(size_t size)
 #endif
 
 
-bool xmrig::VirtualMemory::isHugepagesAvailable()
+bool uvloop::VirtualMemory::isHugepagesAvailable()
 {
 #   if defined(XMRIG_OS_MACOS) && defined(XMRIG_ARM)
     return false;
@@ -83,7 +83,7 @@ bool xmrig::VirtualMemory::isHugepagesAvailable()
 }
 
 
-bool xmrig::VirtualMemory::isOneGbPagesAvailable()
+bool uvloop::VirtualMemory::isOneGbPagesAvailable()
 {
 #   ifdef XMRIG_OS_LINUX
     return Cpu::info()->hasOneGbPages();
@@ -93,7 +93,7 @@ bool xmrig::VirtualMemory::isOneGbPagesAvailable()
 }
 
 
-bool xmrig::VirtualMemory::protectRW(void *p, size_t size)
+bool uvloop::VirtualMemory::protectRW(void *p, size_t size)
 {
 #   if defined(XMRIG_OS_APPLE) && defined(XMRIG_ARM)
     pthread_jit_write_protect_np(false);
@@ -104,13 +104,13 @@ bool xmrig::VirtualMemory::protectRW(void *p, size_t size)
 }
 
 
-bool xmrig::VirtualMemory::protectRWX(void *p, size_t size)
+bool uvloop::VirtualMemory::protectRWX(void *p, size_t size)
 {
     return mprotect(p, size, PROT_READ | PROT_WRITE | PROT_EXEC) == 0;
 }
 
 
-bool xmrig::VirtualMemory::protectRX(void *p, size_t size)
+bool uvloop::VirtualMemory::protectRX(void *p, size_t size)
 {
 #   if defined(XMRIG_OS_APPLE) && defined(XMRIG_ARM)
     pthread_jit_write_protect_np(true);
@@ -122,7 +122,7 @@ bool xmrig::VirtualMemory::protectRX(void *p, size_t size)
 }
 
 
-void *xmrig::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
+void *uvloop::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages)
 {
 #   if defined(XMRIG_OS_APPLE)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANON | MEXTRA, -1, 0);
@@ -158,7 +158,7 @@ void *xmrig::VirtualMemory::allocateExecutableMemory(size_t size, bool hugePages
 }
 
 
-void *xmrig::VirtualMemory::allocateLargePagesMemory(size_t size)
+void *uvloop::VirtualMemory::allocateLargePagesMemory(size_t size)
 {
 #   if defined(XMRIG_OS_APPLE)
     void *mem = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, VM_FLAGS_SUPERPAGE_SIZE_2MB, 0);
@@ -172,7 +172,7 @@ void *xmrig::VirtualMemory::allocateLargePagesMemory(size_t size)
 }
 
 
-void *xmrig::VirtualMemory::allocateOneGbPagesMemory(size_t size)
+void *uvloop::VirtualMemory::allocateOneGbPagesMemory(size_t size)
 {
 #   ifdef XMRIG_OS_LINUX
     if (isOneGbPagesAvailable()) {
@@ -186,7 +186,7 @@ void *xmrig::VirtualMemory::allocateOneGbPagesMemory(size_t size)
 }
 
 
-void xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
+void uvloop::VirtualMemory::flushInstructionCache(void *p, size_t size)
 {
 #   if defined(XMRIG_OS_APPLE)
     sys_icache_invalidate(p, size);
@@ -196,13 +196,13 @@ void xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
 }
 
 
-void xmrig::VirtualMemory::freeLargePagesMemory(void *p, size_t size)
+void uvloop::VirtualMemory::freeLargePagesMemory(void *p, size_t size)
 {
     munmap(p, size);
 }
 
 
-void xmrig::VirtualMemory::osInit(size_t hugePageSize)
+void uvloop::VirtualMemory::osInit(size_t hugePageSize)
 {
     if (hugePageSize) {
         m_hugePageSize = hugePageSize;
@@ -210,7 +210,7 @@ void xmrig::VirtualMemory::osInit(size_t hugePageSize)
 }
 
 
-bool xmrig::VirtualMemory::allocateLargePagesMemory()
+bool uvloop::VirtualMemory::allocateLargePagesMemory()
 {
 #   ifdef XMRIG_OS_LINUX
     LinuxMemory::reserve(m_size, m_node, hugePageSize());
@@ -233,7 +233,7 @@ bool xmrig::VirtualMemory::allocateLargePagesMemory()
 }
 
 
-bool xmrig::VirtualMemory::allocateOneGbPagesMemory()
+bool uvloop::VirtualMemory::allocateOneGbPagesMemory()
 {
 #   ifdef XMRIG_OS_LINUX
     LinuxMemory::reserve(m_size, m_node, kOneGiB);
@@ -256,7 +256,7 @@ bool xmrig::VirtualMemory::allocateOneGbPagesMemory()
 }
 
 
-void xmrig::VirtualMemory::freeLargePagesMemory()
+void uvloop::VirtualMemory::freeLargePagesMemory()
 {
     if (m_flags.test(FLAG_LOCK)) {
         munlock(m_scratchpad, m_size);

@@ -39,7 +39,7 @@
 #include <uv.h>
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CnrCacheEntry
@@ -261,11 +261,11 @@ static CnrBuilder builder;
 static std::mutex bg_mutex;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 
-cl_program xmrig::OclCnR::get(const IOclRunner &runner, uint64_t height)
+cl_program uvloop::OclCnR::get(const IOclRunner &runner, uint64_t height)
 {
     const uint64_t offset = (height / kHeightChunkSize) * kHeightChunkSize;
 
@@ -293,7 +293,7 @@ cl_program xmrig::OclCnR::get(const IOclRunner &runner, uint64_t height)
 }
 
 
-void xmrig::OclCnR::clear()
+void uvloop::OclCnR::clear()
 {
     std::lock_guard<std::mutex> lock(bg_mutex);
 

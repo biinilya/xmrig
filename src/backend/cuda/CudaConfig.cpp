@@ -25,7 +25,7 @@
 #include "base/io/log/Log.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 static bool generated           = false;
@@ -43,10 +43,10 @@ static const char *kNvml        = "nvml";
 extern template class Threads<CudaThreads>;
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
-rapidjson::Value xmrig::CudaConfig::toJSON(rapidjson::Document &doc) const
+rapidjson::Value uvloop::CudaConfig::toJSON(rapidjson::Document &doc) const
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -71,7 +71,7 @@ rapidjson::Value xmrig::CudaConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-std::vector<xmrig::CudaLaunchData> xmrig::CudaConfig::get(const Miner *miner, const Algorithm &algorithm, const std::vector<CudaDevice> &devices) const
+std::vector<uvloop::CudaLaunchData> uvloop::CudaConfig::get(const Miner *miner, const Algorithm &algorithm, const std::vector<CudaDevice> &devices) const
 {
     auto deviceIndex = [&devices](uint32_t index) -> int {
         for (uint32_t i = 0; i < devices.size(); ++i) {
@@ -106,7 +106,7 @@ std::vector<xmrig::CudaLaunchData> xmrig::CudaConfig::get(const Miner *miner, co
 }
 
 
-void xmrig::CudaConfig::read(const rapidjson::Value &value)
+void uvloop::CudaConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled   = Json::getBool(value, kEnabled, m_enabled);
@@ -143,7 +143,7 @@ void xmrig::CudaConfig::read(const rapidjson::Value &value)
 }
 
 
-void xmrig::CudaConfig::generate()
+void uvloop::CudaConfig::generate()
 {
     if (generated) {
         return;
@@ -168,21 +168,21 @@ void xmrig::CudaConfig::generate()
 
     size_t count = 0;
 
-    count += xmrig::generate<Algorithm::CN>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_LITE>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_HEAVY>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_PICO>(m_threads, devices);
-    count += xmrig::generate<Algorithm::CN_FEMTO>(m_threads, devices);
-    count += xmrig::generate<Algorithm::RANDOM_X>(m_threads, devices);
-    count += xmrig::generate<Algorithm::ASTROBWT>(m_threads, devices);
-    count += xmrig::generate<Algorithm::KAWPOW>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_LITE>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_HEAVY>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_PICO>(m_threads, devices);
+    count += uvloop::generate<Algorithm::CN_FEMTO>(m_threads, devices);
+    count += uvloop::generate<Algorithm::RANDOM_X>(m_threads, devices);
+    count += uvloop::generate<Algorithm::ASTROBWT>(m_threads, devices);
+    count += uvloop::generate<Algorithm::KAWPOW>(m_threads, devices);
 
     generated    = true;
     m_shouldSave = count > 0;
 }
 
 
-void xmrig::CudaConfig::setDevicesHint(const char *devicesHint)
+void uvloop::CudaConfig::setDevicesHint(const char *devicesHint)
 {
     if (devicesHint == nullptr) {
         return;

@@ -26,7 +26,7 @@
 #define XMRIG_OCLGENERATOR_H
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Algorithm;
@@ -37,7 +37,7 @@ class OclThreads;
 using ocl_gen_config_fun = bool (*)(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads);
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif /* XMRIG_OCLGENERATOR_H */

@@ -32,7 +32,7 @@
 using nvid_ctx = struct nvid_ctx;
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class CudaLaunchData;
@@ -65,7 +65,7 @@ protected:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif // XMRIG_CUDABASERUNNER_H

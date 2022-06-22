@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::Cn2RyoKernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads)
+void uvloop::Cn2RyoKernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads)
 {
     const size_t offset[2]          = { nonce, 1 };
     const size_t gthreads[2]        = { threads, 8 };
@@ -38,7 +38,7 @@ void xmrig::Cn2RyoKernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t
 
 
 // __kernel void cn2(__global uint4 *Scratchpad, __global ulong *states, __global uint *output, ulong Target, uint Threads)
-void xmrig::Cn2RyoKernel::setArgs(cl_mem scratchpads, cl_mem states, cl_mem output, uint32_t threads)
+void uvloop::Cn2RyoKernel::setArgs(cl_mem scratchpads, cl_mem states, cl_mem output, uint32_t threads)
 {
     setArg(0, sizeof(cl_mem), &scratchpads);
     setArg(1, sizeof(cl_mem), &states);
@@ -47,7 +47,7 @@ void xmrig::Cn2RyoKernel::setArgs(cl_mem scratchpads, cl_mem states, cl_mem outp
 }
 
 
-void xmrig::Cn2RyoKernel::setTarget(uint64_t target)
+void uvloop::Cn2RyoKernel::setTarget(uint64_t target)
 {
     setArg(3, sizeof(cl_ulong), &target);
 }

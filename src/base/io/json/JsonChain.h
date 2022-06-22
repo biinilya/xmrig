@@ -28,7 +28,7 @@
 #include "base/tools/String.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class JsonChain : public IJsonReader
@@ -67,7 +67,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_JSONCHAIN_H */

@@ -25,7 +25,7 @@
 
 #include <memory>
 
-namespace xmrig {
+namespace uvloop {
 
 class Controller;
 class Miner;
@@ -104,4 +104,4 @@ class MoBenchmark : public IJobResultListener {
         void read(const rapidjson::Value &value);
 };
 
-} // namespace xmrig
+} // namespace uvloop

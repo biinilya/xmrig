@@ -29,7 +29,7 @@ using SSL = struct ssl_st;
 #include "base/net/tls/ServerTls.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class TlsContext;
@@ -66,7 +66,7 @@ private:
 };
 
 
-} // namespace xmrig
+} // namespace uvloop
 
 
 #endif // XMRIG_HTTPSCONTEXT_H

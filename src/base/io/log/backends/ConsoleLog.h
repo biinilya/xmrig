@@ -29,7 +29,7 @@ using uv_tty_t    = struct uv_tty_s;
 #include "base/tools/Object.h"
 
 
-namespace xmrig {
+namespace uvloop {
 
 
 class Title;
@@ -59,7 +59,7 @@ private:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_CONSOLELOG_H */

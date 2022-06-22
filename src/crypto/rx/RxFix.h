@@ -24,7 +24,7 @@
 #include <utility>
 
 
-namespace xmrig
+namespace uvloop
 {
 
 
@@ -36,7 +36,7 @@ public:
 };
 
 
-} /* namespace xmrig */
+} /* namespace uvloop */
 
 
 #endif /* XMRIG_RXFIX_H */
